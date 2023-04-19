@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    position: relative;
+}
+
+.container{
+    margin: 0px 170px 0px 170px;
+}
+
+.app{
+    height: 100%;
+    width: 100%;
+}
