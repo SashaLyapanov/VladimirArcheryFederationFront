@@ -1,12 +1,12 @@
 import './style.css'
-import Navbar from './components/navbar/Navbar';
-import News from './components/news/News';
+import Navbar from './components/navbar/Navbar'
+import Home from './pages/Home'
 
 function App() {
   return (
     <div className='app'>
       <Navbar/>
-      <News />
+      <Home />
     </div>
       
     );
