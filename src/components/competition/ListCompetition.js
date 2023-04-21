@@ -22,6 +22,12 @@ const ListCompetition = () => {
     return(
         <div className='competitions'>
             <div className='container container_for_competition'>
+                <div className='marker fonts-roboto-thin'>
+                  <p className='title_container_maker'>Название</p>
+                  <p>Тип лука</p>
+                  <p>Категория</p>
+                  <p>Дата</p>
+                </div>
                 <div className='list_competition'>
                   {competitions.map((competition) => (
                     <Competition competition={competition}/>
