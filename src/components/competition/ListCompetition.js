@@ -6,7 +6,7 @@ import '../../fonts/roboto/fonts.css';
 import './style.css';
 import Competition from './Competition.js';
 
-const CompetitionHome = () => {
+const ListCompetition = () => {
 
         const [competitions, setNews] = useState([]);
     
@@ -21,17 +21,15 @@ const CompetitionHome = () => {
 
     return(
         <div className='competitions'>
-            <div className='container container_for_competition margin'>
-                <p className='fonts-roboto-black title'>Ближайшие соревнования</p>
+            <div className='container container_for_competition'>
                 <div className='list_competition'>
                   {competitions.map((competition) => (
                     <Competition competition={competition}/>
                   ))}
                 </div>
-                <a href='@' className='fonts-roboto-regular'>Еще...</a>
             </div>
         </div>
     )
 }
 
-export default CompetitionHome
+export default ListCompetition

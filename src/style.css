@@ -8,6 +8,12 @@
     margin: 0px 170px 0px 170px;
 }
 
+.container_for_page{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
 .app{
     height: 100%;
     width: 100%;
