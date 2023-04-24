@@ -1,7 +1,8 @@
-import Search from '../components/search/search'
-import NamePage from '../components/namePage/NamePage'
-import '../style.css';
-import ListCompetition from '../components/competition/ListCompetition'
+import Navbar from '../../components/navbar/Navbar'
+import Search from '../../components/search/search'
+import NamePage from '../../components/namePage/NamePage'
+import '../../style.css';
+import ListCompetition from '../../components/competition/ListCompetition'
 
 const Calendar = () => {
     const nameInput = [
@@ -19,6 +20,7 @@ const Calendar = () => {
 
     return(
         <>
+            <Navbar/>
             <NamePage name={'Календарь'}/>
             <Search nameInput={nameInput}/>
             <ListCompetition/>

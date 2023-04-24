@@ -15,8 +15,8 @@
   @font-face {
     font-family: 'Roboto';
     src: local('Roboto'),
-      url('./Roboto-Thin.ttf') format('truetype');
-    font-weight: 100;
+      url('./Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
   }
 
   .fonts-roboto-black{
@@ -29,7 +29,7 @@
   font-weight: 400;
 }
 
-.fonts-roboto-thin{
+.fonts-roboto-light{
   font-family: 'Roboto';
-  font-weight: 100;
+  font-weight: 300;
 }

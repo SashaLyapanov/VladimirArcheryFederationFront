@@ -15,7 +15,7 @@ const Search = ({nameInput}) => {
                 ))}
                 <Select/>
                 <div className='button_flex'>
-                    <Button/>
+                    <Button parametr={'Найти'}/>
                 </div>
             </div>
         </div>
