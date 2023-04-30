@@ -1,9 +1,10 @@
 import "./../navbar/style.css";
 import '../../style.css';
 import logo from "./../../img/logo.jpg";
-import place from "./../../img/place.png"
+import place from "./../../img/place.png";
+import MenuUser from "./MenuUsers";
 
-const Navbar = () => {
+const Navbar = ({parametr}) => {
     return(
         <nav className="nav">
         <div className='container nav-container'>
@@ -19,7 +20,7 @@ const Navbar = () => {
                   Владимир
                   </a>
               </div>
-              <a href="@" className="fonts-roboto-black menu-elements">Вход</a>
+              <p className="fonts-roboto-black"><MenuUser/></p>
             </div>
             <div className='menu fonts-roboto-black'>
                 <a href="@" className="menu-elements">О федерации</a>

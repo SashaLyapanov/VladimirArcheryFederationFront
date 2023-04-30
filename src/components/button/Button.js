@@ -1,8 +1,8 @@
 import './button.css'
 
-const Button = ({parametr}) => {
+const Button = ({parametr, functionClick}) => {
     return(
-            <button type="button" className="button">{parametr}</button>
+            <button type="button" className="button" onClick={functionClick}>{parametr}</button>
     )
 }
 

@@ -5,7 +5,7 @@ const Registration = () => {
         name: 'Регистрация',
         text: ['Уже есть аккаунт?'],
         link: ['Войти'],
-        button: 'Войти',
+        button: 'Зарегистрироваться',
         input: [{
             name: 'Имя',
             type: 'text'

@@ -39,7 +39,7 @@ const News = () => {
                         <SmallNews news={news[1]}/>
                         <SmallNews news={news[2]}/>
                     </div>
-                    <div className="small_news margin">
+                    <div className="small_news margin-small-news">
                         <SmallNews news={news[3]}/>
                         <SmallNews news={news[4]}/>
                     </div>
