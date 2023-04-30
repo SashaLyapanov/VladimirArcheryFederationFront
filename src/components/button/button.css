@@ -12,3 +12,7 @@
     background-color: #97BAFF;
     border-color: #97BAFF;
 }
+
+.button-display{
+    display: none;
+}
