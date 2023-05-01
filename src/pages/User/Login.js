@@ -4,7 +4,8 @@ const Login = () => {
     const nameInput = {
         name: 'Вход',
         text: ['Еще нет аккаунта?'],
-        link: ['Регистрация', 'Забыли пароль?'],
+        link: ['Регистрация'],
+        route: ['/registration'],
         button: 'Войти',
         input: [{
             name: 'Логин',

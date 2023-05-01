@@ -5,7 +5,7 @@ const Competition = ({competition}) => {
         <>
          <div className='competition'>
             <div className='title_container'>
-                <a href='@' className='title_competition fonts-roboto-black'>{competition?.title}</a>
+                <a href={'/competition/competitionId'} className='title_competition fonts-roboto-black'>{competition?.title}</a>
                 <p className='inf_competition fonts-roboto-regular'>{competition?.place}</p>
             </div>
             <div>

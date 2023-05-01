@@ -6,6 +6,7 @@ const Registration = () => {
         text: ['Уже есть аккаунт?'],
         link: ['Войти'],
         button: 'Зарегистрироваться',
+        route: ['/login'],
         input: [{
             name: 'Имя',
             type: 'text'

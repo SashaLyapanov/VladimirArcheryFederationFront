@@ -14,8 +14,8 @@ const Authorization = ({parametrs}) => {
                 
                 <div className='form-button'>
                     <Button parametr={parametrs.button}/>
-                    <p className='fonts-roboto-regular clue'>{parametrs.text} <a href='@' className='link'>{parametrs.link[0]}</a></p>
-                    <p className='fonts-roboto-regular clue'><a href='@' className='link'>{parametrs.link[1]}</a></p>
+                    <p className='fonts-roboto-regular clue'>{parametrs.text} <a href={parametrs.route} className='link'>{parametrs.link[0]}</a></p>
+                    <p className='fonts-roboto-regular clue'><a href='/' className='link'>Главная</a></p>
                 </div>
             </div>
         </div>
