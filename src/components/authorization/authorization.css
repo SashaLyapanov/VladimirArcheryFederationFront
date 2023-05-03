@@ -21,6 +21,13 @@
     padding: 40px;
 }
 
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .header{
     color: #0C0C90;
     font-size: 30px;
@@ -39,7 +46,8 @@
     border-bottom: 1px solid #666666;
     width: 100%;
     margin-bottom: 40px;
-    font-size: 14px;
+    font-size: 13px;
+    outline: none;
 }
 
 .form-button{

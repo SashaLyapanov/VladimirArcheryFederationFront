@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import {useEffect} from 'react'
 import Navbar from '../../components/navbar/Navbar'
+
 import '../../style.css';
-import CompetitionId from '../../components/competition/CompetitionId';
+import CompetitionIdTrainer from '../../components/competition/CompetitionIdTrainer';
 
 const Competition = () => {
+
 
     return(
         <>
             <Navbar/>
-            <CompetitionId />
+            <CompetitionIdTrainer />
         </>
     )
 }

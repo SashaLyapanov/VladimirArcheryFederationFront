@@ -1,37 +1,9 @@
-import Authorization from "../../components/authorization/Authorization.js";
+import RegistrationForm from "../../components/authorization/RegistrationForm";
 
 const Registration = () => {
-    const nameInput = {
-        name: 'Регистрация',
-        text: ['Уже есть аккаунт?'],
-        link: ['Войти'],
-        button: 'Зарегистрироваться',
-        route: ['/login'],
-        input: [{
-            name: 'Имя',
-            type: 'text'
-        },
-        {
-            name: 'Фамилия',
-            type: 'text'
-        },
-        {
-            name: 'Отчество',
-            type: 'text'
-        },
-        {
-            name: 'Email',
-            type: 'text'
-        },
-        {
-            name: 'Пароль',
-            type: 'password'
-        }]
-    }
-
     return (
         <>
-            <Authorization parametrs={nameInput}/>
+            <RegistrationForm/>
         </>
     )
 }

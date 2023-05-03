@@ -9,7 +9,9 @@ import Profile from './pages/sports/Profile'
 import { Route, Routes } from 'react-router-dom'
 import CompetitionId from './components/competition/CompetitionId'
 import Competition from './pages/sports/Competition'
+import CompetitionTrainer from './pages/trainer/Competition'
 import CompetitionRegistration from './pages/sports/CompetitionRegistration'
+import CompetitionRegistrationTrainer from './pages/trainer/CompetitionRegistration'
 
 function App() {
   return (
@@ -20,8 +22,11 @@ function App() {
         <Route exac path='/competition' element={<Calendar/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/registration' element={<Registration/>}/>
-        <Route exac path='/competition/competitionId' element={<Competition/>}/>
+        {/* <Route exac path='/competition/competitionId' element={<Competition/>}/> */}
+        <Route exac path='/competition/competitionId' element={<CompetitionTrainer/>}/>
+        {/* <Route exac path='competition/competitionId/registration' element={<CompetitionRegistration />}/> */}
         <Route exac path='competition/competitionId/registration' element={<CompetitionRegistration />}/>
+        <Route exac path='competition/competitionId/registrationGroup' element={<CompetitionRegistrationTrainer />}/>
       </Routes>
         
       
