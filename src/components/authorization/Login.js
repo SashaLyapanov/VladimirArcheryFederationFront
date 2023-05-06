@@ -1,20 +1,59 @@
 import './authorization.css'
 import '../../fonts/roboto/fonts.css'
 import Button from '../button/Button'
+import axios from '../../utils/axios'
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
+import { useNavigate } from 'react-router'
 
 const Login = () => {
+    
+    const {setUser} = useContext(CustomContext)
+    const navigate = useNavigate()
+
+    const loginUser = (e) => {
+        e.preventDefault()
+        
+        let newUser = {
+            email: e.target[0].value,
+            password: e.target[1].value
+        }
+
+        axios.post('/login', newUser)
+            .then(({data}) => 
+            // console.log(res))
+            {
+                setUser({
+                    token: data.accessToken,
+                    ...data.user
+                })
+                localStorage.setItem('user', JSON.stringify({
+                    token: data.accessToken,
+                    ...data.user
+                }))
+                navigate('/')
+            })
+            .catch((err) => console.log(err.message))
+    }
+
     return(
         <div className='authorization'>
             <div className='popup'>
-                <p className='header fonts-roboto-black'>Вход</p>
-                <input type='text' className='input fonts-roboto-light' placeholder='Введите логин'/>
-                <input type='password' className='input fonts-roboto-light' placeholder='Введите пароль'/>    
-                
-                <div className='form-button'>
-                    <Button parametr={'Войти'}/>
-                    <p className='fonts-roboto-regular clue'>Еще нет аккаунта? <a href='/registration' className='link'>Регистрация</a></p>
-                    <p className='fonts-roboto-regular clue'><a href='/' className='link'>Главная</a></p>
-                </div>
+                <form className='form' onSubmit={loginUser}>
+                    <p className='header fonts-roboto-black'>Вход</p>
+                    <input type='text' 
+                        className='input fonts-roboto-light' 
+                        placeholder='Введите логин'/>
+                    <input type='password' 
+                            className='input fonts-roboto-light' 
+                            placeholder='Введите пароль'/>    
+                    
+                    <div className='form-button'>
+                    <Button parametr={'Войти'} type={'submit'}/>
+                        <p className='fonts-roboto-regular clue'>Еще нет аккаунта? <a href='/registration' className='link'>Регистрация</a></p>
+                        <p className='fonts-roboto-regular clue'><a href='/' className='link'>Главная</a></p>
+                    </div>
+                </form>
             </div>
         </div>
     )

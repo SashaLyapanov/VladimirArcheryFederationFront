@@ -2,22 +2,42 @@ import './authorization.css'
 import '../../fonts/roboto/fonts.css'
 import Button from '../button/Button'
 import axios from 'axios'
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
+import { useNavigate } from 'react-router'
 
 const RegistrationForm = () => {
+
+    const {user, setUser} = useContext(CustomContext)
+
+    const navigate = useNavigate()
 
     const registerUser = (e) => {
         e.preventDefault()
        
         let newUser = {
-            userId: 1,
-            title: e.target[0].value,
-            body: e.target[1].value,
+            email: e.target[3].value,
+            password: e.target[4].value
         }
 
-        axios.post('https://jsonplaceholder.typicode.com/posts', newUser)
-            .then((res) => console.log(res))
+        axios.post('http://localhost:8080/register', newUser)
+            .then(({data}) => 
+            // console.log(res))
+            {
+                setUser({
+                    token: data.accessToken,
+                    ...data.user
+                })
+                localStorage.setItem('user', JSON.stringify({
+                    token: data.accessToken,
+                    ...data.user
+                }))
+                navigate('/')
+            })
             .catch((err) => console.log(err.message))
     }
+
+    
 
     return(
         <div className='authorization'>

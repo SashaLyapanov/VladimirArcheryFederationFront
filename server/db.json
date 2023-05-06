@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$k8lveuQx9JGfpCRu/3uuU.gwRYCaK6x6078bprBH0lkvrnwSF7N3i",
+      "name": "Alina",
+      "id": 1
+    },
+    {
+      "email": "twilight_2002@mail.ru",
+      "password": "$2a$10$Q3CJDAv9ZAgvwmOhfSwpXOPj9jDVCP.OXTHI.u1awHuFRgGS2Z6Gq",
+      "id": 2
+    },
+    {
+      "email": "alina@mail.ru",
+      "password": "$2a$10$bRaMeIwZrAA4/YYL1hBKpu5wKElJ5j2OvFHhcFmwMgUlmIxiddnfa",
+      "id": 3
+    }
+  ]
+}

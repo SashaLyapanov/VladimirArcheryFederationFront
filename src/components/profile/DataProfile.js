@@ -40,19 +40,19 @@ const DataProfile = ({parametr}) => {
                 />
             </div>
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Email</p>
+                <p className='fonts-roboto-regular name_profile'>Дата рождения</p>
                 <input 
                     type='text' 
-                    placeholder='Email' 
+                    placeholder='Дата рождения' 
                     className='fonts-roboto-thin input_profile'
                     disabled
                 />
             </div>
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Достижения</p>
+                <p className='fonts-roboto-regular name_profile'>Email</p>
                 <input 
-                    type='area' 
-                    placeholder='Достижения' 
+                    type='text' 
+                    placeholder='Email' 
                     className='fonts-roboto-thin input_profile'
                     disabled
                 />

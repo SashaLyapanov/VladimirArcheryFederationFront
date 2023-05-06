@@ -3,12 +3,9 @@ import '../../style.css';
 import logo from "./../../img/logo.jpg";
 import place from "./../../img/place.png";
 import MenuUser from "./MenuUsers";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import React, {Component} from "react";
-import Calendar from '../../pages/User/Calendar'
-import Profile from "../../pages/sports/Profile";
 
-const Navbar = ({parametr}) => {
+const Navbar = () => {
     return(
       <>
         <nav className="nav">
@@ -28,7 +25,7 @@ const Navbar = ({parametr}) => {
                   </a>
               </div>
               
-              <a href="/login" className="fonts-roboto-black">Вход</a>
+              <MenuUser/>
             </div>
             <div className='menu fonts-roboto-black'>
                 <a href="@" className="menu-elements">О федерации</a>

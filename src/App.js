@@ -27,6 +27,8 @@ function App() {
         {/* <Route exac path='competition/competitionId/registration' element={<CompetitionRegistration />}/> */}
         <Route exac path='competition/competitionId/registration' element={<CompetitionRegistration />}/>
         <Route exac path='competition/competitionId/registrationGroup' element={<CompetitionRegistrationTrainer />}/>
+        <Route exac path='/profile' element={<Profile/>}/>
+
       </Routes>
         
       
