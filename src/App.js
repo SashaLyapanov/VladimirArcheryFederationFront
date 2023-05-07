@@ -12,8 +12,11 @@ import Competition from './pages/sports/Competition'
 import CompetitionTrainer from './pages/trainer/Competition'
 import CompetitionRegistration from './pages/sports/CompetitionRegistration'
 import CompetitionRegistrationTrainer from './pages/trainer/CompetitionRegistration'
+import DiaryHome from './pages/diary/DiaryHome'
 
 function App() {
+
+
   return (
     <div className='app'>
       <Routes>
@@ -28,6 +31,7 @@ function App() {
         <Route exac path='competition/competitionId/registration' element={<CompetitionRegistration />}/>
         <Route exac path='competition/competitionId/registrationGroup' element={<CompetitionRegistrationTrainer />}/>
         <Route exac path='/profile' element={<Profile/>}/>
+        <Route exac path='/diary' element={<DiaryHome/>}/>
 
       </Routes>
         

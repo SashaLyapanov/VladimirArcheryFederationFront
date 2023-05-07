@@ -1,19 +1,28 @@
 {
   "users": [
     {
-      "email": "olivier@mail.com",
-      "password": "$2a$10$k8lveuQx9JGfpCRu/3uuU.gwRYCaK6x6078bprBH0lkvrnwSF7N3i",
+      "name": "Алина",
+      "surname": "Белова",
+      "email": "alinka@mail.ru",
+      "password": "$2a$10$Q3CJDAv9ZAgvwmOhfSwpXOPj9jDVCP.OXTHI.u1awHuFRgGS2Z6Gq",
       "name": "Alina",
+      "role": "admin",
       "id": 1
     },
     {
-      "email": "twilight_2002@mail.ru",
+      "name": "Александр",
+      "surname": "Ляпанов",
+      "email": "sashka@mail.ru",
       "password": "$2a$10$Q3CJDAv9ZAgvwmOhfSwpXOPj9jDVCP.OXTHI.u1awHuFRgGS2Z6Gq",
+      "role": "sports",
       "id": 2
     },
     {
-      "email": "alina@mail.ru",
-      "password": "$2a$10$bRaMeIwZrAA4/YYL1hBKpu5wKElJ5j2OvFHhcFmwMgUlmIxiddnfa",
+      "name": "Тигран",
+      "surname": "Мелконян",
+      "email": "tigr@mail.ru",
+      "password": "$2a$10$Q3CJDAv9ZAgvwmOhfSwpXOPj9jDVCP.OXTHI.u1awHuFRgGS2Z6Gq",
+      "role": "trainer",
       "id": 3
     }
   ]

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router'
 
 const Login = () => {
     
-    const {setUser} = useContext(CustomContext)
+    const {user, setUser} = useContext(CustomContext)
     const navigate = useNavigate()
 
     const loginUser = (e) => {
@@ -20,19 +20,20 @@ const Login = () => {
         }
 
         axios.post('/login', newUser)
-            .then(({data}) => 
-            // console.log(res))
-            {
-                setUser({
-                    token: data.accessToken,
-                    ...data.user
-                })
-                localStorage.setItem('user', JSON.stringify({
-                    token: data.accessToken,
-                    ...data.user
-                }))
-                navigate('/')
-            })
+            .then((res) => 
+            console.log(res))
+            // {
+            //     setUser({
+            //         token: data.accessToken,
+            //         ...data.user
+            //     })
+            //     console.log(user.role)
+            //     localStorage.setItem('user', JSON.stringify({
+            //         token: data.accessToken,
+            //         ...data.user
+            //     }))
+            //     navigate('/')
+            // })
             .catch((err) => console.log(err.message))
     }
 

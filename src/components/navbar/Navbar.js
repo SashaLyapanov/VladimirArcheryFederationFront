@@ -3,9 +3,29 @@ import '../../style.css';
 import logo from "./../../img/logo.jpg";
 import place from "./../../img/place.png";
 import MenuUser from "./MenuUsers";
+import MenuSports from "./MenuSports";
+import MenuAdmin from "./MenuAdmin";
+import MenuTrainer from "./MenuTrainer";
 import React, {Component} from "react";
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
 
 const Navbar = () => {
+
+  const {user, setUser} = useContext(CustomContext)
+
+  const userRole = (role) => {
+    if(role == "sports") {
+      return <MenuSports/>
+    } else if ( role == "trainer") {
+      return <MenuTrainer/>
+    } else if ( role == "admin") {
+      return <MenuAdmin/>
+    } else {
+      return <MenuUser/>
+    }
+  }
+
     return(
       <>
         <nav className="nav">
@@ -24,8 +44,7 @@ const Navbar = () => {
                   Владимир
                   </a>
               </div>
-              
-              <MenuUser/>
+              {userRole(user.role)}
             </div>
             <div className='menu fonts-roboto-black'>
                 <a href="@" className="menu-elements">О федерации</a>

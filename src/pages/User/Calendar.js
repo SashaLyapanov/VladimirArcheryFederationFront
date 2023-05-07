@@ -30,6 +30,8 @@ const Calendar = () => {
           });
       }, []);
 
+      console.log(competitions)
+
     return(
         <>
             <Navbar/>
