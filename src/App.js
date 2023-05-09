@@ -13,6 +13,7 @@ import CompetitionTrainer from './pages/trainer/Competition'
 import CompetitionRegistration from './pages/sports/CompetitionRegistration'
 import CompetitionRegistrationTrainer from './pages/trainer/CompetitionRegistration'
 import DiaryHome from './pages/diary/DiaryHome'
+import ListSportsman from './pages/administrator/ListSportsman'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route exac path='competition/competitionId/registrationGroup' element={<CompetitionRegistrationTrainer />}/>
         <Route exac path='/profile' element={<Profile/>}/>
         <Route exac path='/diary' element={<DiaryHome/>}/>
+        <Route exac path='/sports' element={<ListSportsman/>}/>
 
       </Routes>
         

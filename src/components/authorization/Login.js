@@ -20,20 +20,20 @@ const Login = () => {
         }
 
         axios.post('/login', newUser)
-            .then((res) => 
-            console.log(res))
-            // {
-            //     setUser({
-            //         token: data.accessToken,
-            //         ...data.user
-            //     })
-            //     console.log(user.role)
-            //     localStorage.setItem('user', JSON.stringify({
-            //         token: data.accessToken,
-            //         ...data.user
-            //     }))
-            //     navigate('/')
-            // })
+            .then(({data}) => 
+            // console.log(res))
+            {
+                setUser({
+                    token: data.accessToken,
+                    ...data.user
+                })
+                console.log(user.role)
+                localStorage.setItem('user', JSON.stringify({
+                    token: data.accessToken,
+                    ...data.user
+                }))
+                navigate('/')
+            })
             .catch((err) => console.log(err.message))
     }
 

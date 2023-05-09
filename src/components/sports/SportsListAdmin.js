@@ -1,14 +1,10 @@
-import '../sports/sports.css'
+import del from '../../img/delete.png'
 
-const SportsList = ({sports}) => {
+const SportsListAdmin = ({sports}) => {
 
     const add = (e) => {
         e.preventDefault()
-        if (e.target.innerHTML == '+'){
-            e.target.innerHTML = '-'
-        } else {
-            e.target.innerHTML = '+'
-        }
+        
         
     }
 
@@ -17,11 +13,13 @@ const SportsList = ({sports}) => {
             {sports.map((sport) => (
                 <div  className="sports-trainer fonts-roboto-light">
                 <p>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
-                <p id={sport?.id} className="add" onClick={add} type='button'>+</p>
+                <p id={sport?.id} className="add" onClick={add} type='button'>
+                    <img src={del} className='delete'/>
+                </p>
             </div>
             ))}
         </div>
     )
 }
 
-export default SportsList
+export default SportsListAdmin

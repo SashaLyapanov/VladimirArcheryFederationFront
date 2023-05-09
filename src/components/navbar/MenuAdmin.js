@@ -33,7 +33,7 @@ const MenuSports = () => {
                     <a href='/profile'  className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Судьи</div>
                     </a>
-                    <a href='@' className='menu-link'>
+                    <a href='/sports' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Спортсмены</div>
                         </a>
                     <a href='@' className='menu-link'>
