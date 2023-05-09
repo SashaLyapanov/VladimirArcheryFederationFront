@@ -35,6 +35,21 @@ const Login = () => {
                 navigate('/')
             })
             .catch((err) => console.log(err.message))
+
+            // axios.post('/api/auth/signin', newUser) 
+            // .then(({data}) => 
+            // // console.log(res)) 
+            // { 
+            //     setUser({ 
+            //         ...data 
+            //     }) 
+            //     localStorage.setItem('user', JSON.stringify({ 
+            //         ...data 
+            //     })) 
+            //     navigate('/') 
+            // }) 
+            // .catch((err) => console.log(err.message))
+
     }
 
     return(

@@ -12,6 +12,7 @@ const Search = () => {
     const [selectValue, setSelectValue] = useState('')
 
     const onClick = () => {
+        // axios.get('http://localhost:8080/api/v1/admin/competitions', {
         axios.get('http://localhost:3001/competition/', {
             params: {
                 name: inputName,
