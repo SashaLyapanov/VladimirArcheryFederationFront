@@ -1,22 +1,19 @@
 import del from '../../img/delete.png'
+import '../sports/sports.css'
 
 const SportsListAdmin = ({sports}) => {
 
-    const add = (e) => {
+    const sportsId = (e) => {
         e.preventDefault()
-        
-        
+        console.log(e.target) 
     }
 
     return (
         <div className="container">
             {sports.map((sport) => (
-                <div  className="sports-trainer fonts-roboto-light">
-                <p>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
-                <p id={sport?.id} className="add" onClick={add} type='button'>
-                    <img src={del} className='delete'/>
-                </p>
-            </div>
+                <div id={sport?.id} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
+                    <p id={sport?.id}>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
+                </div>
             ))}
         </div>
     )

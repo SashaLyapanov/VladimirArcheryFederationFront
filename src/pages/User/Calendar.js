@@ -7,18 +7,6 @@ import '../../style.css';
 import ListCompetition from '../../components/competition/ListCompetition'
 
 const Calendar = () => {
-    // const nameInput = [
-    //     {
-    //         name: 'Название',
-    //         placeholder: 'Введите название',
-    //         type: 'text'
-    //     },
-    //     {
-    //         name: 'Дата проведения',
-    //         placeholder: 'Выберите дату',
-    //         type: 'date'
-    //     }
-    // ]
 
     const [competitions, setNews] = useState([]);
     
@@ -29,8 +17,6 @@ const Calendar = () => {
             setNews(result);
           });
       }, []);
-
-      console.log(competitions)
 
     return(
         <>

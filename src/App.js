@@ -16,12 +16,9 @@ import DiaryHome from './pages/diary/DiaryHome'
 import ListSportsman from './pages/administrator/ListSportsman'
 
 function App() {
-
-
   return (
     <div className='app'>
       <Routes>
-      
         <Route exac path='/' element={<Home/>}/>
         <Route exac path='/competition' element={<Calendar/>}/>
         <Route exac path='/login' element={<Login/>}/>
@@ -34,20 +31,9 @@ function App() {
         <Route exac path='/profile' element={<Profile/>}/>
         <Route exac path='/diary' element={<DiaryHome/>}/>
         <Route exac path='/sports' element={<ListSportsman/>}/>
-
       </Routes>
-        
-      
-      {/* <Home /> */}
-      {/* <Calendar/> */}
-      {/* <Login /> */}
-      {/* <Registration /> */}
-      {/* <HomeTrainer/> */}
-      {/* <Navbar/> */}
-      {/* <Profile/> */}
-    </div>
-      
-    );
+    </div> 
+  );
 }
 
 export default App;

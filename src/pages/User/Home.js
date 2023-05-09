@@ -4,9 +4,10 @@ import CompetitionHome from '../../components/competition/CompetitionHome';
 
 
 const Home = () => {
+
     return(
         <>
-            <Navbar/>
+            <Navbar />
             <News />
             <CompetitionHome/>
         </>
