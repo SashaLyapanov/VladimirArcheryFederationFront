@@ -1,7 +1,30 @@
 import Button from '../button/Button'
 import photo from '../../img/photo.png'
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
 
 const PhotoProfile = () => {
+
+    const onClickBlock = () => {
+        if(document.getElementById('button-block').innerHTML == 'Заблокировать'){
+            document.getElementById('button-block').innerHTML = 'Разблокировать'
+        } else {
+            document.getElementById('button-block').innerHTML = 'Заблокировать'
+        }
+    }
+
+    const {user, setUser} = useContext(CustomContext)
+
+    function buttonBlock(role){
+        if(role == 'admin'){
+            return <div className='button-block'>
+                        <Button id={'button-block'}
+                                parametr={'Заблокировать'} 
+                                className={''}
+                                functionClick={onClickBlock}/>
+                        </div>
+        }
+    }
 
     const onClick = () => {
         document.getElementById('button-save').classList.remove('button-display')
@@ -15,12 +38,16 @@ const PhotoProfile = () => {
         
     }
 
+
+
     return(
         <div>
             <div className="photo">
                 <img src={photo}/>
             </div>
             <Button parametr={'Редактировать профиль'} id={'button-edit'} functionClick={onClick}/>
+            {buttonBlock(user.role)}
+            
         </div>
     )
 }

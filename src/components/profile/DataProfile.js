@@ -62,6 +62,7 @@ const DataProfile = ({parametr}) => {
                     parametr={'Сохранить'} 
                     className={'button-display'}
                     functionClick={onClick}/>
+            
         </div>
     )
 }

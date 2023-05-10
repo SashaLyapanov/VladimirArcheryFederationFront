@@ -14,8 +14,13 @@ import CompetitionRegistration from './pages/sports/CompetitionRegistration'
 import CompetitionRegistrationTrainer from './pages/trainer/CompetitionRegistration'
 import DiaryHome from './pages/diary/DiaryHome'
 import ListSportsman from './pages/administrator/ListSportsman'
+import { useContext } from 'react'
+import { CustomContext } from './utils/Context'
 
 function App() {
+
+  const {user, setUser} = useContext(CustomContext)
+
   return (
     <div className='app'>
       <Routes>

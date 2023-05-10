@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 export const CustomContext = createContext()
+export const SportContext = createContext()
 
 export const Context = (props) => {
 
@@ -16,14 +17,23 @@ export const Context = (props) => {
         }
     }, [])
 
-    
 
     const value = {
         user,
         setUser
     }
 
-    return <CustomContext.Provider value={value}>
-        {props.children}
-    </CustomContext.Provider>
+
+    const [sports, setSports] = useState()
+
+    const sportsValue = {
+        sports,
+        setSports
+    }
+
+    return <SportContext.Provider value={sportsValue}>
+            <CustomContext.Provider value={value}>
+                {props.children}
+            </CustomContext.Provider>
+            </SportContext.Provider>
 }
