@@ -2,12 +2,12 @@ import PhotoProfile from "./PhotoProfile"
 import DataProfile from "./DataProfile"
 import './profile.css'
 
-const InformationUser = () => {
+const InformationUser = ({user}) => {
     
     return(
         <div className="container information-user">
             <PhotoProfile />
-            <DataProfile />
+            <DataProfile user={user}/>
         </div>
     )
 }

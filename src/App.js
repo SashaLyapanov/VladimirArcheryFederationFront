@@ -15,11 +15,21 @@ import CompetitionRegistrationTrainer from './pages/trainer/CompetitionRegistrat
 import DiaryHome from './pages/diary/DiaryHome'
 import ListSportsman from './pages/administrator/ListSportsman'
 import { useContext } from 'react'
-import { CustomContext } from './utils/Context'
+import { CustomContext, SportContext } from './utils/Context'
 
 function App() {
 
   const {user, setUser} = useContext(CustomContext)
+  const {sports, setSports} = useContext(SportContext)
+
+  function userRole(role){
+    if(role == 'admin'){
+      return <Profile user={sports}/>
+    } else {
+      return <Profile user={user}/>
+    }
+  }
+
 
   return (
     <div className='app'>

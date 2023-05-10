@@ -3,12 +3,12 @@ import NamePage from '../../components/namePage/NamePage'
 import InformationUser from '../../components/profile/InformationUser'
 import '../../style.css';
 
-const Profile = () => {
+const Profile = ({user}) => {
     return(
         <>
             <Navbar/>
             <NamePage name={'Профиль'}/>
-            <InformationUser/>
+            <InformationUser user={user}/>
         </>
     )
 }

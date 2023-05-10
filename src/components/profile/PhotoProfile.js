@@ -5,7 +5,8 @@ import { CustomContext } from '../../utils/Context'
 
 const PhotoProfile = () => {
 
-    const onClickBlock = () => {
+    const onClickBlock = (e) => {
+        
         if(document.getElementById('button-block').innerHTML == 'Заблокировать'){
             document.getElementById('button-block').innerHTML = 'Разблокировать'
         } else {

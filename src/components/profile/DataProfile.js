@@ -1,6 +1,6 @@
 import Button from "../button/Button"
 
-const DataProfile = ({parametr}) => {
+const DataProfile = ({user}) => {
     const onClick = () => {
         document.getElementById('button-edit').classList.remove('button-display')
         document.getElementById('button-save').classList.add('button-display')
