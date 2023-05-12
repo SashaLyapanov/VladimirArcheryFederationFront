@@ -4,10 +4,13 @@ import '../../style.css';
 import '../../fonts/roboto/fonts.css'
 import './style.css'
 import Button from '../button/Button';
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
 
 
 const SearchSports = () => {
     const [inputName, setInputName] = useState('')
+    const {user, setUser} = useContext(CustomContext)
 
     const onClick = () => {
         axios.get('http://localhost:3001/competition/', {
@@ -20,6 +23,13 @@ const SearchSports = () => {
           }, (error) => {
             console.log(error);
           });
+    }
+
+    function buttonAdd(role){
+        if (role == 'admin'){
+            return <Button parametr={'Добавить'}  
+            functionClick={onClick} />
+        }
     }
 
     return(
@@ -37,6 +47,8 @@ const SearchSports = () => {
                 <div className='button_flex'>
                     <Button parametr={'Найти'}  
                             functionClick={onClick} />
+                    {buttonAdd(user.role)}
+                    
                 </div>
             </form>
         </div>

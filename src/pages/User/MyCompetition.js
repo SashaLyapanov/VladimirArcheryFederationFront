@@ -25,8 +25,7 @@ const Calendar = () => {
     return(
         <>
             <Navbar/>
-            <NamePage name={'Соревнования'}/>
-            <Search/>
+            <NamePage name={'Мои соревнования'}/>
             <ListCompetition parametr={competitions}/>
         </>
     )

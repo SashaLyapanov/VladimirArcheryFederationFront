@@ -4,6 +4,7 @@ const Registration = () => {
 
     const onclick = () => {
         window.location.assign('http://localhost:3000/competition/competitionId');
+        //отправка данных спортсмена для регистрации в соревновании
       }
 
     return(

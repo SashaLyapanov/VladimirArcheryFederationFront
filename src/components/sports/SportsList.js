@@ -13,8 +13,8 @@ const SportsList = ({sports}) => {
     }
 
     return (
-        <div className="container">
-            {sports.map((sport) => (
+        <div>
+            {sports?.map((sport) => (
                 <div  className="sports-trainer fonts-roboto-light">
                 <p>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
                 <p id={sport?.id} className="add" onClick={add} type='button'>+</p>

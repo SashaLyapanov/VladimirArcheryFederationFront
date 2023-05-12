@@ -18,7 +18,14 @@ const CompetitionHome = () => {
             setNews(result);
           });
       }, []);
+      let i = 0
+      function listCompetiton(competition){
+        while (i < 3){
+          i += 1
+          return <Competition competition={competition}/>
 
+        }
+      }
 
     return(
         <div className='competitions'>
@@ -26,10 +33,10 @@ const CompetitionHome = () => {
                 <p className='fonts-roboto-black title'>Ближайшие соревнования</p>
                 <div className='list_competition'>
                   {competitions.map((competition) => (
-                    <Competition competition={competition}/>
+                    listCompetiton(competition)
                   ))}
                 </div>
-                <a href='@' className='fonts-roboto-regular'>Еще...</a>
+                <a href='/competition' className='fonts-roboto-regular link'>Еще...</a>
             </div>
         </div>
     )

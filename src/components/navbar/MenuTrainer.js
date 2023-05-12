@@ -36,13 +36,13 @@ const MenuSports = () => {
                     <a href='/profile'  className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Профиль</div>
                     </a>
-                    <a href='@' className='menu-link'>
+                    <a href='/diary' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Дневник</div>
                         </a>
-                    <a href='@' className='menu-link'>
+                    <a href='/sports' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Спортсмены</div>
                     </a>
-                    <a href='@' className='menu-link'>
+                    <a href='/myCompetition' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Мои соревнования</div>
                     </a>
                     <a href='/' className='menu-link' onClick={onclickExit}>

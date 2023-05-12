@@ -24,10 +24,10 @@ export const Context = (props) => {
     }
 
 
-    const [sports, setSports] = useState()
+    const [sport, setSports] = useState()
 
     const sportsValue = {
-        sports,
+        sport,
         setSports
     }
 

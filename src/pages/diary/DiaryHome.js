@@ -1,5 +1,5 @@
 import MenuDiary from "../../components/diary/MenuDiary"
-import CalendarDiary from "../../components/diary/CalendarDiary"
+import Diary from "../../components/diary/Diary"
 import '../../components/diary/diary.css'
 import '../../style.css'
 
@@ -7,7 +7,7 @@ const DiaryHome = () => {
 
     function component(id){
         if (id == 'calendar'){
-            return <CalendarDiary/>
+            return <Diary/>
         }
     }
 
@@ -15,7 +15,7 @@ const DiaryHome = () => {
     return (
         <div className="diary">
             <MenuDiary />
-            <CalendarDiary/>
+            <Diary/>
         </div>
     )
 }

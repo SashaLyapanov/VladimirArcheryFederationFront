@@ -4,6 +4,9 @@ import '../../style.css';
 import '../../fonts/roboto/fonts.css'
 import './style.css'
 import Button from '../button/Button';
+import { useContext } from 'react'
+import { CustomContext } from '../../utils/Context'
+import { useNavigate } from 'react-router'
 
 
 const Search = () => {
@@ -25,6 +28,23 @@ const Search = () => {
           }, (error) => {
             console.log(error);
           });
+    }
+
+    const {user, setUser} = useContext(CustomContext)
+    const navigate = useNavigate()
+
+    const onClickBlock = (e) => {
+        navigate('/')
+    }
+
+    function buttonBlock(role){
+        if(role == 'admin'){
+            return <Button id={'button-block'}
+                                parametr={'Добавить'} 
+                                className={''}
+                                functionClick={onClickBlock}/>
+                        
+        }
     }
 
     return(
@@ -61,6 +81,7 @@ const Search = () => {
                 <div className='button_flex'>
                     <Button parametr={'Найти'}  
                             functionClick={onClick} />
+                    {buttonBlock(user.role)}
                 </div>
             </form>
         </div>

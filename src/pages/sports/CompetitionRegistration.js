@@ -2,7 +2,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Registration from '../../components/competition/Registration';
 import NamePage from '../../components/namePage/NamePage';
 
-const Home = () => {
+const CompetitionRegistration = () => {
     return(
         <>
             <Navbar/>
@@ -12,4 +12,4 @@ const Home = () => {
     );
 }
 
-export default Home
+export default CompetitionRegistration

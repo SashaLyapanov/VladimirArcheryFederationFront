@@ -40,7 +40,7 @@ const SportsListAdmin = ({sports}) => {
     // )
 
     return (
-        <div className="container">
+        <div>
             {sports.map((sport) => (
                 <div id={sport?.id} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
                     <p id={sport?.id}>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
