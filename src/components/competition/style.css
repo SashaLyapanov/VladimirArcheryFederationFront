@@ -31,11 +31,18 @@
     background-color: #DEE9FF;
     padding: 0px 50px 0px 50px;
     border-radius: 15px;
+    cursor: pointer;
+    border: 3px solid #DEE9FF
 }
 
 .competition:nth-child(2n){
     background: white;
     border: 3px solid #DEE9FF
+}
+
+.competition:hover{
+    background-color: #D9D9D9;
+    border: 3px solid #D9D9D9
 }
 
 .competition_two{
@@ -67,11 +74,11 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    padding: 0px 75px 0px 50px;
+    padding: 0px 40px 0px 50px;
 }
 
 .title_container_maker{
-    width: 60%;
+    width: 50%;
 }
 
 .name-competition{

@@ -6,27 +6,21 @@ import './style.css'
 import Button from '../button/Button';
 import { useContext } from 'react'
 import { CustomContext } from '../../utils/Context'
+import { useNavigate } from 'react-router';
 
 
 const SearchSports = () => {
+
+    const navigate = useNavigate()
     const [inputName, setInputName] = useState('')
     const {user, setUser} = useContext(CustomContext)
 
     const onClick = () => {
-        axios.get('http://localhost:3001/competition/', {
-            params: {
-                name: inputName,
-            }
-          })
-          .then((response) => {
-            console.log(response);
-          }, (error) => {
-            console.log(error);
-          });
+        navigate('/createSports')
     }
 
     function buttonAdd(role){
-        if (role == 'admin'){
+        if (role == 'ADMIN'){
             return <Button parametr={'Добавить'}  
             functionClick={onClick} />
         }

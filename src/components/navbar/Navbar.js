@@ -15,11 +15,11 @@ const Navbar = () => {
   const {user, setUser} = useContext(CustomContext)
 
   const userRole = (role) => {
-    if(role == "sports") {
+    if(role == "SPORTSMAN") {
       return <MenuSports/>
-    } else if ( role == "trainer") {
+    } else if ( role == "COACH") {
       return <MenuTrainer/>
-    } else if ( role == "admin") {
+    } else if ( role == "ADMIN") {
       return <MenuAdmin/>
     } else {
       return <MenuUser/>
@@ -52,7 +52,6 @@ const Navbar = () => {
                 <a href="@" className="menu-elements">Деятельность</a>
                 <a href="/competition" className="menu-elements">Соревнования</a>
                 <a href="@" className="menu-elements">Сборная</a>
-                <a href="@" className="menu-elements">Профессионалам</a>
             </div>
           </div>
       </div>

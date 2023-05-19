@@ -1,49 +1,44 @@
 import del from '../../img/delete.png'
 import '../sports/sports.css'
+import axios from "../../utils/axios";
+import { useContext } from 'react'
+import {CustomContext, SportContext} from '../../utils/Context'
 import { useNavigate } from 'react-router'
 
 const SportsListAdmin = ({sports}) => {
 
+    const {sport, setSports} = useContext(SportContext)
     const navigate = useNavigate()
 
     const sportsId = (e) => {
         e.preventDefault()
-        console.log(e.target)
-        navigate('/profile') 
+        console.log(e.target.getAttribute("id"))
+        axios.get(
+            'admin/sportsman',
+            {
+                params: {
+                    email: e.target.getAttribute("id")
+                }
+            }
+        ).then(({data}) => {
+            setSports({
+                ...data
+            })
+            localStorage.setItem('sport', JSON.stringify({
+                ...data
+            }))
+        })
+        navigate('/profile')
+
+
     }
 
-    // const sportsId = (e) => { 
-    //     e.preventDefault() 
-    //     console.log(e.target.getAttribute("id")) 
-    //     axios.get( 
-    //         '/api/v1/admin/sportsman', 
-    //         { 
-    //             params: { 
-    //                 email: e.target.getAttribute("id") 
-    //             } 
-    //         } 
-    //     ).then((res) => 
-    //     console.log(res))
-           
- 
- 
-    // } 
- 
-    // return ( 
-    //     <div className="container"> 
-    //         {sports.map((sport) => ( 
-    //             <div id={sport?.email} className="sports-trainer fonts-roboto-light" onClick={sportsId}> 
-    //                 <p id={sport?.email}>{sport?.firstName + ' ' + sport?.patronymic + ' ' + sport?.surname}</p> 
-    //             </div> 
-    //         ))} 
-    //     </div> 
-    // )
 
     return (
         <div>
             {sports.map((sport) => (
-                <div id={sport?.id} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
-                    <p id={sport?.id}>{sport?.name + ' ' + sport?.surname + ' ' + sport?.patronymic}</p>
+                <div id={sport?.email} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
+                    <p id={sport?.email}>{sport?.firstName + ' ' + sport?.patronymic + ' ' + sport?.surname}</p>
                 </div>
             ))}
         </div>

@@ -17,7 +17,7 @@ const PhotoProfile = () => {
     const {user, setUser} = useContext(CustomContext)
 
     function buttonBlock(role){
-        if(role == 'admin'){
+        if(role == 'ADMIN'){
             return <div className='button-block'>
                         <Button id={'button-block'}
                                 parametr={'Заблокировать'} 

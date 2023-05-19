@@ -19,36 +19,20 @@ const Login = () => {
             password: e.target[1].value
         }
 
-        axios.post('/login', newUser)
+            axios.post('auth/signin', newUser)             
+            // .then((res) => 
+            // console.log(res)) 
             .then(({data}) => 
-            // console.log(res))
-            {
-                setUser({
-                    token: data.accessToken,
-                    ...data.user
-                })
-                console.log(user.role)
-                localStorage.setItem('user', JSON.stringify({
-                    token: data.accessToken,
-                    ...data.user
-                }))
-                navigate('/')
-            })
+            { 
+                setUser({ 
+                    ...data 
+                }) 
+                localStorage.setItem('user', JSON.stringify({ 
+                    ...data 
+                })) 
+                navigate('/') 
+            }) 
             .catch((err) => console.log(err.message))
-
-            // axios.post('/api/auth/signin', newUser) 
-            // .then(({data}) => 
-            // // console.log(res)) 
-            // { 
-            //     setUser({ 
-            //         ...data 
-            //     }) 
-            //     localStorage.setItem('user', JSON.stringify({ 
-            //         ...data 
-            //     })) 
-            //     navigate('/') 
-            // }) 
-            // .catch((err) => console.log(err.message))
 
     }
 

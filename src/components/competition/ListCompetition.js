@@ -8,7 +8,7 @@ import Competition from './Competition.js';
 
 const ListCompetition = ({parametr}) => {
 
-      
+      console.log(parametr)
 
 
     return(
@@ -16,11 +16,13 @@ const ListCompetition = ({parametr}) => {
             <div className='container container_for_competition'>
                 <div className='marker fonts-roboto-thin'>
                   <p className='title_container_maker fonts-roboto-light'>Название</p>
-                  <p className='fonts-roboto-light'>Тип лука</p>
-                  <p className='fonts-roboto-light'>Категория</p>
-                  <p className='fonts-roboto-light'>Дата</p>
+                  <p className='fonts-roboto-light'>Класс лука</p>
+                  <p className='fonts-roboto-light'>Категория участников</p>
+                  <p className='fonts-roboto-light'>Дата начала</p>
+                  <p className='fonts-roboto-light'>Дата окончания</p>
                 </div>
                 <div className='list_competition'>
+                  
                   {parametr.map((competition) => (
                     <Competition competition={competition}/>
                   ))}

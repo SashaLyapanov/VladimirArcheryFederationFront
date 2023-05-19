@@ -15,15 +15,15 @@ const ListSportsman = () => {
     const [sports, setSports] = useState([]);
     
     function listSportsman(role) {
-      if (role == 'admin') {
-          fetch('http://localhost:3001/sports')
+      if (role == 'ADMIN') {
+          fetch('http://localhost:8080/api/v1/admin/sportsmen')
             .then((res) => res.json())
             .then((result) => {
               setSports(result);
             });
           return <SportsListAdmin sports={sports}/>        
-      } else if(role == 'trainer') {
-        fetch('http://localhost:3001/sports')
+      } else if(role == 'COACH') {
+        fetch('http://localhost:8080/api/v1/admin/sportsmen')
             .then((res) => res.json())
             .then((result) => {
               setSports(result);

@@ -9,20 +9,16 @@ const CompetitionId = () => {
     const navigate = useNavigate()
 
     const onclick = () => {
-        navigate('/registrationSports')
-    }
-
-      const onclickGroup = () => {
-        navigate('/registrationGroup')
-    }
-
-    function buttonBlock(role){
-        if(role == 'trainer'){
-            return <Button parametr='Зарегистрировать группу' 
-                            functionClick={onclickGroup}/>
-                        
+        if(!user.role){
+            navigate('/login')
+        } else {
+            navigate('/registrationSports')
         }
+
+    
+        
     }
+
 
     return (
         <div className='competitions'>
@@ -35,7 +31,6 @@ const CompetitionId = () => {
                 <div className='button_flex'>
                 <Button parametr='Зарегистрироваться' 
                         functionClick={onclick}/>
-                {buttonBlock(user.role)}
                 </div>
             </div>
 

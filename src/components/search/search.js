@@ -37,12 +37,16 @@ const Search = () => {
         navigate('/')
     }
 
+    const onClickAdd = (e) => {
+        navigate('/CreateCompetition')
+    }
+
     function buttonBlock(role){
-        if(role == 'admin'){
+        if(role == 'ADMIN'){
             return <Button id={'button-block'}
                                 parametr={'Добавить'} 
                                 className={''}
-                                functionClick={onClickBlock}/>
+                                functionClick={onClickAdd}/>
                         
         }
     }

@@ -13,13 +13,15 @@ import { useContext } from 'react'
 import { CustomContext, SportContext } from './utils/Context'
 import CompetitionRegistrationGroup from './pages/sports/CompetitionRegistrationGroup'
 import MyCompetition from './pages/User/MyCompetition'
+import CreateCompetition from './pages/administrator/CreateCompetition'
+import CreateSportsman from './pages/administrator/CreateSportsman'
 function App() {
 
   const {user, setUser} = useContext(CustomContext)
   const {sport, setSports} = useContext(SportContext)
 
   function profile(role){
-    if(role == 'admin'){
+    if(role == 'ADMIN'){
       return <Profile user={sport}/>
     } else {
       return <Profile user={user}/>
@@ -41,6 +43,8 @@ function App() {
         <Route exac path='/diary' element={<DiaryHome/>}/>
         <Route exac path='/sports' element={<ListSportsman/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition/>}/>
+        <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
+        <Route exac path='/createSports' element={<CreateSportsman/>}/>
       </Routes>
     </div> 
   );

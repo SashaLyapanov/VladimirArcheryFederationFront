@@ -11,8 +11,8 @@ const CompetitionHome = () => {
         const [competitions, setNews] = useState([]);
     
       useEffect(() => {
-        // fetch('http://localhost:8080/api/v1/admin/competitions')
-        fetch('http://localhost:3001/competitions')
+        fetch('http://localhost:8080/api/v1/general/competitions')
+        // fetch('http://localhost:3001/competitions')
           .then((res) => res.json())
           .then((result) => {
             setNews(result);

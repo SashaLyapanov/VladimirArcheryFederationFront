@@ -35,6 +35,8 @@
     height: 40px;
     border-radius: 10px;
     border: 2px solid #CFCFCF;
+    background-color: rgba(153, 153, 153, 0.092);
+    outline: none;
 }
 
 .input_profile_edit{
