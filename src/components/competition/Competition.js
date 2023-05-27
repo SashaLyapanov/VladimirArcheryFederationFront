@@ -1,13 +1,16 @@
 import '../competition/style.css'
 import { useNavigate } from 'react-router'
 import axios from '../../utils/axios'
+import { useContext } from 'react'
+import { CompetitionContext } from '../../utils/Context'
 
 
 const Competition = ({competition}) => {
 
+    const {competitions, setCompetition} = useContext(CompetitionContext)
+
     const formatDate = (date) => {
         date = date.split('T')[0]
-        console.log(date)
         return date
     }
 
@@ -16,10 +19,9 @@ const Competition = ({competition}) => {
     const navigate = useNavigate()
 
     const onClickCompetition = (e) => {
-        let date = formatDate(competition?.date)
-        console.log(date)
-        console.log(competition)
-        // navigate('/competition/competitionId')    
+        navigate('/competition/competitionId')
+        // console.log(competition)
+        setCompetition(competition)   
     }
     
     return(

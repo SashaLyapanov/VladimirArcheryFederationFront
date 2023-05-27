@@ -4,49 +4,40 @@ import NamePage from '../../components/namePage/NamePage'
 import SportsListAdmin from "../../components/sports/SportsListAdmin"
 import SportsList from "../../components/sports/SportsList"
 import React, {useEffect, useState} from "react"
-import axios from "axios"
 import { useContext } from 'react'
-import { CustomContext } from '../../utils/Context'
+import { CustomContext, UsersContext } from '../../utils/Context'
+import axios from '../../utils/axios'
 
 
-const ListSportsman = () => {
+const ListSportsman = ({urls, role}) => {
     const {user, setUser} = useContext(CustomContext)
-
     const [sports, setSports] = useState([]);
-    
-    function listSportsman(role) {
-      if (role == 'ADMIN') {
-          fetch('http://localhost:8080/api/v1/admin/sportsmen')
-            .then((res) => res.json())
-            .then((result) => {
-              setSports(result);
-            });
-          return <SportsListAdmin sports={sports}/>        
-      } else if(role == 'COACH') {
-        fetch('http://localhost:8080/api/v1/admin/sportsmen')
-            .then((res) => res.json())
-            .then((result) => {
-              setSports(result);
-            });
-          return <SportsList sports={sports}/>
+    // const url = 'http://localhost:8080/api/v1/admin/sportsmen'
+  
+  useEffect(() => {
+    fetch(urls)
+    // .then((res) => console.log(res))})
+    .then((res) => res.json())
+    .then((result) => {
+        setSports(result);
+      });
+    }, []);
+
+    function listSportsmen(role) {
+      if (role == "ADMIN"){
+        return <SportsListAdmin sports={sports}/>
+      } else if (role == "COACH"){
+        return <SportsList sports={sports}/>
       }
     }
-
-      // axios.get('/sports')
-      // .then((res) => res.json())
-      //     .then((result) => {
-      //       setNews(result);
-      //     });
-      
-      //     console.log(sports)
 
     return (
         <>
         <Navbar/>
         <NamePage name={'Спортсмены'}/>
-        <SearchSports/>
+        <SearchSports role={role}/>
         <div className="container">
-          {listSportsman(user.role)}
+          {listSportsmen(user.role)}
         </div>
         </>
     )

@@ -32,6 +32,7 @@ const SportsListAdmin = ({sports}) => {
 
 
     }
+    console.log(sports)
 
 
     return (

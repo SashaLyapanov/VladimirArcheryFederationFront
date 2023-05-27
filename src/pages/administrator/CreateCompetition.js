@@ -4,7 +4,7 @@ import AddCompetition from '../../components/competition/AddCompetition';
 import '../../style.css';
 
 
-const Calendar = () => {  
+const CreateCompetition = () => {  
 
     return(
         <>
@@ -15,4 +15,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar
+export default CreateCompetition

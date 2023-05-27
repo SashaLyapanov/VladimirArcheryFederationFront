@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const CustomContext = createContext()
 export const SportContext = createContext()
+export const CompetitionContext = createContext()
 
 export const Context = (props) => {
 
@@ -25,15 +26,23 @@ export const Context = (props) => {
 
 
     const [sport, setSports] = useState()
-
     const sportsValue = {
         sport,
         setSports
     }
 
-    return <SportContext.Provider value={sportsValue}>
+
+    const [competitions, setCompetition] = useState()
+    const competitionValue = {
+        competitions,
+        setCompetition
+    }
+
+    return <CompetitionContext.Provider value={competitionValue}>
+            <SportContext.Provider value={sportsValue}>
             <CustomContext.Provider value={value}>
                 {props.children}
             </CustomContext.Provider>
             </SportContext.Provider>
+            </CompetitionContext.Provider>
 }

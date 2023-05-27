@@ -3,7 +3,7 @@ import TrainingDiary from "./TrainingDiary"
 
 const Diary = () => {
     return (
-        <div>
+        <div className="container">
             <p></p>
             <div className="diary">
                 <CalendarDiary/>

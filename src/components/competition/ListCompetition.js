@@ -8,9 +8,6 @@ import Competition from './Competition.js';
 
 const ListCompetition = ({parametr}) => {
 
-      console.log(parametr)
-
-
     return(
         <div className='competitions'>
             <div className='container container_for_competition'>

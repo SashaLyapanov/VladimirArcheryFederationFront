@@ -12,13 +12,13 @@ const News = () => {
 
     const [news, setNews] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3001/news')
-      .then((res) => res.json())
-      .then((result) => {
-        setNews(result);
-      });
-  }, []);
+//   useEffect(() => {
+//     fetch('http://localhost:3001/news')
+//       .then((res) => res.json())
+//       .then((result) => {
+//         setNews(result);
+//       });
+//   }, []);
 
     return(
         <div className="news">

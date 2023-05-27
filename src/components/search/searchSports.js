@@ -9,14 +9,20 @@ import { CustomContext } from '../../utils/Context'
 import { useNavigate } from 'react-router';
 
 
-const SearchSports = () => {
+const SearchSports = ({role}) => {
 
     const navigate = useNavigate()
     const [inputName, setInputName] = useState('')
     const {user, setUser} = useContext(CustomContext)
 
+
     const onClick = () => {
-        navigate('/createSports')
+        if(role == 'coaches'){
+            navigate('/createCoaches')
+        } else {
+            navigate('/createSports')
+        }
+        
     }
 
     function buttonAdd(role){

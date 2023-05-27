@@ -45,6 +45,9 @@ const MenuSports = () => {
                     <a href='/myCompetition' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Мои соревнования</div>
                     </a>
+                    <a href='/myCompetition' className='menu-link'>
+                        <div className='menu-list fonts-roboto-light'>Групповые заявки</div>
+                    </a>
                     <a href='/' className='menu-link' onClick={onclickExit}>
                         <div className='menu-list fonts-roboto-light'>Выйти</div>
                     </a>

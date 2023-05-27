@@ -4,7 +4,7 @@ import AddSports from '../../components/sports/AddSpoprts';
 import '../../style.css';
 
 
-const Calendar = () => {  
+const CreateSportsman = () => {  
 
     return(
         <>
@@ -15,4 +15,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar
+export default CreateSportsman

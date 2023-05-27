@@ -1,5 +1,7 @@
 import MenuDiary from "../../components/diary/MenuDiary"
 import Diary from "../../components/diary/Diary"
+import Navbar from '../../components/navbar/Navbar'
+import NamePage from '../../components/namePage/NamePage'
 import '../../components/diary/diary.css'
 import '../../style.css'
 
@@ -13,10 +15,11 @@ const DiaryHome = () => {
 
 
     return (
-        <div className="diary">
-            <MenuDiary />
+        <>
+            <Navbar/>
+            <NamePage name={'Дневник спортсмена'}/>
             <Diary/>
-        </div>
+            </>
     )
 }
 
