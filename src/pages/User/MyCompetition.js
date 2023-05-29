@@ -4,30 +4,44 @@ import Navbar from '../../components/navbar/Navbar'
 import NamePage from '../../components/namePage/NamePage'
 import '../../style.css';
 import ListCompetition from '../../components/competition/ListCompetition'
+import axios from '../../utils/axios';
+import { useContext } from 'react'
+import { CustomContext, CompetitionContext } from '../../utils/Context'
 
 
-const Calendar = () => {
+const MyCompetition = () => {
 
-
-  const [competitions, setNews] = useState([]);
   
 
+  const [competitions, setCompetitions] = useState([]);
+  const {user, setUser} = useContext(CustomContext)  
+
+
   useEffect(() => {
-    fetch('http://localhost:8080/api/v1/general/competitions')
-    // fetch('http://localhost:3001/competitions')
-    .then((res) => res.json())
-    .then((result) => {
-        setNews(result);
-      });
-    }, []);
+    if(user.id){
+      axios.get(`sportsman/allMyApplication?myId=${user?.id}`)
+        .then(({data}) => {
+          let competition = []
+            data.map((applic) => (
+              competition.push(applic?.competition)
+            ))
+            // console.log(competition)
+            // console.log(data)
+            setCompetitions(competition);
+        });
+        
+    }
+    
+    }, [user]);
 
     return(
         <>
             <Navbar/>
             <NamePage name={'Мои соревнования'}/>
+            {/* {listCompetition()} */}
             <ListCompetition parametr={competitions}/>
         </>
     )
 }
 
-export default Calendar
+export default MyCompetition

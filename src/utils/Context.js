@@ -16,6 +16,9 @@ export const Context = (props) => {
         if (localStorage.getItem('user') !== null){
         setUser(JSON.parse(localStorage.getItem('user')))
         }
+        if(localStorage.getItem('date') != null){
+            
+        }
     }, [])
 
 
@@ -38,11 +41,13 @@ export const Context = (props) => {
         setCompetition
     }
 
-    return <CompetitionContext.Provider value={competitionValue}>
+
+    return  <CompetitionContext.Provider value={competitionValue}>
             <SportContext.Provider value={sportsValue}>
             <CustomContext.Provider value={value}>
                 {props.children}
             </CustomContext.Provider>
             </SportContext.Provider>
             </CompetitionContext.Provider>
+        
 }

@@ -41,10 +41,12 @@ function App() {
         <Route exac path='/registrationGroup' element={<CompetitionRegistrationGroup/>}/>
         <Route exac path='/registrationSports' element={<CompetitionRegistration />}/>
         <Route exac path='/profile' element={profile(user.role)}/>
+        <Route exac path='/profileSportsTrainer' element={<Profile user={sport} btnStatus={'none'}/>}/>
         <Route exac path='/diary' element={<DiaryHome/>}/>
+        <Route exac path='/diaryCoach' element={<DiaryHome sport={sport}/>}/>
         <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
         <Route exac path='/coaches' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/coaches'} role={'coaches'}/>}/>
-        <Route exac path='/myCompetition' element={<MyCompetition/>}/>
+        <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
         <Route exac path='/createCoaches' element={<CreateCoaches/>}/>

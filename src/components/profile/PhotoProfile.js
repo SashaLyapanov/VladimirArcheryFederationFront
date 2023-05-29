@@ -2,8 +2,11 @@ import Button from '../button/Button'
 import photo from '../../img/photo.png'
 import { useContext } from 'react'
 import { CustomContext } from '../../utils/Context'
+import { useNavigate } from 'react-router'
 
-const PhotoProfile = () => {
+const PhotoProfile = ({btnStatus}) => {
+
+    const navigate = useNavigate()
 
     const onClickBlock = (e) => {
         
@@ -15,6 +18,18 @@ const PhotoProfile = () => {
     }
 
     const {user, setUser} = useContext(CustomContext)
+
+    function buttonStatus(status){
+        if(status != 'none'){
+            return <Button parametr={'Редактировать профиль'} 
+                            id={'button-edit'} 
+                            functionClick={onClick}/>
+        } else {
+            return <Button parametr={'Дневник спортсмена'} 
+                            id={'button-edit'} 
+                            functionClick={onClickDiary}/>
+        }
+    }
 
     function buttonBlock(role){
         if(role == 'ADMIN'){
@@ -39,6 +54,10 @@ const PhotoProfile = () => {
         
     }
 
+    const onClickDiary = () => {
+        navigate('/diaryCoach')
+    }
+
 
 
     return(
@@ -46,7 +65,7 @@ const PhotoProfile = () => {
             <div className="photo">
                 <img src={photo}/>
             </div>
-            <Button parametr={'Редактировать профиль'} id={'button-edit'} functionClick={onClick}/>
+            {buttonStatus(btnStatus)}
             {buttonBlock(user.role)}
             
         </div>

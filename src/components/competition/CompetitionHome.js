@@ -18,6 +18,9 @@ const CompetitionHome = () => {
             setNews(result);
           });
       }, []);
+
+      console.log(competitions)
+
       let i = 0
       function listCompetiton(competition){
         while (i < 3){

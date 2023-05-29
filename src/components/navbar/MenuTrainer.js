@@ -29,7 +29,7 @@ const MenuSports = () => {
             <span className='user'>
                 <div className='user-name'>
                     <img src={userpng} className='menu-icon-userpng'/>
-                    <p className='fonts-roboto-black'>{`${user.name} ${user.surname}`}</p>
+                    <p className='fonts-roboto-black'>{`${user.firstName} ${user.surname}`}</p>
                     <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
                 </div>
                 <div id='menu' display='yes' className='menu-user'>

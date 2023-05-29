@@ -103,6 +103,8 @@
 .user-name{
     display: flex;
     align-items: flex-end;
+    width: 200px;
+    justify-content: flex-end;
 }
 
 
@@ -114,7 +116,7 @@
 #menu{
     z-index: 1;
     position: absolute;
-    width: 190px;
+    width: 200px;
 }
 
 .menu-link{

@@ -6,6 +6,7 @@ import MenuUser from "./MenuUsers";
 import MenuSports from "./MenuSports";
 import MenuAdmin from "./MenuAdmin";
 import MenuTrainer from "./MenuTrainer";
+import MenuJudge from "./MenuJudge";
 import React, {Component} from "react";
 import { useContext } from 'react'
 import { CustomContext } from '../../utils/Context'
@@ -21,7 +22,10 @@ const Navbar = () => {
       return <MenuTrainer/>
     } else if ( role == "ADMIN") {
       return <MenuAdmin/>
-    } else {
+    } else if (role == 'JUDGE') {
+      return <MenuJudge/>
+    } 
+    else {
       return <MenuUser/>
     }
   }

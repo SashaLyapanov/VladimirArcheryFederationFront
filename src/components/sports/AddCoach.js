@@ -1,12 +1,17 @@
 import Button from "../button/Button"
 import '../profile/profile.css'
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router";
 
 const AddCoach = () => {
 
     const navigate = useNavigate()
+    const [sportsTitle, setSportsTitles] = useState([])
+    const [regions, setRegions] = useState([])
+    const [qualifications, setQualifications] = useState([])
+    const [teams, setTeams] = useState([])
+    const [typesBow, setTypesBow] = useState([])
 
     const [Name, setName] = useState('')
     const [Surname, setSurname] = useState('')
@@ -17,6 +22,23 @@ const AddCoach = () => {
     const [Qualification, setQualification] = useState('')
     const [Team, setTeam] = useState('')
     const [BowTypeList, setBowTypeList] = useState('')
+    const [Region, setRegion] = useState('')
+    const [Sex, setSex] = useState('')
+    const [SportsTitle, setSportsTitle] = useState('')
+
+
+    useEffect(() => {
+        axios.get('general/allSportsTitle')
+        .then(({data}) => setSportsTitles(data))
+        axios.get('general/allRegions')
+        .then(({data}) => setRegions(data))
+        axios.get('general/allQualification')
+        .then(({data}) => setQualifications(data))
+        axios.get('general/allTeams')
+        .then(({data}) => setTeams(data))
+        axios.get('general/allBowTypes')
+        .then(({data}) => setTypesBow(data))
+        }, []);
 
     const newCoach = {
         'email': Email,
@@ -33,7 +55,16 @@ const AddCoach = () => {
         },
         'bowTypeList':[
             {'id': BowTypeList}
-        ] 
+        ],
+        'sportsTitle': {
+            'id': SportsTitle
+        },
+        'region': {
+            'id': Region
+        },
+        'sex': {
+            'id': Sex
+        }, 
     }
 
     
@@ -88,6 +119,41 @@ const AddCoach = () => {
                 />
             </div>
             <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Регион</p>
+                <select className='fonts-roboto-thin input_profile input_profile_edit'
+                value={Region} 
+                onChange={e => setRegion(e.target.value)}
+                >
+                        <option value='' disabled selected hidden>Выберите регион</option>
+                        {regions.map(region => (
+                            <option value={region?.id}>{region?.name}</option>
+                        ))}
+                    </select>
+            </div>
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Пол</p>
+                <select className='fonts-roboto-thin input_profile input_profile_edit'
+                value={Sex} 
+                onChange={e => setSex(e.target.value)}
+                >
+                        <option value='' disabled selected hidden>Выберите пол</option>
+                        <option value='1'>Мужской</option>
+                        <option value='2'>Женский</option>
+                    </select>
+            </div>
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Спортивный разряд</p>
+                <select className='fonts-roboto-thin input_profile input_profile_edit'
+                value={SportsTitle} 
+                onChange={e => setSportsTitle(e.target.value)}
+                >
+                    <option value='' disabled selected hidden>Выберите спортивный разряд</option>
+                    {sportsTitle.map(title => (
+                            <option value={title?.id}>{title?.name}</option>
+                        ))}
+                </select>
+            </div>
+            <div className="container-pole">
                 <p className='fonts-roboto-regular name_profile'>Email</p>
                 <input
                     type='text'
@@ -114,9 +180,9 @@ const AddCoach = () => {
                 onChange={e => setQualification(e.target.value)}
                 >
                         <option value='' disabled selected hidden>Выберите квалификацию</option>
-                        <option value='1'>Начинающий</option>
-                        <option value='2'>Профессионал</option>
-                        <option value='3'>Мастер</option>
+                        {qualifications.map(title => (
+                            <option value={title?.id}>{title?.qualificationName}</option>
+                        ))}
                     </select>
             </div>
             <div className="container-pole">
@@ -126,9 +192,9 @@ const AddCoach = () => {
                 onChange={e => setTeam(e.target.value)}
                 >
                         <option value='' disabled selected hidden>Выберите команду</option>
-                        <option value='1'>Команда 1</option>
-                        <option value='2'>Команда 2</option>
-                        <option value='3'>Команда 3</option>
+                        {teams.map(title => (
+                            <option value={title?.id}>{title?.name}</option>
+                        ))}
                     </select>
             </div>
             <div className="container-pole">
@@ -138,10 +204,9 @@ const AddCoach = () => {
                 onChange={e => setBowTypeList(e.target.value)}
                 >
                         <option value='' disabled selected hidden>Выберите типы луков</option>
-                        <option value='1'>Длинный лук</option>
-                        <option value='2'>Блочный лук</option>
-                        <option value='3'>Монгольский лук</option>
-                        <option value='4'>Составной лук</option>
+                        {typesBow.map(title => (
+                            <option value={title?.id}>{title?.bowTypeName}</option>
+                        ))}
                     </select>
             </div>
             

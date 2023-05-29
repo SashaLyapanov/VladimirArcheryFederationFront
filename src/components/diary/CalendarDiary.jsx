@@ -2,8 +2,13 @@ import arrow_left from '../../img/arrow_left.png'
 import arrow_right from '../../img/arrow_right.png'
 import React, { useState } from 'react'
 import * as calendarDays from './Calendar'
+import { useContext} from 'react'
+import { DatesContext } from '../../utils/ContextDate'
 
 const CalendarDiary = () => {
+
+    const {dates, setDates} = useContext(DatesContext)
+    console.log('date context', dates)
 
     const calendar = {
         "years": [2023, 2024, 2025],
@@ -23,6 +28,7 @@ const CalendarDiary = () => {
     }
 
     const [nowDate, setNowDate] = useState(new Date())
+    // localStorage. setItem('date', nowDate)
     let monthSelect = React.createRef()
     let yearSelect = React.createRef()
 
@@ -39,43 +45,53 @@ const CalendarDiary = () => {
 
     const handleDayClick = (e) => {
         document.querySelector('.days').classList.remove('days')
-        console.log(e.target)
+        let date = new Date(nowDate.getFullYear(), nowDate.getMonth(), e.target.innerHTML)
         e.target.classList.add('days')
+        setNowDate(date)
+        setDates(date)
+        console.log(dates)
+        // localStorage. setItem('date', date)
     }
 
     const handlePrevMonthButtonClick = () => {
         document.querySelector('.days').classList.remove('days')
         let date = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1)
-        console.log(date)
         setNowDate(date)
+        setDates(date)
+        console.log(dates)
+        // localStorage. setItem('date', date)
     }
 
     const handleNextMonthButtonClick = () => {
         document.querySelector('.days').classList.remove('days')
         let date = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1)
-        console.log(date)
         setNowDate(date)
+        setDates(date)
+        console.log(dates)
+        // localStorage. setItem('date', date)
     }
 
     const handleSelectChange = () => {
         document.querySelector('.days').classList.remove('days')
         const year = yearSelect.value
         const month = monthSelect.value
-
-        
-
         let date = new Date(year, month);
         console.log(date)
         setNowDate(date)
+        setDates(date)
+        console.log(dates)
+        // localStorage. setItem('date', date)
     }
 
     const functionNowDate = (date) => {
         if ( date == nowDate.getDate()){
             return <td className="fonts-roboto-light days"
-            onClick={handleDayClick}>{date}</td>
+            onClick={handleDayClick}
+            >{date}</td>
         } else {
             return <td className="fonts-roboto-light"
-            onClick={handleDayClick}>{date}</td>
+            onClick={handleDayClick}
+            >{date}</td>
         }
     }
 

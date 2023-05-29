@@ -12,7 +12,6 @@ const SportsListAdmin = ({sports}) => {
 
     const sportsId = (e) => {
         e.preventDefault()
-        console.log(e.target.getAttribute("id"))
         axios.get(
             'admin/sportsman',
             {
@@ -32,7 +31,6 @@ const SportsListAdmin = ({sports}) => {
 
 
     }
-    console.log(sports)
 
 
     return (

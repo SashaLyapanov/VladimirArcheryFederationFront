@@ -1,8 +1,12 @@
 .diary{
     display: flex;
+    gap: 20px;
 }
 
+
+ /* calendar */
 .calendar-diary{
+    min-width: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,6 +64,67 @@ tbody tr td:hover{
     background: #8CB2FA;
 }
 
+
+
+/* training */
+
+.training{
+    width: 100%;
+    min-height: 330px;
+}
+
+.training-date{
+    width: 100%;
+    background-color: #DEE9FF;
+    border-radius: 15px 15px 0px 0px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.training-content{
+    width: 100%;
+    border: 3px solid #DEE9FF;
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px 10px 0px 10px;
+}
+
+.training-block{
+    display: flex;
+    align-items: center;
+    height: 55px;
+    border-radius: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.training-active{
+    border: 2px solid #DEE9FF; 
+}
+
+.training-active:hover{
+    background: #DEE9FF;
+    cursor: pointer;
+}
+
+.training-add{
+    border: 2px solid #B3B3B3;
+    color: #757575;
+}
+
+.training-add:hover{
+    background: #75757510;
+    cursor: pointer;
+}
+
+.training-add-image{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
 
 
 /* .menu-diary{

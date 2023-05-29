@@ -47,7 +47,6 @@ export function getDaysInMonth(date) {
 
 export function getDayOfWeek(date) {
     const dayOfWeek = date.getDay();
-    console.log(date, dayOfWeek)
 
     return WEEK_DAYS_FROM_MONDAY[dayOfWeek];
 }
