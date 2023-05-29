@@ -11,11 +11,13 @@ import DiaryHome from './pages/diary/DiaryHome'
 import ListSportsman from './pages/administrator/ListSportsman'
 import { useContext, useState } from 'react'
 import { CustomContext, SportContext } from './utils/Context'
+import { DatesContext} from './utils/ContextDate'
 import CompetitionRegistrationGroup from './pages/sports/CompetitionRegistrationGroup'
 import MyCompetition from './pages/User/MyCompetition'
 import CreateCompetition from './pages/administrator/CreateCompetition'
 import CreateSportsman from './pages/administrator/CreateSportsman'
 import CreateCoaches from './pages/administrator/CreateCoaches'
+import DiaryTraining from './pages/diary/DiaryTraining'
 function App() {
 
   const {user, setUser} = useContext(CustomContext)
@@ -50,6 +52,7 @@ function App() {
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
         <Route exac path='/createCoaches' element={<CreateCoaches/>}/>
+        <Route exac path='/training' element={<DiaryTraining/>}/>
       </Routes>
     </div> 
   );

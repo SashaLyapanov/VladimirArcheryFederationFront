@@ -1,22 +1,28 @@
 import { createContext, useEffect, useState } from "react";
 
 export const DatesContext = createContext()
+export const TrainingContext = createContext()
 
 export const ContextDate = (props) => {
 
     const [dates, setDates] = useState(new Date())
-
-    // useEffect(() => {
-    //     setDates(new Date())
-    // }, [])
 
     const datesValue = {
         dates,
         setDates
     }
 
-    return  <DatesContext.Provider value={datesValue}>
+    const [training, setTraining] = useState(new Date())
+
+    const trainingValue = {
+        training,
+        setTraining
+    }
+
+    return  <TrainingContext.Provider value={trainingValue}>
+            <DatesContext.Provider value={datesValue}>
                 {props.children}
             </DatesContext.Provider>
+            </TrainingContext.Provider>
         
 }
