@@ -15,7 +15,6 @@ const Search = () => {
     const [selectValue, setSelectValue] = useState('')
 
     const onClick = () => {
-        // axios.get('http://localhost:8080/api/v1/admin/competitions', {
         axios.get('http://localhost:3001/competition/', {
             params: {
                 name: inputName,
@@ -63,7 +62,7 @@ const Search = () => {
                             onChange={e => setInputName(e.target.value)}/>
                 </div>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Дата</p>
+                    <p className='fonts-roboto-regular name_search'>Дата начала</p>
                     <input type='date' 
                             placeholder='Выберите дату' 
                             className='fonts-roboto-thin input_search'
@@ -78,8 +77,6 @@ const Search = () => {
                         <option value='' disabled selected hidden>Выберите категорию</option>
                         <option>Категория 1</option>
                         <option>Категория 2</option>
-                        <option>Категория 3</option>
-                        <option>Категория 4</option>
                     </select>
                 </div>
                 <div className='button_flex'>

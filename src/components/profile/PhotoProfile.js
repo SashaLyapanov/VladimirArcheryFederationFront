@@ -21,12 +21,12 @@ const PhotoProfile = ({btnStatus}) => {
 
     function buttonStatus(status){
         if(status != 'none'){
-            return <Button parametr={'Редактировать профиль'} 
-                            id={'button-edit'} 
+            return <Button parametr={'Редактировать профиль'}
+                            id={'button-edit'}
                             functionClick={onClick}/>
         } else {
-            return <Button parametr={'Дневник спортсмена'} 
-                            id={'button-edit'} 
+            return <Button parametr={'Дневник спортсмена'}
+                            id={'button-edit'}
                             functionClick={onClickDiary}/>
         }
     }

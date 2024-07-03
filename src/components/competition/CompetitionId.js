@@ -1,57 +1,67 @@
 import Button from '../button/Button'
-import { useContext } from 'react'
-import { CustomContext } from '../../utils/Context'
-import { useNavigate } from 'react-router'
-import { CompetitionContext } from '../../utils/Context'
+import {useContext, useState} from 'react'
+import {CustomContext} from '../../utils/Context'
+import {useNavigate} from 'react-router'
+import {useEffect} from "react";
+import {formatDateLocal} from "../../utils/date-utils";
 
-const CompetitionId = () => {
+const CompetitionId = (competitionId) => {
 
-    const {user, setUser} = useContext(CustomContext)
-    const navigate = useNavigate()
-    const {competitions, setCompetition} = useContext(CompetitionContext)
-    console.log(competitions)
+    const {user, setUser} = useContext(CustomContext);
+    const navigate = useNavigate();
+    const [competition, setCompetition] = useState();
 
-    const formatDate = (date) => {
-        date = date.split('T')[0]
-        return date
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/general/competition?id=' + competitionId?.competitionId);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.json();
+                if (result) {
+                    setCompetition(result);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [competitionId]);
 
-    function registrationGroup(role){
-        if(role == "COACH"){
-            return <Button parametr='Зарегистрироваться' 
-            functionClick={onclick}
-            id='group'/>
+
+    const onclick = (e) => {
+        if (!user.role) {
+            navigate('/login')
+        } else {
+            navigate(`/registrationSports/${competitionId?.competitionId}`)
         }
     }
 
-    const onclick = (e) => {
-        if(!user.role){
-            navigate('/login')  
-        } 
-        else if (e.target.id == 'group'){
-            navigate('/registrationGroup')
-        }  else {
-            navigate('/registrationSports')
-        } 
+    const checkSportsman = () => {
+        return !user.role || user.role === 'SPORTSMAN';
     }
 
+    const bowTypeList = competition?.bowTypeList.map(bowType => bowType.bowTypeName).join(', ');
 
     return (
         <div className='competitions'>
             <div className='container margin-competition'>
-                <p className="fonts-roboto-black name-competition">{competitions?.name}</p>
-                <p className="content-competition fonts-roboto-light">{formatDate(competitions?.date)} - {formatDate(competitions?.date)}</p>
-                <p className="content-competition fonts-roboto-light">{competitions?.place}</p>
-                <p className="content-competition fonts-roboto-light">Тип лука: {competitions?.type?.name}</p>
-                <p className="content-competition fonts-roboto-light">Категория:</p>
-                <p className="content-competition fonts-roboto-light">Описание</p>
+                <p className="fonts-roboto-black name-competition">{competition?.name}</p>
+                <p className="content-competition fonts-roboto-light">Даты
+                    проведения: {competition?.date && formatDateLocal(competition?.date)} - {competition?.date && formatDateLocal(competition?.date)}</p>
+                <p className="content-competition fonts-roboto-light">Место проведения: {competition?.place}</p>
+                <p className="content-competition fonts-roboto-light">Вид соревнований: {competition?.type?.name}</p>
+                <p className="content-competition fonts-roboto-light">Классы лука: {bowTypeList}</p>
+                <p className="content-competition fonts-roboto-light">Главный судьдя: {competition?.mainJudge}</p>
+                <p className="content-competition fonts-roboto-light">Описание: {competition?.description}</p>
                 <div className='button_flex'>
-                <Button parametr='Зарегистрироваться' 
-                        functionClick={onclick}
-                        id='user'/>
-                {registrationGroup(user.role)}
+                    {checkSportsman() && <Button parametr='Зарегистрироваться'
+                                                 functionClick={onclick}
+                                                 id='user'
+                    />}
                 </div>
-            </div>    
+            </div>
         </div>
 
     )

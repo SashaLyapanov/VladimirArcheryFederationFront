@@ -51,7 +51,7 @@
 }
 
 .title_container{
-    width: 60%;
+    width: 50%;
 }
 
 .title_competition{
@@ -60,7 +60,7 @@
 }
 
 .inf_competition{
-    font-size: 14px;
+    font-size: 17px;
     color: #515151;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .title_container_maker{
-    width: 50%;
+    width: 42%;
 }
 
 .name-competition{

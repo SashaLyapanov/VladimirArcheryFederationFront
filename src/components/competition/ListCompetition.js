@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
 import React from 'react';
 import '../../style.css';
 import '../../fonts/roboto/fonts.css';
@@ -11,13 +9,12 @@ const ListCompetition = ({parametr}) => {
     return(
         <div className='competitions'>
             <div className='container container_for_competition'>
-                <div className='marker fonts-roboto-thin'>
-                  <p className='title_container_maker fonts-roboto-light'>Название</p>
-                  <p className='fonts-roboto-light'>Класс лука</p>
-                  <p className='fonts-roboto-light'>Категория участников</p>
-                  <p className='fonts-roboto-light'>Дата начала</p>
-                  <p className='fonts-roboto-light'>Дата окончания</p>
-                </div>
+                {/*<div className='marker fonts-roboto-thin'>*/}
+                  {/*<div className='inf_competition title_container_maker fonts-roboto-light'>Название</div>*/}
+                  {/*<div className='inf_competition fonts-roboto-light'>Категория соревнований</div>*/}
+                  {/*<div className='inf_competition fonts-roboto-light'>Дата начала</div>*/}
+                  {/*<div className='inf_competition fonts-roboto-light'>Дата окончания</div>*/}
+                {/*</div>*/}
                 <div className='list_competition'>
                   
                   {parametr.map((competition) => (

@@ -4,14 +4,16 @@ import AddCompetition from '../../components/competition/AddCompetition';
 import '../../style.css';
 
 
-const CreateCompetition = () => {  
+const CreateCompetition = () => {
 
-    return(
-        <>
+    return (
+        <div>
             <Navbar/>
-            <NamePage name={'Добавление соревнования'}/>
-            <AddCompetition/>
-        </>
+            <div className={'page-content'}>
+                <NamePage name={'Добавление соревнования'}/>
+                <AddCompetition/>
+            </div>
+        </div>
     )
 }
 

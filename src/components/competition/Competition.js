@@ -1,49 +1,32 @@
 import '../competition/style.css'
-import { useNavigate } from 'react-router'
-import axios from '../../utils/axios'
-import { useContext } from 'react'
-import { CompetitionContext } from '../../utils/Context'
-
+import {useNavigate} from 'react-router'
+import {formatDateLocal} from "../../utils/date-utils";
 
 const Competition = ({competition}) => {
 
-    const {competitions, setCompetition} = useContext(CompetitionContext)
-
-    const formatDate = (date) => {
-        date = date.split('T')[0]
-        return date
-    }
-
-    
-
     const navigate = useNavigate()
 
-    const onClickCompetition = (e) => {
-        navigate('/competition/competitionId')
-        // console.log(competition)
-        setCompetition(competition)   
+    const onClickCompetition = (competition) => {
+        navigate(`/competition/${competition?.id}`)
     }
-    
-    return(
+
+    return (
         <>
-         <div className='competition' id={competition?.date} onClick={onClickCompetition}>
-            <div className='title_container'>
-                <p className='title_competition fonts-roboto-black'>{competition?.name}</p>
-                <p className='inf_competition fonts-roboto-regular'>{competition?.place}</p>
+            <div className='competition' id={competition?.date} onClick={() => onClickCompetition(competition)}>
+                <div className='title_container'>
+                    <p className='title_competition fonts-roboto-black'>{competition?.name}</p>
+                    <p className='inf_competition fonts-roboto-regular'>{competition?.place}</p>
+                </div>
+                <div>
+                    <p className='inf_competition fonts-roboto-regular'>{"Категориия соревнований:"} <br/> {competition?.type.name}</p>
+                </div>
+                <div>
+                    <p className='inf_competition fonts-roboto-regular'>{"Дата начала:"} <br/> {formatDateLocal(competition?.date)}</p>
+                </div>
+                <div>
+                    <p className='inf_competition fonts-roboto-regular'>{"Дата окончания:"} <br/> {formatDateLocal(competition?.date)}</p>
+                </div>
             </div>
-            <div>
-                <p className='inf_competition fonts-roboto-regular'>{competition?.category}</p>
-            </div>
-            <div>
-                <p className='inf_competition fonts-roboto-regular sports'>{competition?.sports}</p>
-            </div>
-            <div>
-                <p className='inf_competition fonts-roboto-regular'>{formatDate(competition?.date)}</p>
-            </div>
-            <div>
-                <p className='inf_competition fonts-roboto-regular'>{formatDate(competition?.date)}</p>
-            </div>
-         </div>
         </>
     )
 }

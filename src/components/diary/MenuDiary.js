@@ -1,11 +1,7 @@
-import training from '../../img/training.png'
 import logo from '../../img/logo.jpg'
 import calendar from '../../img/calendar.png'
 
 const MenuDiary = () => {
-
-    
-
 
     return (
         <div className='menu-diary'>
@@ -19,7 +15,7 @@ const MenuDiary = () => {
                 <img src={logo} className='logo-diary'/>
             </div>
             </a>
-            <div id='calendar' className="menu-element-diary">
+            <div id='calendar' classNrame="menu-element-diary">
                 <img id='calendar' src={calendar} className='icon-diary'/>
             </div>
         </div>

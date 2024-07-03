@@ -1,9 +1,8 @@
-import del from '../../img/delete.png'
 import '../sports/sports.css'
 import axios from "../../utils/axios";
-import { useContext } from 'react'
-import {CustomContext, SportContext} from '../../utils/Context'
-import { useNavigate } from 'react-router'
+import {useContext} from 'react'
+import {SportContext} from '../../utils/Context'
+import {useNavigate} from 'react-router'
 
 const SportsListAdmin = ({sports}) => {
 
@@ -30,18 +29,16 @@ const SportsListAdmin = ({sports}) => {
         navigate('/profile')
 
 
+        return (
+            <div>
+                {sports.map((sport) => (
+                    <div id={sport?.email} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
+                        <p id={sport?.email}>{sport?.firstName + ' ' + sport?.patronymic + ' ' + sport?.surname}</p>
+                    </div>
+                ))}
+            </div>
+        )
     }
-
-
-    return (
-        <div>
-            {sports.map((sport) => (
-                <div id={sport?.email} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
-                    <p id={sport?.email}>{sport?.firstName + ' ' + sport?.patronymic + ' ' + sport?.surname}</p>
-                </div>
-            ))}
-        </div>
-    )
 }
 
 export default SportsListAdmin

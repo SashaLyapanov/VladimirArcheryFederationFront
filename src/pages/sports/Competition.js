@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
-import {useEffect} from 'react'
+import React from 'react';
 import Navbar from '../../components/navbar/Navbar'
 import '../../style.css';
 import CompetitionId from '../../components/competition/CompetitionId';
+import {useParams} from "react-router";
 
 const Competition = () => {
 
-    return(
-        <>
+    const competitionId = useParams();
+
+    return (
+        <div>
             <Navbar/>
-            <CompetitionId />
-        </>
+            <div className={'page-content'}>
+                <CompetitionId competitionId={competitionId?.competitionId}/>
+            </div>
+        </div>
     )
 }
 

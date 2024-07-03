@@ -1,5 +1,16 @@
 @import '../../fonts/roboto/fonts.css';
 
+.article_header{
+    color: #0C0C90;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.article_info{
+    text-align: justify;
+    font-size: 18px;
+}
 
 .news{
     display: flex;
@@ -27,6 +38,21 @@
     width: 500px;
     display: flex;
     align-items: flex-end;
+}
+
+.img-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    overflow: hidden;
+    margin: 0px 0px 20px 0px;
+}
+
+.img-block img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .photo_news_big{
@@ -90,3 +116,42 @@
     font-size: 20px;
 }
 
+.article-block{
+    display: flex;
+    border: 1px solid #0C0C90;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0 20px 0;
+    justify-content: space-between;
+    /*width: 600px;*/
+    /*width: 100%;*/
+}
+
+.article-image{
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.article-details{
+    padding: 10px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.article-title{
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+}
+
+.article-date{
+    color: #888;
+    margin: 0 0 10px 0;
+}
+
+.article-body{
+    line-height: 1.6;
+    text-align: justify;
+    color: black;
+    text-decoration: none;
+}

@@ -1,12 +1,10 @@
 import Button from "../button/Button"
 import axios from '../../utils/axios'
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router'
 
 const DataProfile = ({user}) => {
 
-    console.log(user)    
-    const navigate = useNavigate()
+    console.log(user)
 
     const [sportsTitle, setSportsTitles] = useState([])
     const [regions, setRegions] = useState([])
@@ -25,12 +23,12 @@ const DataProfile = ({user}) => {
 
     useEffect(() => {
         axios.get('general/allSportsTitle')
-        .then(({data}) => setSportsTitles(data))
+            .then(({data}) => setSportsTitles(data))
         axios.get('general/allRegions')
-        .then(({data}) => setRegions(data))
+            .then(({data}) => setRegions(data))
         axios.get('general/allTeams')
-        .then(({data}) => setTeams(data))
-        }, []);
+            .then(({data}) => setTeams(data))
+    }, []);
 
     useEffect(() => {
         setName(user?.firstName)
@@ -44,7 +42,6 @@ const DataProfile = ({user}) => {
         setTeam(user?.team?.id)
     }, [user])
 
-    
 
     const newSportsman = {
         'email': Email,
@@ -65,7 +62,7 @@ const DataProfile = ({user}) => {
         'team': {
             'id': Team
         }
-        
+
     }
 
     const onClick = () => {
@@ -78,16 +75,16 @@ const DataProfile = ({user}) => {
         }
         // console.log(newSportsman)
         axios.put(
-            `admin/editSportsman?email=${user?.email}`, 
-            newSportsman) 
+            `admin/editSportsman?email=${user?.email}`,
+            newSportsman)
 
     }
-    return(
+    return (
         <div className="data-profile">
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Имя</p>
-                <input 
-                    type='text' 
+                <input
+                    type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
                     value={Name}
                     onChange={e => setName(e.target.value)}
@@ -96,8 +93,8 @@ const DataProfile = ({user}) => {
             </div>
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Фамилия</p>
-                <input 
-                    type='text' 
+                <input
+                    type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
                     value={Surname}
                     onChange={e => setSurname(e.target.value)}
@@ -127,52 +124,52 @@ const DataProfile = ({user}) => {
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Регион</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Region} 
-                onChange={e => setRegion(e.target.value)}
-                disabled
+                        value={Region}
+                        onChange={e => setRegion(e.target.value)}
+                        disabled
                 >
-                        <option value='' disabled selected hidden>{user?.region?.name}</option>
-                        {regions.map(region => (
-                            <option value={region?.id}>{region?.name}</option>
-                        ))}
-                    </select>
+                    <option value='' disabled selected hidden>{user?.region?.name}</option>
+                    {regions.map(region => (
+                        <option value={region?.id}>{region?.name}</option>
+                    ))}
+                </select>
             </div>
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Пол</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Sex} 
-                onChange={e => setSex(e.target.value)}
-                disabled
+                        value={Sex}
+                        onChange={e => setSex(e.target.value)}
+                        disabled
                 >
-                        <option value='' disabled selected hidden>{user?.sex?.name}</option>
-                        <option value='1'>Мужской</option>
-                        <option value='2'>Женский</option>
-                    </select>
+                    <option value='' disabled selected hidden>{user?.sex?.name}</option>
+                    <option value='1'>Мужской</option>
+                    <option value='2'>Женский</option>
+                </select>
             </div>
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Спортивный разряд</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={SportsTitle} 
-                onChange={e => setSportsTitle(e.target.value)}
-                disabled
+                        value={SportsTitle}
+                        onChange={e => setSportsTitle(e.target.value)}
+                        disabled
                 >
                     <option value='' disabled selected hidden>{user?.sportsTitle?.name}</option>
                     {sportsTitle.map(title => (
-                            <option value={title?.id}>{title?.name}</option>
-                        ))}
+                        <option value={title?.id}>{title?.name}</option>
+                    ))}
                 </select>
             </div>
             <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Команда</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Team} 
-                onChange={e => setTeam(e.target.value)}
-                disabled
+                        value={Team}
+                        onChange={e => setTeam(e.target.value)}
+                        disabled
                 >
                     <option value='' disabled selected hidden>{user?.team?.name}</option>
                     {teams.map(title => (
-                            <option value={title?.id}>{title?.name}</option>
-                        ))}
+                        <option value={title?.id}>{title?.name}</option>
+                    ))}
                 </select>
             </div>
             <div className="container-pole name_profile">
@@ -195,12 +192,12 @@ const DataProfile = ({user}) => {
                     disabled
                 />
             </div> */}
-            
-        <Button id={'button-save'}
-                parametr={'Сохранить'} 
-                className={'button-display'}
-                functionClick={onClick}/>
-            
+
+            <Button id={'button-save'}
+                    parametr={'Сохранить'}
+                    className={'button-display'}
+                    functionClick={onClick}/>
+
         </div>
     )
 }
@@ -260,4 +257,5 @@ export default DataProfile
                     className='fonts-roboto-thin input_profile'
                     disabled
                 />
-            </div> */}
+            </div> */
+}

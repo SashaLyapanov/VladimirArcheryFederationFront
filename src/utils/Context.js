@@ -17,7 +17,7 @@ export const Context = (props) => {
         setUser(JSON.parse(localStorage.getItem('user')))
         }
         if(localStorage.getItem('date') != null){
-            
+
         }
     }, [])
 
@@ -49,5 +49,5 @@ export const Context = (props) => {
             </CustomContext.Provider>
             </SportContext.Provider>
             </CompetitionContext.Provider>
-        
+
 }

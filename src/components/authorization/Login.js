@@ -19,9 +19,7 @@ const Login = () => {
             password: e.target[1].value
         }
 
-            axios.post('auth/signin', newUser)             
-            // .then((res) => 
-            // console.log(res)) 
+            axios.post('auth/signin', newUser)
             .then(({data}) => 
             { 
                 setUser({ 
@@ -40,7 +38,7 @@ const Login = () => {
         <div className='authorization'>
             <div className='popup'>
                 <form className='form' onSubmit={loginUser}>
-                    <p className='header fonts-roboto-black'>Вход</p>
+                    <p className='header fonts-roboto-black'>Авторизация</p>
                     <input type='text' 
                         className='input fonts-roboto-light' 
                         placeholder='Введите логин'/>

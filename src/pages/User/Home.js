@@ -5,12 +5,14 @@ import CompetitionHome from '../../components/competition/CompetitionHome';
 
 const Home = () => {
 
-    return(
-        <>
-            <Navbar />
-            <News />
-            <CompetitionHome/>
-        </>
+    return (
+        <div>
+            <Navbar/>
+            <div className={"page-content"}>
+                <News/>
+                <CompetitionHome/>
+            </div>
+        </div>
     );
 }
 

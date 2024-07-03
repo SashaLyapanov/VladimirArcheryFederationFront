@@ -7,17 +7,15 @@ import Profile from './pages/sports/Profile'
 import { Route, Routes } from 'react-router-dom'
 import Competition from './pages/sports/Competition'
 import CompetitionRegistration from './pages/sports/CompetitionRegistration'
-import DiaryHome from './pages/diary/DiaryHome'
 import ListSportsman from './pages/administrator/ListSportsman'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CustomContext, SportContext } from './utils/Context'
-import { DatesContext} from './utils/ContextDate'
-import CompetitionRegistrationGroup from './pages/sports/CompetitionRegistrationGroup'
-import MyCompetition from './pages/User/MyCompetition'
+import MyCompetition from './pages/sports/MyCompetition'
 import CreateCompetition from './pages/administrator/CreateCompetition'
 import CreateSportsman from './pages/administrator/CreateSportsman'
-import CreateCoaches from './pages/administrator/CreateCoaches'
-import DiaryTraining from './pages/diary/DiaryTraining'
+import ArticlePage from "./components/news/ArticlePage";
+import ArticleList from "./pages/User/ArticleList";
+import AboutFederation from "./pages/User/AboutFederation";
 function App() {
 
   const {user, setUser} = useContext(CustomContext)
@@ -36,23 +34,21 @@ function App() {
     <div className='app'>
       <Routes>
         <Route exac path='/' element={<Home/>}/>
+        <Route exac path='/aboutFederation' element={<AboutFederation/>}/>
+        <Route exac path='/article/:articleId' element={<ArticlePage/>}/>
+        <Route exac path='/articleList' element={<ArticleList/>}/>
         <Route exac path='/competition' element={<Calendar/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/registration' element={<Registration/>}/>
-        <Route exac path='/competition/competitionId' element={<Competition/>}/>
-        <Route exac path='/registrationGroup' element={<CompetitionRegistrationGroup/>}/>
-        <Route exac path='/registrationSports' element={<CompetitionRegistration />}/>
+        <Route exac path='/competition/:competitionId' element={<Competition/>}/>
+        <Route exac path='/registrationSports/:competitionId' element={<CompetitionRegistration />}/>
         <Route exac path='/profile' element={profile(user.role)}/>
         <Route exac path='/profileSportsTrainer' element={<Profile user={sport} btnStatus={'none'}/>}/>
-        <Route exac path='/diary' element={<DiaryHome/>}/>
-        <Route exac path='/diaryCoach' element={<DiaryHome sport={sport}/>}/>
         <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
         <Route exac path='/coaches' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/coaches'} role={'coaches'}/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
-        <Route exac path='/createCoaches' element={<CreateCoaches/>}/>
-        <Route exac path='/training' element={<DiaryTraining/>}/>
       </Routes>
     </div> 
   );
