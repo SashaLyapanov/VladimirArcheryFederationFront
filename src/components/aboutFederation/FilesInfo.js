@@ -7,14 +7,14 @@ const FilesInfo = ({props}) => {
         setLinks(props);
     })
 
-    console.log(links);
-
     return (
         <div className="info-block">
             <h1>Файлы:</h1>
-            <DownloadPDFButton pdfBytes={links?.fileNames[0]} fileName={"vladimirTeam.pdf"}/>
-            {/*<DownloadPDFButton pdfBytes={links && links[0].fileRegulationData} fileName={"polozhenie.pdf"}/>*/}
-            {/*<p>{links && links[0].fileHistoryName}</p>*/}
+            <div>
+                {links?.fileNames.map((file) =>
+                    <DownloadPDFButton fileName={file} preview={file}/>
+                )}
+            </div>
         </div>
     )
 }
