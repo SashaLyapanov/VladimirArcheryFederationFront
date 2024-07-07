@@ -48,13 +48,22 @@ const CompetitionId = (competitionId) => {
         <div className='competitions'>
             <div className='container margin-competition'>
                 <p className="fonts-roboto-black name-competition">{competition?.name}</p>
-                <p className="content-competition fonts-roboto-light">Даты
-                    проведения: {competition?.date && formatDateLocal(competition?.date)} - {competition?.date && formatDateLocal(competition?.date)}</p>
-                <p className="content-competition fonts-roboto-light">Место проведения: {competition?.place}</p>
-                <p className="content-competition fonts-roboto-light">Вид соревнований: {competition?.type?.name}</p>
-                <p className="content-competition fonts-roboto-light">Классы лука: {bowTypeList}</p>
-                <p className="content-competition fonts-roboto-light">Главный судьдя: {competition?.mainJudge}</p>
-                <p className="content-competition fonts-roboto-light">Описание: {competition?.description}</p>
+                <div className="content-competition-container">
+                    <p className="content-competition fonts-roboto-light">Даты
+                        проведения: <span
+                            className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.date && formatDateLocal(competition?.date)}</span>
+                    </p>
+                    <p className="content-competition fonts-roboto-light">Место проведения: <span
+                        className="content-competition-details"> {competition?.place}</span></p>
+                    <p className="content-competition fonts-roboto-light">Вид соревнований: <span
+                        className="content-competition-details">{competition?.type?.name}</span></p>
+                    <p className="content-competition fonts-roboto-light">Классы лука: <span
+                        className="content-competition-details">{bowTypeList}</span></p>
+                    <p className="content-competition fonts-roboto-light">Главный судья: <span
+                        className="content-competition-details">{competition?.mainJudge}</span></p>
+                </div>
+
+                <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
                 <div className='button_flex'>
                     {checkSportsman() && <Button parametr='Зарегистрироваться'
                                                  functionClick={onclick}

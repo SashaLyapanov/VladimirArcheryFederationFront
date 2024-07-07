@@ -18,7 +18,7 @@ const DownloadPDFButton = ({pdfBytes, fileName}) => {
     return (
         <div className="file-block">
             <img src={pdf} onClick={downloadPDF} className="pdf-img" alt="PDF"/>
-            <p>Название файла</p>
+            <p>{fileName}</p>
         </div>
     )
 }

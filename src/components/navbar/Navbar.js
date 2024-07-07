@@ -1,6 +1,6 @@
 import "./../navbar/style.css";
 import '../../style.css';
-import logo from "./../../img/logo.jpg";
+import logo from "./../../img/logo2.png";
 import place from "./../../img/place.png";
 import MenuUser from "./MenuUsers";
 import MenuSports from "./MenuSports";

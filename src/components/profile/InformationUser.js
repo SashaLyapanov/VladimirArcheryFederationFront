@@ -1,13 +1,18 @@
 import PhotoProfile from "./PhotoProfile"
 import DataProfile from "./DataProfile"
 import './profile.css'
+import NamePage from "../namePage/NamePage";
 
 const InformationUser = ({user, btnStatus}) => {
-    return(
-        <div className="container information-user">
-            <PhotoProfile btnStatus={btnStatus}/>
-            <DataProfile user={user} />
+    return (
+        <div className="container">
+            <NamePage name={"Личный профиль"}/>
+            <div className="information-user">
+                <PhotoProfile btnStatus={btnStatus}/>
+                <DataProfile user={user}/>
+            </div>
         </div>
+
     )
 }
 

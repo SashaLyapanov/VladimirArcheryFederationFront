@@ -4,9 +4,9 @@ import '../../style.css';
 import '../../fonts/roboto/fonts.css'
 import './style.css'
 import Button from '../button/Button';
-import { useContext } from 'react'
-import { CustomContext } from '../../utils/Context'
-import { useNavigate } from 'react-router'
+import {useContext} from 'react'
+import {CustomContext} from '../../utils/Context'
+import {useNavigate} from 'react-router'
 
 
 const Search = () => {
@@ -21,12 +21,12 @@ const Search = () => {
                 date: inputDate,
                 select: selectValue
             }
-          })
-          .then((response) => {
-            console.log(response);
-          }, (error) => {
-            console.log(error);
-          });
+        })
+            .then((response) => {
+                console.log(response);
+            }, (error) => {
+                console.log(error);
+            });
     }
 
     const {user, setUser} = useContext(CustomContext)
@@ -40,39 +40,39 @@ const Search = () => {
         navigate('/CreateCompetition')
     }
 
-    function buttonBlock(role){
-        if(role == 'ADMIN'){
+    function buttonBlock(role) {
+        if (role == 'ADMIN') {
             return <Button id={'button-block'}
-                                parametr={'Добавить'} 
-                                className={''}
-                                functionClick={onClickAdd}/>
-                        
+                           parametr={'Добавить'}
+                           className={''}
+                           functionClick={onClickAdd}/>
+
         }
     }
 
-    return(
+    return (
         <div>
-            <form className='container container_for_page search'>
+            <form className='container_for_page search'>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Название</p>
-                    <input type='text' 
-                            placeholder='Введите название' 
-                            className='fonts-roboto-thin input_search'
-                            value={inputName}
-                            onChange={e => setInputName(e.target.value)}/>
+                    <input type='text'
+                           placeholder='Введите название'
+                           className='fonts-roboto-thin input_search'
+                           value={inputName}
+                           onChange={e => setInputName(e.target.value)}/>
                 </div>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Дата начала</p>
-                    <input type='date' 
-                            placeholder='Выберите дату' 
-                            className='fonts-roboto-thin input_search'
-                            value={inputDate}
-                            onChange={e => setInputDate(e.target.value)}/>
+                    <input type='date'
+                           placeholder='Выберите дату'
+                           className='fonts-roboto-thin input_search'
+                           value={inputDate}
+                           onChange={e => setInputDate(e.target.value)}/>
                 </div>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Категория</p>
-                    <select className='fonts-roboto-thin input_search' 
-                            value={selectValue} 
+                    <select className='fonts-roboto-thin input_search'
+                            value={selectValue}
                             onChange={e => setSelectValue(e.target.value)}>
                         <option value='' disabled selected hidden>Выберите категорию</option>
                         <option>Категория 1</option>
@@ -80,8 +80,8 @@ const Search = () => {
                     </select>
                 </div>
                 <div className='button_flex'>
-                    <Button parametr={'Найти'}  
-                            functionClick={onClick} />
+                    <Button parametr={'Найти'}
+                            functionClick={onClick}/>
                     {buttonBlock(user.role)}
                 </div>
             </form>
