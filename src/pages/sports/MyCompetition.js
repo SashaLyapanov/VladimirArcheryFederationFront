@@ -6,7 +6,7 @@ import '../../style.css';
 import ListCompetition from '../../components/competition/ListCompetition'
 import axios from '../../utils/axios';
 import { useContext } from 'react'
-import { CustomContext, CompetitionContext } from '../../utils/Context'
+import { CustomContext } from '../../utils/Context'
 
 
 const MyCompetition = () => {
@@ -22,11 +22,9 @@ const MyCompetition = () => {
       axios.get(`sportsman/allMyApplication?myId=${user?.id}`)
         .then(({data}) => {
           let competition = []
-            data.map((applic) => (
-              competition.push(applic?.competition)
+            data.map((application) => (
+              competition.push(application?.competition)
             ))
-            // console.log(competition)
-            // console.log(data)
             setCompetitions(competition);
         });
         
@@ -35,12 +33,11 @@ const MyCompetition = () => {
     }, [user]);
 
     return(
-        <>
+        <div className="page-content">
             <Navbar/>
-            <NamePage name={'Мои соревнования'}/>
-            {/* {listCompetition()} */}
+            <NamePage name={"Мои соревнования"}/>
             <ListCompetition parametr={competitions}/>
-        </>
+        </div>
     )
 }
 

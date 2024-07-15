@@ -1,7 +1,5 @@
 import '../../fonts/roboto/fonts.css'
 import './style.css'
-import arrow from '../../img/arrow.png'
-import userpng from '../../img/user.png'
 
 const MenuUser = () => {
     return (
