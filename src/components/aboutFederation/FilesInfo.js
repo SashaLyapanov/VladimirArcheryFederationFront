@@ -12,7 +12,7 @@ const FilesInfo = ({props}) => {
             <h1>Файлы:</h1>
             <div>
                 {links?.fileNames.map((file) =>
-                    <DownloadPDFButton fileName={file} preview={file}/>
+                    <DownloadPDFButton fileName={file} preview={file} source='aboutFederation'/>
                 )}
             </div>
         </div>

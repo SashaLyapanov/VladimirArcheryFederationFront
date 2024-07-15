@@ -29,12 +29,10 @@ const Registration = (competitionId) => {
         axios.post(`sportsman/regInCompetition?sportsmanId=${user?.id}&competitionId=${compId?.competitionId}`, dataOfRegistrationCompetition)
             .then(((resp) => {
                 if (resp.data) {
-                    console.log(1);
                     alert(resp.data);
                 }
             }))
             .catch((resp) => {
-                console.log(2);
                 alert(resp.response.data);
             })
         // navigate(`/competition/${compId?.competitionId}`)

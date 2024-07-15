@@ -23,7 +23,6 @@ const CompetitionHome = () => {
         while (i < 3){
           i += 1
           return <Competition competition={competition}/>
-
         }
       }
 
@@ -31,7 +30,7 @@ const CompetitionHome = () => {
         <div className='competitions'>
             <div className='container container_for_competition margin'>
                 <p className='fonts-roboto-black title'>Ближайшие соревнования</p>
-                <div className='list_competition'>
+                <div className='list_items'>
                   {competitions.map((competition) => (
                     listCompetiton(competition)
                   ))}

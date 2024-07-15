@@ -6,6 +6,7 @@
     background-color: #0C0C90;
     border-color: #0C0C90;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .button:hover {
@@ -15,4 +16,27 @@
 
 .button-display{
     display: none;
+}
+
+.long_button{
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0C0C90;
+    border-color: #0C0C90;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.competiitonBtn{
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0C0C90;
+    border-color: #0C0C90;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 15px;
 }

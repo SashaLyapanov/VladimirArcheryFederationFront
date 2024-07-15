@@ -2,11 +2,10 @@ import SearchSports from "../../components/search/searchSports"
 import Navbar from "../../components/navbar/Navbar"
 import NamePage from '../../components/namePage/NamePage'
 import SportsListAdmin from "../../components/sports/SportsListAdmin"
-import SportsList from "../../components/sports/SportsList"
+import ApplicationList from "../../components/sports/ApplicationList"
 import React, {useEffect, useState} from "react"
 import { useContext } from 'react'
-import { CustomContext, UsersContext } from '../../utils/Context'
-import axios from '../../utils/axios'
+import { CustomContext } from '../../utils/Context'
 
 
 const ListSportsman = ({urls, role}) => {
@@ -27,7 +26,7 @@ const ListSportsman = ({urls, role}) => {
       if (role == "ADMIN"){
         return <SportsListAdmin sports={sports}/>
       } else if (role == "COACH"){
-        return <SportsList sports={sports}/>
+        return <ApplicationList sports={sports}/>
       }
     }
 

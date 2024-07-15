@@ -10,6 +10,7 @@ const CompetitionId = (competitionId) => {
     const {user, setUser} = useContext(CustomContext);
     const navigate = useNavigate();
     const [competition, setCompetition] = useState();
+    const [alreadyReg, setAlreadyReg] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,23 +24,45 @@ const CompetitionId = (competitionId) => {
                     setCompetition(result);
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching data: ', error);
             }
         };
+        const checkAlreadyReg = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/sportsman/checkApplication?sportsmanId=' + user?.id + '&competitionId=' + competitionId?.competitionId);
+                const result = await response.json();
+                setAlreadyReg(result);
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        }
         fetchData();
+        checkAlreadyReg();
     }, [competitionId]);
 
 
-    const onclick = (e) => {
+    const onclick = (id) => {
         if (!user.role) {
             navigate('/login')
-        } else {
+        } else if (id==='registration') {
             navigate(`/registrationSports/${competitionId?.competitionId}`)
+        } else if (id==='listApplication') {
+            navigate(`/applicationsList/${competitionId?.competitionId}`)
         }
     }
 
     const checkSportsman = () => {
         return !user.role || user.role === 'SPORTSMAN';
+    }
+
+    const checkAlreadyRegistration = () => {
+        if (alreadyReg) {
+            return alreadyReg === true;
+        }
+    }
+
+    const checkCompetitionPeriod = () => {
+        return  competition?.status === 'FUTURE' || competition?.status === 'PRESENT';
     }
 
     const bowTypeList = competition?.bowTypeList.map(bowType => bowType.bowTypeName).join(', ');
@@ -64,11 +87,16 @@ const CompetitionId = (competitionId) => {
                 </div>
 
                 <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
-                <div className='button_flex'>
-                    {checkSportsman() && <Button parametr='Зарегистрироваться'
-                                                 functionClick={onclick}
-                                                 id='user'
+                <div className='button_flex line-block'>
+                    {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() && <Button parametr='Зарегистрироваться'
+                                                 id='registration'
+                                                 functionClick={()=> onclick('registration')}
                     />}
+                    {<Button parametr='Список зарегистрированных спортсменов'
+                                                 className='long_button'
+                                                 functionClick={()=> onclick('listApplication')}
+                                                 id='listApplication'/>
+                    }
                 </div>
             </div>
         </div>

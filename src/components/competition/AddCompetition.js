@@ -95,32 +95,32 @@ const AddCompetition = () => {
                     </select>
             </div>
             
+            {/*<div className="container-pole">*/}
+            {/*    <p className='fonts-roboto-regular name_profile'>Категория</p>*/}
+            {/*    <select className='fonts-roboto-thin input_profile input_profile_edit'*/}
+            {/*    value={Categories} */}
+            {/*    onChange={e => setCategories(e.target.value)}*/}
+            {/*    >*/}
+            {/*            <option value='' disabled selected hidden>Выберите категорию соревнований</option>*/}
+            {/*            <option value='1'>Мужчины 14+</option>*/}
+            {/*            <option value='2'>Женщины 14+</option>*/}
+            {/*            <option value='3'>Мальчики до 14 лет</option>*/}
+            {/*            <option value='4'>Девочки 14 лет</option>*/}
+            {/*            <option value='5'>Юноши до 18 лет</option>*/}
+            {/*            <option value='6'>Девушки до 18 лет</option>*/}
+            {/*            <option value='7'>Юниоры до 21 года</option>*/}
+            {/*            <option value='8'>Юниорки до 21 года</option>*/}
+            {/*            <option value='9'>Мужчины</option>*/}
+            {/*            <option value='10'>Женщины</option>*/}
+            {/*        </select>*/}
+            {/*</div>*/}
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Категория</p>
-                <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Categories} 
-                onChange={e => setCategories(e.target.value)}
-                >
-                        <option value='' disabled selected hidden>Выберите категорию соревнований</option>
-                        <option value='1'>Мужчины 14+</option>
-                        <option value='2'>Женщины 14+</option>
-                        <option value='3'>Мальчики до 14 лет</option>
-                        <option value='4'>Девочки 14 лет</option>
-                        <option value='5'>Юноши до 18 лет</option>
-                        <option value='6'>Девушки до 18 лет</option>
-                        <option value='7'>Юниоры до 21 года</option>
-                        <option value='8'>Юниорки до 21 года</option>
-                        <option value='9'>Мужчины</option>
-                        <option value='10'>Женщины</option>
-                    </select>
-            </div>
-            <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Тип лука</p>
+                <p className='fonts-roboto-regular name_profile'>Спортивная дисциплина (класс лука)</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
                 value={BowType} 
                 onChange={e => setBowType(e.target.value)}
                 >
-                        <option value='' disabled selected hidden>Выберите тип лука</option>
+                        <option value='' disabled selected hidden>Выберите класс лука</option>
                         <option value='1'>Длинный лук</option>
                         <option value='2'>Блочный лук</option>
                         <option value='3'>Монгольский лук</option>
@@ -132,7 +132,7 @@ const AddCompetition = () => {
                 <input
                     type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Введите судью"
+                    placeholder="Введите ФИО главного судьи"
                     value={MainJudge}
                     onChange={e => setMainJudge(e.target.value)}
                 />
@@ -142,7 +142,7 @@ const AddCompetition = () => {
                 <input
                     type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Введите секретаря"
+                    placeholder="Введите ФИО главного секретаря"
                     value={Secretary}
                     onChange={e => setSecretary(e.target.value)}
                 />
@@ -152,7 +152,7 @@ const AddCompetition = () => {
                 <input
                     type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Введите заместителя судьи"
+                    placeholder="Введите ФИО заместителя главного судьи"
                     value={ZamJudge}
                     onChange={e => setZamJudge(e.target.value)}
                 />
@@ -162,7 +162,7 @@ const AddCompetition = () => {
                 <input
                     type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Введите судей"
+                    placeholder="Введите ФИО судей через запятую"
                     value={Judges}
                     onChange={e => setJudges(e.target.value)}
                 />

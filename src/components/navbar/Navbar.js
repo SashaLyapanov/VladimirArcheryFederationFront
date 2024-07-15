@@ -51,9 +51,9 @@ const Navbar = () => {
                     <div className='menu fonts-roboto-black'>
                         <Link to="/aboutFederation" className="menu-elements">О федерации</Link>
                         <Link to="/articleList" className="menu-elements">Новости</Link>
-                        <Link to="@" className="menu-elements">Деятельность</Link>
+                        <Link to="/activityFederation" className="menu-elements">Деятельность</Link>
                         <Link to="/competition" className="menu-elements">Соревнования</Link>
-                        <Link to="@" className="menu-elements">Сборная</Link>
+                        <Link to="/regionalTeam" className="menu-elements">Сборная</Link>
                     </div>
                 </div>
             </div>

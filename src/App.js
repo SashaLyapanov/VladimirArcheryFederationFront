@@ -16,6 +16,9 @@ import CreateSportsman from './pages/administrator/CreateSportsman'
 import ArticlePage from "./components/news/ArticlePage";
 import ArticleList from "./pages/User/ArticleList";
 import AboutFederation from "./pages/User/AboutFederation";
+import ListRegSportsmen from "./components/competition/ListRegSportsmen";
+import ActivityFederation from "./pages/User/ActivityFederation";
+import RegionalTeam from "./pages/User/RegionalTeam";
 function App() {
 
   const {user, setUser} = useContext(CustomContext)
@@ -35,20 +38,22 @@ function App() {
       <Routes>
         <Route exac path='/' element={<Home/>}/>
         <Route exac path='/aboutFederation' element={<AboutFederation/>}/>
+        <Route exac path='/activityFederation' element={<ActivityFederation/>}/>
+        <Route exac path='/applicationsList/:competitionId' element={<ListRegSportsmen />}/>
         <Route exac path='/article/:articleId' element={<ArticlePage/>}/>
         <Route exac path='/articleList' element={<ArticleList/>}/>
         <Route exac path='/competition' element={<Calendar/>}/>
-        <Route exac path='/login' element={<Login/>}/>
-        <Route exac path='/registration' element={<Registration/>}/>
         <Route exac path='/competition/:competitionId' element={<Competition/>}/>
-        <Route exac path='/registrationSports/:competitionId' element={<CompetitionRegistration />}/>
-        <Route exac path='/profile' element={profile(user.role)}/>
-        <Route exac path='/profileSportsTrainer' element={<Profile user={sport} btnStatus={'none'}/>}/>
-        <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
-        <Route exac path='/coaches' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/coaches'} role={'coaches'}/>}/>
-        <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
+        <Route exac path='/login' element={<Login/>}/>
+        <Route exac path='/myCompetition' element={<MyCompetition />}/>
+        <Route exac path='/profile' element={profile(user.role)}/>
+        <Route exac path='/profileSportsTrainer' element={<Profile user={sport} btnStatus={'none'}/>}/>
+        <Route exac path='/registration' element={<Registration/>}/>
+        <Route exac path='/regionalTeam' element={<RegionalTeam />}/>
+        <Route exac path='/registrationSports/:competitionId' element={<CompetitionRegistration />}/>
+        <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
       </Routes>
     </div> 
   );

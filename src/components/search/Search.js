@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import '../../style.css';
 import '../../fonts/roboto/fonts.css'
@@ -13,6 +13,16 @@ const Search = () => {
     const [inputName, setInputName] = useState('')
     const [inputDate, setInputDate] = useState('')
     const [selectValue, setSelectValue] = useState('')
+
+    const [bowTypes, setBowTypes] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/general/allBowTypes')
+            .then((res) => res.json())
+            .then((result) => {
+                setBowTypes(result);
+            });
+    }, []);
 
     const onClick = () => {
         axios.get('http://localhost:3001/competition/', {
@@ -54,7 +64,7 @@ const Search = () => {
         <div>
             <form className='container_for_page search'>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Название</p>
+                    <p className='fonts-roboto-regular name_search'>Название соревнования</p>
                     <input type='text'
                            placeholder='Введите название'
                            className='fonts-roboto-thin input_search'
@@ -62,7 +72,7 @@ const Search = () => {
                            onChange={e => setInputName(e.target.value)}/>
                 </div>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Дата начала</p>
+                    <p className='fonts-roboto-regular name_search'>Дата начала соревнования</p>
                     <input type='date'
                            placeholder='Выберите дату'
                            className='fonts-roboto-thin input_search'
@@ -70,13 +80,14 @@ const Search = () => {
                            onChange={e => setInputDate(e.target.value)}/>
                 </div>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Категория</p>
+                    <p className='fonts-roboto-regular name_search'>Спортивная дисциплина (класс лука)</p>
                     <select className='fonts-roboto-thin input_search'
                             value={selectValue}
                             onChange={e => setSelectValue(e.target.value)}>
-                        <option value='' disabled selected hidden>Выберите категорию</option>
-                        <option>Категория 1</option>
-                        <option>Категория 2</option>
+                        <option value='' disabled selected hidden>Выберите класс лука</option>
+                        {bowTypes.map(bowType => (
+                            <option value={bowType?.id}>{bowType?.bowTypeName}</option>
+                        ))}
                     </select>
                 </div>
                 <div className='button_flex'>
