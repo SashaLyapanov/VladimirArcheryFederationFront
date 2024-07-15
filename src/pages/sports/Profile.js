@@ -5,11 +5,11 @@ import '../../style.css';
 
 const Profile = ({user, btnStatus}) => {
     return(
-        <>
+        <div className="page-content">
             <Navbar/>
-            <NamePage name={'Профиль'}/>
+            <NamePage name={"Личный профиль"}/>
             <InformationUser user={user} btnStatus={btnStatus}/>
-        </>
+        </div>
     )
 }
 

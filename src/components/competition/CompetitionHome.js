@@ -11,7 +11,7 @@ const CompetitionHome = () => {
       const [competitions, setNews] = useState([]);
     
       useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/competitions')
+        fetch('http://localhost:8080/api/v1/general/availableCompetitions')
           .then((res) => res.json())
           .then((result) => {
             setNews(result);

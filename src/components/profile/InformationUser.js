@@ -5,8 +5,7 @@ import NamePage from "../namePage/NamePage";
 
 const InformationUser = ({user, btnStatus}) => {
     return (
-        <div className="container">
-            <NamePage name={"Личный профиль"}/>
+        <div>
             <div className="information-user">
                 <PhotoProfile btnStatus={btnStatus}/>
                 <DataProfile user={user}/>
