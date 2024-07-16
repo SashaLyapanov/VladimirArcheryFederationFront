@@ -12,6 +12,10 @@ const DownloadPDFButton = ({fileName, preview, source}) => {
                 if (source === 'aboutFederation') {
                     response = await fetch('http://localhost:8081/aboutFederation/download?fileName=' + link)
                 }
+                if (source === 'activityFederation') {
+                    console.log(link);
+                    response = await fetch('http://localhost:8081/activityFederation/download?fileName=' + link)
+                }
                 if (source === 'regionalTeam') {
                     response = await fetch('http://localhost:8081/regionalTeam/download?fileName=' + link)
                 }

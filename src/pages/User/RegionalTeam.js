@@ -43,7 +43,7 @@ const RegionalTeam = () => {
                 <NamePage name='Сборная команда Владимирской области'/>
                 <div style={{marginBottom: '20px'}}>
                     <h2 className='info-block'>Справочная информация</h2>
-                    {filesList && <FilesList filesList={filesList}/>}
+                    {filesList && <FilesList filesList={filesList} source="regionalTeam"/>}
                 </div>
                 <h2 className='info-block'>Члены региональной сборной команды</h2>
                 <SportsmanList sportsmen={sportsmen}/>
