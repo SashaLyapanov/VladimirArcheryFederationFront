@@ -19,19 +19,21 @@ import AboutFederation from "./pages/User/AboutFederation";
 import ListRegSportsmen from "./components/competition/ListRegSportsmen";
 import ActivityFederation from "./pages/User/ActivityFederation";
 import RegionalTeam from "./pages/User/RegionalTeam";
+import EditAboutFederation from "./pages/administrator/aboutFederation/EditAboutFederation";
+import EditArticle from "./pages/administrator/articles/EditArticle";
+import CreateArticle from "./pages/administrator/articles/CreateArticle";
 function App() {
 
-  const {user, setUser} = useContext(CustomContext)
-  const {sport, setSports} = useContext(SportContext)
+  const {user} = useContext(CustomContext)
+  const {sport} = useContext(SportContext)
 
   function profile(role){
-    if(role == 'ADMIN'){
+    if(role === 'ADMIN'){
       return <Profile user={sport}/>
     } else {
       return <Profile user={user}/>
     }
   }
-
 
   return (
     <div className='app'>
@@ -44,8 +46,11 @@ function App() {
         <Route exac path='/articleList' element={<ArticleList/>}/>
         <Route exac path='/competition' element={<Calendar/>}/>
         <Route exac path='/competition/:competitionId' element={<Competition/>}/>
+        <Route exac path='/createArticle' element = {<CreateArticle/>}/>
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
+        <Route exac path='/editAboutFederation' element={<EditAboutFederation/>}/>
+        <Route exac path='/editArticle/:aritcleId' element={<EditArticle/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/profile' element={profile(user.role)}/>

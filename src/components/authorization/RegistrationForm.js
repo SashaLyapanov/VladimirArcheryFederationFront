@@ -67,40 +67,40 @@ const RegistrationForm = () => {
                 <form className='form' onSubmit={registerUser}>
                     <p className='header fonts-roboto-black'>Регистрация</p>
                     <input type='text' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите имя'/>
                     <input type='text' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите фамилию'/>
                     <input type='text' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите отчество'/>
                     <input type='date' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите отчество'/>
 
-                    <select className='input fonts-roboto-light'>
+                    <select className='input_auth fonts-roboto-light'>
                                 <option value='' disabled selected hidden>Выберите регион</option>
                                 {regions.map(region => (
                                     <option value={region?.id}>{region?.name}</option>
                                 ))}
                     </select>
-                    <select className='input fonts-roboto-light'>
+                    <select className='input_auth fonts-roboto-light'>
                         <option value='' disabled selected hidden>Выберите пол</option>
                         <option value='1'>Мужской</option>
                         <option value='2'>Женский</option>
                     </select>
-                    <select className='input fonts-roboto-light'>
+                    <select className='input_auth fonts-roboto-light'>
                                 <option value='' disabled selected hidden>Выберите спортивный разряд</option>
                                 {sportsTitle.map(region => (
                                     <option value={region?.id}>{region?.name}</option>
                                 ))}
                     </select>
                     <input type='email' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите email'/>
                     <input type='password' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите пароль'/>    
                     <div className='form-button'>
                         <Button parametr={'Зарегистрироваться'} type={'submit'}/>

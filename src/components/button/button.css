@@ -9,6 +9,11 @@
     font-size: 15px;
 }
 
+.editButton{
+    float: right;
+    margin-right: 10px;
+}
+
 .button:hover {
     background-color: #97BAFF;
     border-color: #97BAFF;

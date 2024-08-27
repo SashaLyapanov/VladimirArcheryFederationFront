@@ -10,6 +10,7 @@
     "axios": "^1.4.0",
     "concurrently": "^8.0.1",
     "date-fns": "^2.29.3",
+    "formik": "^2.4.6",
     "json-server": "^0.17.3",
     "json-server-auth": "^2.1.0",
     "pdfjs-dist": "^4.3.136",
@@ -18,7 +19,8 @@
     "react-router": "^6.11.0",
     "react-router-dom": "^6.11.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -40,10 +40,10 @@ const Login = () => {
                 <form className='form' onSubmit={loginUser}>
                     <p className='header fonts-roboto-black'>Авторизация</p>
                     <input type='text' 
-                        className='input fonts-roboto-light' 
+                        className='input_auth fonts-roboto-light'
                         placeholder='Введите логин'/>
                     <input type='password' 
-                            className='input fonts-roboto-light' 
+                            className='input_auth fonts-roboto-light'
                             placeholder='Введите пароль'/>    
                     
                     <div className='form-button'>

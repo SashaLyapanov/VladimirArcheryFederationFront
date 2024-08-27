@@ -6,8 +6,6 @@ export const CompetitionContext = createContext()
 
 export const Context = (props) => {
 
-
-    
     const [user, setUser] = useState({
         email: ''
     })
@@ -21,12 +19,10 @@ export const Context = (props) => {
         }
     }, [])
 
-
     const value = {
         user,
         setUser
     }
-
 
     const [sport, setSports] = useState()
     const sportsValue = {
@@ -34,13 +30,11 @@ export const Context = (props) => {
         setSports
     }
 
-
     const [competitions, setCompetition] = useState()
     const competitionValue = {
         competitions,
         setCompetition
     }
-
 
     return  <CompetitionContext.Provider value={competitionValue}>
             <SportContext.Provider value={sportsValue}>
