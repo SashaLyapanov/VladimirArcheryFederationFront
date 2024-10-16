@@ -87,7 +87,7 @@ const RegistrationForm = () => {
                     </select>
                     <select className='input_auth fonts-roboto-light'>
                         <option value='' disabled selected hidden>Выберите пол</option>
-                        <option value='1'>Мужской</option>
+                        <option value='c99ccd51-5731-42a3-9cfc-31cc4011e035'>Мужской</option>
                         <option value='2'>Женский</option>
                     </select>
                     <select className='input_auth fonts-roboto-light'>

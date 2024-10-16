@@ -44,6 +44,7 @@ function App() {
         <Route exac path='/applicationsList/:competitionId' element={<ListRegSportsmen />}/>
         <Route exac path='/article/:articleId' element={<ArticlePage/>}/>
         <Route exac path='/articleList' element={<ArticleList/>}/>
+        <Route exac path='/competition/:name/:date/:type' element={<Calendar/>}/>
         <Route exac path='/competition' element={<Calendar/>}/>
         <Route exac path='/competition/:competitionId' element={<Competition/>}/>
         <Route exac path='/createArticle' element = {<CreateArticle/>}/>

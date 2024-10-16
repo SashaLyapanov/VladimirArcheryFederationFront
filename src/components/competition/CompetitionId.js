@@ -74,7 +74,7 @@ const CompetitionId = (competitionId) => {
                 <div className="content-competition-container">
                     <p className="content-competition fonts-roboto-light">Даты
                         проведения: <span
-                            className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.date && formatDateLocal(competition?.date)}</span>
+                            className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.endDate && formatDateLocal(competition?.endDate)}</span>
                     </p>
                     <p className="content-competition fonts-roboto-light">Место проведения: <span
                         className="content-competition-details"> {competition?.place}</span></p>

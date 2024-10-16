@@ -9,20 +9,28 @@ import Button from "../../components/button/Button";
 
 
 const Calendar = () => {
-
+    const params = new URLSearchParams(document.location.search);
+    console.log(params);
+    console.log(params.get('name'));
+    console.log(params.get('date'));
+    console.log(params.get('type'));
 
     const [allCompetitions, setAllCompetitions] = useState([]);
     const [competitions, setCompetitions] = useState([]);
     const [period, setPeriod] = useState('will');
 
-
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/competitions')
-            .then((res) => res.json())
-            .then((result) => {
-                setAllCompetitions(result);
-                setCompetitions(result.filter(competition => competition?.status === "FUTURE" || competition?.status === "PRESENT"));
-            });
+        if (params.size === 0) {
+            fetch('http://localhost:8080/api/v1/general/competitions')
+                .then((res) => res.json())
+                .then((result) => {
+                    setAllCompetitions(result);
+                    setCompetitions(result.filter(competition => competition?.status === "FUTURE" || competition?.status === "PRESENT"));
+                });
+        } else {
+            //Сделать запрос на получение соревнований по параметрам
+        }
+
     }, []);
 
     const checkPeriod = () => {

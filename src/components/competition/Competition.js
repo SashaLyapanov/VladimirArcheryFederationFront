@@ -24,7 +24,7 @@ const Competition = ({competition}) => {
                     <p className='inf_competition fonts-roboto-regular'>{"Дата начала:"} <br/> {formatDateLocal(competition?.date)}</p>
                 </div>
                 <div>
-                    <p className='inf_competition fonts-roboto-regular'>{"Дата окончания:"} <br/> {formatDateLocal(competition?.date)}</p>
+                    <p className='inf_competition fonts-roboto-regular'>{"Дата окончания:"} <br/> {formatDateLocal(competition?.endDate)}</p>
                 </div>
             </div>
         </>

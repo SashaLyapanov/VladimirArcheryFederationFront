@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import '../../style.css';
 import '../../fonts/roboto/fonts.css'
 import './style.css'
@@ -7,12 +6,12 @@ import Button from '../button/Button';
 import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
+import {useFormik} from "formik";
 
 
 const Search = () => {
-    const [inputName, setInputName] = useState('')
-    const [inputDate, setInputDate] = useState('')
-    const [selectValue, setSelectValue] = useState('')
+    const {user, setUser} = useContext(CustomContext)
+    const navigate = useNavigate()
 
     const [bowTypes, setBowTypes] = useState([]);
 
@@ -24,66 +23,64 @@ const Search = () => {
             });
     }, []);
 
-    const onClick = () => {
-        axios.get('http://localhost:3001/competition/', {
-            params: {
-                name: inputName,
-                date: inputDate,
-                select: selectValue
-            }
-        })
-            .then((response) => {
-                console.log(response);
-            }, (error) => {
-                console.log(error);
-            });
-    }
-
-    const {user, setUser} = useContext(CustomContext)
-    const navigate = useNavigate()
-
-    const onClickBlock = (e) => {
-        navigate('/')
-    }
+    const formik = useFormik({
+        initialValues: {
+            inputName: '',
+            inputDate: '',
+            bowType: '',
+        },
+        onSubmit: async values => {
+            navigate('/competition?name=' + values.inputName + "&date=" + values.inputDate
+                + "&type=" + values.bowType);
+        }
+    })
 
     const onClickAdd = (e) => {
         navigate('/CreateCompetition')
     }
 
     function buttonBlock(role) {
-        if (role == 'ADMIN') {
+        if (role === 'ADMIN') {
             return <Button id={'button-block'}
                            parametr={'Добавить'}
                            className={''}
                            functionClick={onClickAdd}/>
-
         }
     }
 
     return (
         <div>
-            <form className='container_for_page search'>
+            <form className='container_for_page search' onSubmit={formik.handleSubmit}>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Название соревнования</p>
-                    <input type='text'
-                           placeholder='Введите название'
-                           className='fonts-roboto-thin input_search'
-                           value={inputName}
-                           onChange={e => setInputName(e.target.value)}/>
+                    <input
+                        id="inputName"
+                        name="inputName"
+                        type='text'
+                        placeholder='Введите название'
+                        className='fonts-roboto-thin input_search'
+                        value={formik.values.inputName}
+                        onChange={formik.handleChange}/>
                 </div>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Дата начала соревнования</p>
-                    <input type='date'
-                           placeholder='Выберите дату'
-                           className='fonts-roboto-thin input_search'
-                           value={inputDate}
-                           onChange={e => setInputDate(e.target.value)}/>
+                    <input
+                        id="inputDate"
+                        name="inputDate"
+                        type='date'
+                        placeholder='Выберите дату'
+                        className='fonts-roboto-thin input_search'
+                        value={formik.values.inputDate}
+                        onChange={formik.handleChange}/>
                 </div>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Спортивная дисциплина (класс лука)</p>
-                    <select className='fonts-roboto-thin input_search'
-                            value={selectValue}
-                            onChange={e => setSelectValue(e.target.value)}>
+                    <select
+                        id="bowType"
+                        name="bowType"
+                        className='fonts-roboto-thin input_search'
+                        value={formik.values.bowType}
+                        onChange={formik.handleChange}>
                         <option value='' disabled selected hidden>Выберите класс лука</option>
                         {bowTypes.map(bowType => (
                             <option value={bowType?.id}>{bowType?.bowTypeName}</option>
@@ -91,8 +88,11 @@ const Search = () => {
                     </select>
                 </div>
                 <div className='button_flex'>
-                    <Button parametr={'Найти'}
-                            functionClick={onClick}/>
+                    <button
+                        className='button'
+                        type="submit">
+                        Отправить
+                    </button>
                     {buttonBlock(user.role)}
                 </div>
             </form>
