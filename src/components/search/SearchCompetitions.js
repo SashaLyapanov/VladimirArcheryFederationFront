@@ -7,7 +7,6 @@ import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
 import {useFormik} from "formik";
-// import cleaner from "../../img/logo1.png";
 import cleaner from "../../img/cleaner.png";
 
 
@@ -35,7 +34,6 @@ const SearchCompetitions = () => {
         onSubmit: async values => {
             if (values.inputName === '' && values.inputDate === '' && values.competitionType === '') {
                 navigate('/competition?name=&date=&type=');
-                window.location.reload();
             } else {
                 navigate('/competition?name=' + values.inputName + "&date=" + values.inputDate
                     + "&type=" + values.competitionType);
