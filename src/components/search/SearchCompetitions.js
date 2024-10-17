@@ -7,31 +7,39 @@ import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
 import {useFormik} from "formik";
+// import cleaner from "../../img/logo1.png";
+import cleaner from "../../img/cleaner.png";
 
 
-const Search = () => {
+const SearchCompetitions = () => {
+    const params = new URLSearchParams(document.location.search);
     const {user, setUser} = useContext(CustomContext)
     const navigate = useNavigate()
 
-    const [bowTypes, setBowTypes] = useState([]);
+    const [competitionTypes, setCompetitionTypes] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/allBowTypes')
+        fetch('http://localhost:8080/api/v1/general/allCompetitionTypes')
             .then((res) => res.json())
             .then((result) => {
-                setBowTypes(result);
+                setCompetitionTypes(result);
             });
     }, []);
 
     const formik = useFormik({
         initialValues: {
-            inputName: '',
-            inputDate: '',
-            bowType: '',
+            inputName: params.get('name') ? params.get('name') : '',
+            inputDate: params.get('date') ? params.get('date') : '',
+            competitionType: params.get('type') ? params.get('type') : '',
         },
         onSubmit: async values => {
-            navigate('/competition?name=' + values.inputName + "&date=" + values.inputDate
-                + "&type=" + values.bowType);
+            if (values.inputName === '' && values.inputDate === '' && values.competitionType === '') {
+                navigate('/competition?name=&date=&type=');
+                window.location.reload();
+            } else {
+                navigate('/competition?name=' + values.inputName + "&date=" + values.inputDate
+                    + "&type=" + values.competitionType);
+            }
         }
     })
 
@@ -46,6 +54,13 @@ const Search = () => {
                            className={''}
                            functionClick={onClickAdd}/>
         }
+    }
+
+    const cleanForm = () => {
+        console.log(formik.values.inputName)
+        formik.setFieldValue('inputName', '');
+        formik.setFieldValue('inputDate', '');
+        formik.setFieldValue('competitionType', '');
     }
 
     return (
@@ -74,18 +89,21 @@ const Search = () => {
                         onChange={formik.handleChange}/>
                 </div>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Спортивная дисциплина (класс лука)</p>
+                    <p className='fonts-roboto-regular name_search'>Вид стрельбы (3D/Target)</p>
                     <select
-                        id="bowType"
-                        name="bowType"
+                        id="competitionType"
+                        name="competitionType"
                         className='fonts-roboto-thin input_search'
-                        value={formik.values.bowType}
+                        value={formik.values.competitionType}
                         onChange={formik.handleChange}>
-                        <option value='' disabled selected hidden>Выберите класс лука</option>
-                        {bowTypes.map(bowType => (
-                            <option value={bowType?.id}>{bowType?.bowTypeName}</option>
+                        <option value='' >Выберите вид соревнований</option>
+                        {competitionTypes.map(competitionType => (
+                            <option value={competitionType?.id}>{competitionType?.name}</option>
                         ))}
                     </select>
+                </div>
+                <div className="">
+                    <img src={cleaner} className='cleaner_search_form' onClick={cleanForm}/>
                 </div>
                 <div className='button_flex'>
                     <button
@@ -100,4 +118,4 @@ const Search = () => {
     )
 }
 
-export default Search
+export default SearchCompetitions
