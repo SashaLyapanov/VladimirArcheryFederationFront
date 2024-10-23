@@ -20,7 +20,6 @@ const Calendar = () => {
     useEffect(() => {
         if (params.get('name') === '' && params.get('date') === '' && params.get('type') === '' ||
             params.get('name') === null && params.get('date') === null && params.get('type') === null) {
-            console.log("Вау")
             fetch('http://localhost:8080/api/v1/general/competitions')
                 .then((res) => res.json())
                 .then((result) => {
@@ -28,8 +27,6 @@ const Calendar = () => {
                     setCompetitions(result.filter(competition => competition?.status === "FUTURE" || competition?.status === "PRESENT"));
                 });
         } else {
-            console.log(params.get('name'))
-            console.log("Кайф")
             setPeriod('will')
             fetch('http://localhost:8080/api/v1/general/competitionsByParams?name=' + params.get('name') + '&date=' + params.get('date') + '&type=' + params.get('type'))
                 .then((res) => res.json())
