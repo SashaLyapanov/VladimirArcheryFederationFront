@@ -101,13 +101,13 @@ const SearchCompetitions = () => {
                     </select>
                 </div>
                 <div className="">
-                    <img src={cleaner} className='cleaner_search_form' onClick={cleanForm}/>
+                    <img src={cleaner} alt='Иконка для очистки' className='cleaner_search_form' onClick={cleanForm}/>
                 </div>
                 <div className='button_flex'>
                     <button
                         className='button'
                         type="submit">
-                        Отправить
+                        Найти
                     </button>
                     {buttonBlock(user.role)}
                 </div>
