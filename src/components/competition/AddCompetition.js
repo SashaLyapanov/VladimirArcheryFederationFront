@@ -46,12 +46,13 @@ const AddCompetition = () => {
             place: '',
             type: '',
             categories: '',
-            bowTypeList: '',
+            bowTypeList: [],
             mainJudge: '',
             secretary: '',
             zamJudge: '',
             judges: '',
             date: '',
+            endDate: '',
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -60,14 +61,17 @@ const AddCompetition = () => {
                 .required('Поле обязательно для заполнения'),
             type: Yup.string()
                 .required('Поле обязательно для заполнения'),
-            bowTypeList: Yup.string()
-                .required('Поле обязательно для заполнения'),
+            // bowTypeList: Yup.string()
+            //     .required('Поле обязательно для заполнения'),
+            bowTypeList: Yup.array().min(1, "Необходимо указать минимум 1 класс"),
             mainJudge: Yup.string()
                 .required('Поле обязательно для заполнения'),
             secretary: Yup.string()
                 .required('Поле обязательно для заполнения'),
             date: Yup.string()
                 .required('Поле обязательно для заполнения'),
+            endDate: Yup.string()
+                .required('Поле обязательно для заполнения')
         }),
         onSubmit: async values => {
             const newCompetition = {
@@ -76,18 +80,21 @@ const AddCompetition = () => {
                 'type': {
                     'id': values.type,
                 },
-                'bowTypeList': [
-                    {
-                        'id': values.bowTypeList,
-                    }
-                ],
+                // 'bowTypeList': [
+                //     {
+                //         'id': values.bowTypeList,
+                //     }
+                // ],
+                'bowTypeList': values.bowTypeList.map(id => ({id})),
                 'mainJudge': values.mainJudge,
                 'secretary': values.secretary,
                 'zamJudge': values.zamJudge,
                 'judges': values.judges,
                 'date': values.date,
+                'endDate': values.endDate,
             }
             console.log(newCompetition)
+            console.log(values.bowTypeList)
             axios.post('admin/createCompetition', newCompetition)
                 .then((data) => {
                     console.log(data);
@@ -95,6 +102,17 @@ const AddCompetition = () => {
                 })
         }
     })
+
+    const handleBowTypeChange = (event) => {
+        const { options } = event.target;
+        const selectedValues = [];
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                selectedValues.push(options[i].value);
+            }
+        }
+        formik.setFieldValue('bowTypeList', selectedValues); // Установка выбранных значений
+    };
 
     return (
         <form className="container" onSubmit={formik.handleSubmit}>
@@ -131,19 +149,35 @@ const AddCompetition = () => {
             ) : null}
 
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Дата проведения</p>
+                <p className='fonts-roboto-regular name_profile'>Дата начала соревнования</p>
                 <input
                     id='date'
                     name='date'
                     type='date'
                     className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Выберите дату проведения"
+                    placeholder="Введите дату начала соревнования"
                     value={formik.values.date}
                     onChange={formik.handleChange}
                 />
             </div>
             {formik.touched.date && formik.errors.date ? (
                 <div className='error-massage'>{formik.errors.date}</div>
+            ) : null}
+
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Дата окончания соревнования</p>
+                <input
+                    id='endDate'
+                    name='endDate'
+                    type='date'
+                    className='fonts-roboto-thin input_profile input_profile_edit'
+                    placeholder="Введите дату окончания соревнования"
+                    value={formik.values.endDate}
+                    onChange={formik.handleChange}
+                />
+            </div>
+            {formik.touched.endDate && formik.errors.endDate ? (
+                <div className='error-massage'>{formik.errors.endDate}</div>
             ) : null}
 
             <div className="container-pole">
@@ -170,9 +204,10 @@ const AddCompetition = () => {
                 <select
                     id='bowTypeList'
                     name='bowTypeList'
-                    className='fonts-roboto-thin input_profile input_profile_edit'
+                    className='fonts-roboto-thin input_profile multiple_select_field'
+                    multiple
                     value={formik.values.bowTypeList}
-                    onChange={formik.handleChange}
+                    onChange={handleBowTypeChange}
                 >
                     <option value='' disabled selected hidden>Выберите класс лука</option>
                     {bowTypeList.map(bowType => (
