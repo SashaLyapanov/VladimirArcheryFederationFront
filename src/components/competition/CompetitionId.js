@@ -72,8 +72,7 @@ const CompetitionId = (competitionId) => {
             <div className='container margin-competition'>
                 <p className="fonts-roboto-black name-competition">{competition?.name}</p>
                 <div className="content-competition-container">
-                    <p className="content-competition fonts-roboto-light">Даты
-                        проведения: <span
+                    <p className="content-competition fonts-roboto-light">Даты проведения: <span
                             className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.endDate && formatDateLocal(competition?.endDate)}</span>
                     </p>
                     <p className="content-competition fonts-roboto-light">Место проведения: <span
@@ -86,7 +85,11 @@ const CompetitionId = (competitionId) => {
                         className="content-competition-details">{competition?.mainJudge}</span></p>
                 </div>
 
-                <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
+                <div>
+                    <p className="content-competition-label">Описание мероприятия:</p>
+                    <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
+                </div>
+
                 <div className='button_flex line-block'>
                     {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() && <Button parametr='Зарегистрироваться'
                                                  id='registration'

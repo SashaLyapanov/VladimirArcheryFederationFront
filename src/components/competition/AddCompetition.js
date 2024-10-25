@@ -53,6 +53,7 @@ const AddCompetition = () => {
             judges: '',
             date: '',
             endDate: '',
+            description: '',
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -80,11 +81,6 @@ const AddCompetition = () => {
                 'type': {
                     'id': values.type,
                 },
-                // 'bowTypeList': [
-                //     {
-                //         'id': values.bowTypeList,
-                //     }
-                // ],
                 'bowTypeList': values.bowTypeList.map(id => ({id})),
                 'mainJudge': values.mainJudge,
                 'secretary': values.secretary,
@@ -92,9 +88,8 @@ const AddCompetition = () => {
                 'judges': values.judges,
                 'date': values.date,
                 'endDate': values.endDate,
+                'description': values.description,
             }
-            console.log(newCompetition)
-            console.log(values.bowTypeList)
             axios.post('admin/createCompetition', newCompetition)
                 .then((data) => {
                     console.log(data);
@@ -273,6 +268,18 @@ const AddCompetition = () => {
                     className='fonts-roboto-thin input_profile input_profile_edit'
                     placeholder="Введите ФИО судей через запятую"
                     value={formik.values.judges}
+                    onChange={formik.handleChange}
+                />
+            </div>
+
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Описание мероприятия</p>
+                <textarea
+                    id='description'
+                    name='description'
+                    className='fonts-roboto-thin input_profile textarea_multiline_style'
+                    placeholder="Введите описание мероприятия"
+                    value={formik.values.description}
                     onChange={formik.handleChange}
                 />
             </div>
