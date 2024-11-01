@@ -61,12 +61,12 @@ const News = () => {
                     </Link>
                 </div>
                 <div className="news_container">
-                    {news.length > 0 &&
+                    {news.length > 1 &&
                         <div className="small_news">
                             <SmallNews news={news[1]}/>
                             <SmallNews news={news[2]}/>
                         </div>}
-                    { news.length > 0 &&
+                    { news.length > 3 &&
                         <div className="small_news margin-small-news">
                             <SmallNews news={news[3]}/>
                             <SmallNews news={news[4]}/>

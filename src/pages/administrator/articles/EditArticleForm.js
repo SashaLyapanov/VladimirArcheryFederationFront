@@ -7,6 +7,8 @@ const EditArticleForm = ({info}) => {
     const navigate = useNavigate();
     const [fileState, setFileState] = useState([]);
 
+    console.log(info);
+
     const formik = useFormik({
         initialValues: {
             name: info?.name,
@@ -37,6 +39,8 @@ const EditArticleForm = ({info}) => {
             }
         },
     });
+
+
 
     return (
         <form onSubmit={formik.handleSubmit}>

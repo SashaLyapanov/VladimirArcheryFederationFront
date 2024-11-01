@@ -32,8 +32,19 @@ export const formatDateTime = (date) => {
 };
 
 export const formatDateLocal = (date) => {
-    date = date.split('T')[0]
-    const reverseDate = date.split('-')
-    date = reverseDate[2] + '-' + reverseDate[1] + '-' + reverseDate[0];
-    return date
+    if (date) {
+        date = date.split('T')[0]
+        const reverseDate = date?.split('-')
+        date = reverseDate[2] + '-' + reverseDate[1] + '-' + reverseDate[0];
+        return date
+    }
+}
+
+export const formatDateLocalForForm = (date) => {
+    if (date) {
+        date = date.split('T')[0]
+        const reverseDate = date?.split('-')
+        date = reverseDate[0] + '-' + reverseDate[1] + '-' + reverseDate[2];
+        return date
+    }
 }

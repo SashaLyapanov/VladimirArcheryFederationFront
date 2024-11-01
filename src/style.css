@@ -12,6 +12,11 @@
     text-align: center;
 }
 
+.center_position_for_img{
+    display: flex;
+    align-items: center;
+}
+
 .container_for_page{
     margin-top: 1.6%;
     margin-bottom: 1.6%;

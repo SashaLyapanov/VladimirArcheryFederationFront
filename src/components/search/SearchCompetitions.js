@@ -7,7 +7,7 @@ import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
 import {useFormik} from "formik";
-import cleaner from "../../img/cleaner.png";
+import cleaner from "../../img/trash.png";
 
 
 const SearchCompetitions = () => {
@@ -100,7 +100,7 @@ const SearchCompetitions = () => {
                         ))}
                     </select>
                 </div>
-                <div className="">
+                <div className="center_position_for_img">
                     <img src={cleaner} alt='Иконка для очистки' className='cleaner_search_form' onClick={cleanForm}/>
                 </div>
                 <div className='button_flex'>

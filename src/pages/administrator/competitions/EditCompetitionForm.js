@@ -1,19 +1,29 @@
-import Button from "../button/Button"
-import '../profile/profile.css'
-import React, {useEffect, useState} from 'react';
-import axios from "../../utils/axios";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import * as Yup from "yup";
+import Button from "../../../components/button/Button";
+import {formatDateLocalForForm} from "../../../utils/date-utils";
 
-const AddCompetition = () => {
+const EditCompetitionForm = ({competitionId}) => {
 
     const navigate = useNavigate()
-
+    const [competition, setCompetition] = useState();
     const [competitionTypes, setCompetitionTypes] = useState([]);
     const [bowTypeList, setBowTypeList] = useState([]);
 
     useEffect(() => {
+        const fetchCompetition = async () => {
+            try {
+                await fetch('http://localhost:8080/api/v1/general/competition?id=' + competitionId?.competitionId)
+                    .then((res) => res.json())
+                    .then((response) => {
+                        setCompetition(response);
+                    })
+            } catch (e) {
+                console.error(e);
+            }
+        };
         const fetchCompetitionTypes = async () => {
             try {
                 await fetch('http://localhost:8080/api/v1/general/allCompetitionTypes')
@@ -36,34 +46,33 @@ const AddCompetition = () => {
                 console.error(e);
             }
         }
+        fetchCompetition();
         fetchCompetitionTypes();
         fetchBowTypes();
-    }, []);
+    }, [competitionId]);
+
+    // competition && console.log(competition);
 
     const formik = useFormik({
         initialValues: {
-            name: '',
-            place: '',
-            type: '',
-            categories: '',
-            bowTypeList: [],
-            mainJudge: '',
-            secretary: '',
-            zamJudge: '',
-            judges: '',
-            date: '',
-            endDate: '',
-            description: '',
+            name: competition?.name,
+            place: competition?.place,
+            type: competition?.type.id,
+            bowTypeList: competition?.bowTypeList,
+            mainJudge: competition?.mainJudge,
+            secretary: competition?.secretary,
+            zamJudge: competition?.zamJudge,
+            judges: competition?.judges,
+            date: formatDateLocalForForm(competition?.date),
+            endDate: formatDateLocalForForm(competition?.endDate),
+            description: competition?.description,
         },
+        enableReinitialize: true,
         validationSchema: Yup.object({
             name: Yup.string()
                 .required('Поле обязательно для заполнения'),
             place: Yup.string()
                 .required('Поле обязательно для заполнения'),
-            type: Yup.string()
-                .required('Поле обязательно для заполнения'),
-            // bowTypeList: Yup.string()
-            //     .required('Поле обязательно для заполнения'),
             bowTypeList: Yup.array().min(1, "Необходимо указать минимум 1 класс"),
             mainJudge: Yup.string()
                 .required('Поле обязательно для заполнения'),
@@ -75,31 +84,44 @@ const AddCompetition = () => {
                 .required('Поле обязательно для заполнения')
         }),
         onSubmit: async values => {
-            const newCompetition = {
-                'name': values.name,
-                'place': values.place,
-                'type': {
-                    'id': values.type,
-                },
-                'bowTypeList': values.bowTypeList.map(id => ({id})),
-                'mainJudge': values.mainJudge,
-                'secretary': values.secretary,
-                'zamJudge': values.zamJudge,
-                'judges': values.judges,
-                'date': values.date,
-                'endDate': values.endDate,
-                'description': values.description,
-            }
-            axios.post('admin/createCompetition', newCompetition)
-                .then((data) => {
-                    console.log(data);
-                    navigate('/competition')
+            console.log(values);
+            const requestOptions = {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: values.name,
+                    place: values.place,
+                    type: {
+                        id: values.type
+                    },
+                    bowTypeList: values.bowTypeList.map(id => ({id})),
+                    mainJudge: values.mainJudge,
+                    secretary: values.secretary,
+                    zamJudge: values.zamJudge,
+                    judges: values.judges,
+                    date: values.date,
+                    endDate: values.endDate,
+                    description: values.description,
                 })
+            };
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/admin/editCompetition?id=' + competitionId?.competitionId, requestOptions)
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log(responseData);
+                    navigate(`/competition`);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+
+            } catch (error) {
+                console.error('Ошибка сети: ', error);
+            }
         }
     })
 
     const handleBowTypeChange = (event) => {
-        const { options } = event.target;
+        const {options} = event.target;
         const selectedValues = [];
         for (let i = 0; i < options.length; i++) {
             if (options[i].selected) {
@@ -185,7 +207,7 @@ const AddCompetition = () => {
                     onChange={formik.handleChange}
                 >
                     <option value='' disabled selected hidden>Выберите тип соревнований</option>
-                    {competitionTypes.map(type => (
+                    {competitionTypes?.map(type => (
                         <option key={type.id} value={type.id}>{type.name}</option>
                     ))}
                 </select>
@@ -205,7 +227,7 @@ const AddCompetition = () => {
                     onChange={handleBowTypeChange}
                 >
                     <option value='' disabled selected hidden>Выберите класс лука</option>
-                    {bowTypeList.map(bowType => (
+                    {bowTypeList?.map(bowType => (
                         <option key={bowType.id} value={bowType.id}>{bowType.bowTypeName}</option>
                     ))}
                 </select>
@@ -284,7 +306,7 @@ const AddCompetition = () => {
                 />
             </div>
 
-            <Button parametr={'Добавить'}
+            <Button parametr={'Редактировать'}
                     type={'submit'}
             />
 
@@ -292,4 +314,4 @@ const AddCompetition = () => {
     )
 }
 
-export default AddCompetition
+export default EditCompetitionForm;

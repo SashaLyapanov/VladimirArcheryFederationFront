@@ -1,7 +1,7 @@
-import Navbar from '../../components/navbar/Navbar'
-import NamePage from '../../components/namePage/NamePage'
-import AddCompetition from '../../components/competition/AddCompetition';
-import '../../style.css';
+import Navbar from '../../../components/navbar/Navbar'
+import NamePage from '../../../components/namePage/NamePage'
+import AddCompetition from './AddCompetition';
+import '../../../style.css';
 
 
 const CreateCompetition = () => {

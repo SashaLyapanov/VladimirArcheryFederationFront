@@ -11,7 +11,7 @@ import ListSportsman from './pages/administrator/ListSportsman'
 import { useContext } from 'react'
 import { CustomContext, SportContext } from './utils/Context'
 import MyCompetition from './pages/sports/MyCompetition'
-import CreateCompetition from './pages/administrator/CreateCompetition'
+import CreateCompetition from './pages/administrator/competitions/CreateCompetition'
 import CreateSportsman from './pages/administrator/CreateSportsman'
 import ArticlePage from "./components/news/ArticlePage";
 import ArticleList from "./pages/User/ArticleList";
@@ -22,6 +22,7 @@ import RegionalTeam from "./pages/User/RegionalTeam";
 import EditAboutFederation from "./pages/administrator/aboutFederation/EditAboutFederation";
 import EditArticle from "./pages/administrator/articles/EditArticle";
 import CreateArticle from "./pages/administrator/articles/CreateArticle";
+import EditCompetition from "./pages/administrator/competitions/EditCompetition";
 function App() {
 
   const {user} = useContext(CustomContext)
@@ -52,6 +53,7 @@ function App() {
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
         <Route exac path='/editAboutFederation' element={<EditAboutFederation/>}/>
         <Route exac path='/editArticle/:aritcleId' element={<EditArticle/>}/>
+        <Route exac path='editCompetition/:competitionId' element={<EditCompetition/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/profile' element={profile(user.role)}/>

@@ -48,6 +48,8 @@ const CompetitionId = (competitionId) => {
             navigate(`/registrationSports/${competitionId?.competitionId}`)
         } else if (id==='listApplication') {
             navigate(`/applicationsList/${competitionId?.competitionId}`)
+        } else if (id==='editCompetition') {
+            navigate(`/editCompetition/${competitionId?.competitionId}`)
         }
     }
 
@@ -63,6 +65,14 @@ const CompetitionId = (competitionId) => {
 
     const checkCompetitionPeriod = () => {
         return  competition?.status === 'FUTURE' || competition?.status === 'PRESENT';
+    }
+
+    const checkAdmin = () => {
+        return !user.role || user.role === 'ADMIN';
+    }
+
+    const checkCompetitionIsFuture = () => {
+        return competition?.status === 'FUTURE';
     }
 
     const bowTypeList = competition?.bowTypeList.map(bowType => bowType.bowTypeName).join(', ');
@@ -100,6 +110,12 @@ const CompetitionId = (competitionId) => {
                                                  functionClick={()=> onclick('listApplication')}
                                                  id='listApplication'/>
                     }
+                    {checkAdmin() && checkCompetitionIsFuture() && <Button
+                        parametr='Редактировать соревнование'
+                        className='long_button'
+                        id='editCompetition'
+                        functionClick={()=> onclick('editCompetition')}
+                    />}
                 </div>
             </div>
         </div>
