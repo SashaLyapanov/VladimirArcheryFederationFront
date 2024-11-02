@@ -5,14 +5,16 @@ import {useContext, useState, useEffect} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useFormik} from "formik";
 import * as Yup from "yup";
+import ModalRegInCompetition from "../modalWindows/ModalRegInCompetition";
 
 const Registration = (competitionId) => {
 
     let compId = useParams();
-    const {user, setUser} = useContext(CustomContext)
+    const {user, setUser} = useContext(CustomContext);
     const [competition, setCompetition] = useState('');
+    const [openModal, setOpenModal] = useState(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         compId &&
@@ -34,29 +36,17 @@ const Registration = (competitionId) => {
                 .required('Поле обязательно для заполнения'),
         }),
         onSubmit: async value => {
-            console.log("Тип лука");
-            console.log(value.bowType);
-            const dataOfRegistrationCompetition = {
-                "bowType": {
-                    "id": value.bowType
-                }
-            }
 
-            axios.post(`sportsman/regInCompetition?sportsmanId=${user?.id}&competitionId=${compId?.competitionId}`, dataOfRegistrationCompetition)
-                .then(((resp) => {
-                    if (resp.data) {
-                        alert(resp.data);
-                    }
-                }))
-                .catch((resp) => {
-                    alert(resp.response.data);
-                })
-            // navigate(`/competition/${compId?.competitionId}`)
+
+            setOpenModal(true);
+
+
         }
     })
 
     return (
         <div className=" container_for_page registration">
+            {openModal && <ModalRegInCompetition closeModal={setOpenModal} compId={compId?.competitionId} values={formik.values} />}
             <form className='form' onSubmit={formik.handleSubmit}>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_profile'>Название соревнования</p>

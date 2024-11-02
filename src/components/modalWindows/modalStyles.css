@@ -1,0 +1,73 @@
+.modalBackground {
+    position: fixed; /* Позволяет элементу оставаться на месте при прокрутке */
+    top: 0; /* Начальная позиция сверху */
+    left: 0; /* Начальная позиция слева */
+    width: 100%; /* Ширина на весь экран */
+    height: 100%; /* Высота на весь экран */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    display: flex; /* Используем flexbox для центрирования содержимого */
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+    z-index: 1000; /* Убедитесь, что модальное окно выше остальных элементов */
+}
+
+.modalContainer {
+    background-color: #fff; /* Белый фон для содержимого */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступы внутри модального окна */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень для эффекта поднятости */
+    width: 400px; /* Ширина содержимого модального окна (можно изменить) */
+}
+
+.modalTitle {
+    display: inline-block;
+    text-align: center;
+    margin: 22px;
+}
+
+.titleCloseBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.modalBody {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modalFooter {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalFooter button{
+    height: 45px;
+    width: 190px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #0C0C90;
+    border-color: #0C0C90;
+    cursor: pointer;
+    font-size: 15px;
+}
