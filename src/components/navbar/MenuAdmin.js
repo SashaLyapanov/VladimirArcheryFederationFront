@@ -26,7 +26,7 @@ const MenuSports = () => {
             <span className='user'>
                 <div className='user-name'>
                     <img src={userpng} className='menu-icon-userpng'/>
-                    <p className='fonts-roboto-black'>Администратор</p>
+                    <p className='fonts-roboto-regular'>Администратор</p>
                     <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
                 </div>
                 <div id='menu' display='yes' className='menu-user'>
@@ -39,7 +39,7 @@ const MenuSports = () => {
                     <a href='/competition' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Соревнования</div>
                     </a>
-                    <a href='@' className='menu-link'>
+                    <a href='/articleList' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Новости</div>
                     </a>
                     <a href='/' className='menu-link' onClick={onclickExit}>

@@ -28,7 +28,7 @@ const MenuSports = () => {
         <span className='user'>
                 <div className='user-name' onClick={onclickArrow}>
                     <img src={userpng} className='menu-icon-userpng'/>
-                    <p className='fonts-roboto-black'>{`${user.name} ${user.surname}`}</p>
+                    <p className='fonts-roboto-regular'>{`${user.name} ${user.surname}`}</p>
                     <img src={arrow} className='menu-icon-arrow'/>
                 </div>
                 <div id='menu' display='none' className='menu-user'>

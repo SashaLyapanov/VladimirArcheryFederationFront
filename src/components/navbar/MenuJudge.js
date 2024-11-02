@@ -23,7 +23,7 @@ const MenuJudge = () => {
         <span className='user'>
                 <div className='user-name'>
                     <img src={userpng} className='menu-icon-userpng'/>
-                    <p className='fonts-roboto-black'>Судья</p>
+                    <p className='fonts-roboto-regular'>Судья</p>
                     <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
                 </div>
                 <div id='menu' display='yes' className='menu-user'>

@@ -48,7 +48,7 @@ const Navbar = () => {
                         </div>
                         {userRole(user.role)}
                     </div>
-                    <div className='menu fonts-roboto-black'>
+                    <div className='menu fonts-roboto-regular'>
                         <Link to="/aboutFederation" className="menu-elements">О федерации</Link>
                         <Link to="/articleList" className="menu-elements">Новости</Link>
                         <Link to="/activityFederation" className="menu-elements">Деятельность</Link>

@@ -68,7 +68,8 @@ const CompetitionId = (competitionId) => {
     }
 
     const checkAdmin = () => {
-        return !user.role || user.role === 'ADMIN';
+        console.log(user.role);
+        return user.role === 'ADMIN';
     }
 
     const checkCompetitionIsFuture = () => {

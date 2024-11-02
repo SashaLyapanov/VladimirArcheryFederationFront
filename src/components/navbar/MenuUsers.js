@@ -4,7 +4,7 @@ import './style.css'
 const MenuUser = () => {
     return (
             <span className='user'>
-                <a href="/login" className="fonts-roboto-black menu-elements">Вход</a>  
+                <a href="/login" className="fonts-roboto-regular menu-elements">Вход</a>
             </span>
     )
 }
