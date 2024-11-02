@@ -36,11 +36,7 @@ const Registration = (competitionId) => {
                 .required('Поле обязательно для заполнения'),
         }),
         onSubmit: async value => {
-
-
             setOpenModal(true);
-
-
         }
     })
 

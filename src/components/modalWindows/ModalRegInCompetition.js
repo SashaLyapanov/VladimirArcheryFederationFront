@@ -19,13 +19,16 @@ const ModalRegInCompetition = ({closeModal, compId, values}) => {
         axios.post(`sportsman/regInCompetition?sportsmanId=${user?.id}&competitionId=${compId}`, dataOfRegistrationCompetition)
             .then(((resp) => {
                 if (resp.data) {
+                    navigate(`/competition/${compId}`);
+                    window.location.reload();
                     alert(resp.data);
                 }
             }))
             .catch((resp) => {
+                navigate(`/competition/${compId}`);
+                window.location.reload();
                 alert(resp.response.data);
             })
-        navigate(`/competition/${compId}`)
     }
 
     return (

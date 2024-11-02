@@ -4,6 +4,7 @@ import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
 import {useEffect} from "react";
 import {formatDateLocal} from "../../utils/date-utils";
+import RemoveAppModal from "../modalWindows/RemoveAppModal";
 
 const CompetitionId = (competitionId) => {
 
@@ -11,6 +12,7 @@ const CompetitionId = (competitionId) => {
     const navigate = useNavigate();
     const [competition, setCompetition] = useState();
     const [alreadyReg, setAlreadyReg] = useState();
+    const [removeModalView, setRemoveModalView] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,11 +46,15 @@ const CompetitionId = (competitionId) => {
     const onclick = (id) => {
         if (!user.role) {
             navigate('/login')
-        } else if (id==='registration') {
+        } else if (id === 'registration') {
             navigate(`/registrationSports/${competitionId?.competitionId}`)
-        } else if (id==='listApplication') {
+        } else if (id === 'listApplication') {
             navigate(`/applicationsList/${competitionId?.competitionId}`)
-        } else if (id==='editCompetition') {
+        } else if (id === 'removeApplication') {
+            console.log(removeModalView);
+            setRemoveModalView(true);
+            console.log(removeModalView);
+        } else if (id === 'editCompetition') {
             navigate(`/editCompetition/${competitionId?.competitionId}`)
         }
     }
@@ -64,7 +70,7 @@ const CompetitionId = (competitionId) => {
     }
 
     const checkCompetitionPeriod = () => {
-        return  competition?.status === 'FUTURE' || competition?.status === 'PRESENT';
+        return competition?.status === 'FUTURE' || competition?.status === 'PRESENT';
     }
 
     const checkAdmin = () => {
@@ -80,10 +86,11 @@ const CompetitionId = (competitionId) => {
     return (
         <div className='competitions'>
             <div className='container margin-competition'>
+                {removeModalView && <RemoveAppModal competitionId={competitionId} closeModal={setRemoveModalView}/>}
                 <p className="fonts-roboto-black name-competition">{competition?.name}</p>
                 <div className="content-competition-container">
                     <p className="content-competition fonts-roboto-light">Даты проведения: <span
-                            className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.endDate && formatDateLocal(competition?.endDate)}</span>
+                        className="content-competition-details"> {competition?.date && formatDateLocal(competition?.date)} - {competition?.endDate && formatDateLocal(competition?.endDate)}</span>
                     </p>
                     <p className="content-competition fonts-roboto-light">Место проведения: <span
                         className="content-competition-details"> {competition?.place}</span></p>
@@ -101,20 +108,26 @@ const CompetitionId = (competitionId) => {
                 </div>
 
                 <div className='button_flex line-block'>
-                    {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() && <Button parametr='Зарегистрироваться'
-                                                 id='registration'
-                                                 functionClick={()=> onclick('registration')}
-                    />}
+                    {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() &&
+                        <Button parametr='Зарегистрироваться'
+                                id='registration'
+                                functionClick={() => onclick('registration')}
+                        />}
                     {<Button parametr='Список зарегистрированных спортсменов'
-                                                 className='long_button'
-                                                 functionClick={()=> onclick('listApplication')}
-                                                 id='listApplication'/>
+                             className='long_button'
+                             functionClick={() => onclick('listApplication')}
+                             id='listApplication'/>
+                    }
+                    {checkSportsman() && !checkAlreadyRegistration() &&<Button parametr='Отменить заявку'
+                             className='long_button'
+                             functionClick={() => onclick('removeApplication')}
+                             id='removeApplication'/>
                     }
                     {checkAdmin() && checkCompetitionIsFuture() && <Button
                         parametr='Редактировать соревнование'
                         className='long_button'
                         id='editCompetition'
-                        functionClick={()=> onclick('editCompetition')}
+                        functionClick={() => onclick('editCompetition')}
                     />}
                 </div>
             </div>
