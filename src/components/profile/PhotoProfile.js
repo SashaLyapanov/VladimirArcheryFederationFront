@@ -1,44 +1,38 @@
 import Button from '../button/Button'
 import photo from '../../img/photo.png'
-import { useContext } from 'react'
+import {useContext, useEffect, useState} from 'react'
 import { CustomContext } from '../../utils/Context'
-import { useNavigate } from 'react-router'
 
 const PhotoProfile = ({btnStatus}) => {
 
-    const navigate = useNavigate()
+    const {user, setUser} = useContext(CustomContext);
+    const [avatarImg, setAvatarImg] = useState(null);
 
-    const onClickBlock = (e) => {
-        
-        if(document.getElementById('button-block').innerHTML == 'Заблокировать'){
-            document.getElementById('button-block').innerHTML = 'Разблокировать'
-        } else {
-            document.getElementById('button-block').innerHTML = 'Заблокировать'
-        }
-    }
+    user && console.log(user)
 
-    const {user, setUser} = useContext(CustomContext)
+    useEffect(() => {
+        const fetchAratarImg = async () => {
+            try {
+                const response = await fetch(`http://localhost:8081/personalAccount/download?fileName=${user?.id}_Аватарка.png`)
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const objectURL = URL.createObjectURL(blob);
+                    setAvatarImg(objectURL);
+                } else {
+                    console.error('Ошибка при загрузке изображения');
+                }
+            } catch (error) {
+                console.error('Произошла ошибка', error);
+            }
+        };
+        fetchAratarImg();
+    }, [])
 
     function buttonStatus(status){
-        if(status != 'none'){
+        if(status !== 'none'){
             return <Button parametr={'Редактировать профиль'}
                             id={'button-edit'}
                             functionClick={onClick}/>
-        } else {
-            return <Button parametr={'Дневник спортсмена'}
-                            id={'button-edit'}
-                            functionClick={onClickDiary}/>
-        }
-    }
-
-    function buttonBlock(role){
-        if(role == 'ADMIN'){
-            return <div className='button-block'>
-                        <Button id={'button-block'}
-                                parametr={'Заблокировать'} 
-                                className={''}
-                                functionClick={onClickBlock}/>
-                        </div>
         }
     }
 
@@ -54,19 +48,13 @@ const PhotoProfile = ({btnStatus}) => {
         
     }
 
-    const onClickDiary = () => {
-        navigate('/diaryCoach')
-    }
-
-
-
     return(
         <div>
             <div className="photo">
-                <img src={photo}/>
+                {avatarImg ? <img src={avatarImg} alt='Аватарка' className={'avatar_img'}/> : <img src={photo} alt='Аватарка'/>}
+
             </div>
             {buttonStatus(btnStatus)}
-            {buttonBlock(user.role)}
             
         </div>
     )
