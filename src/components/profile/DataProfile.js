@@ -63,6 +63,7 @@ const DataProfile = ({sportsman}) => {
 
     const onClick = () => {
         document.getElementById('button-edit').classList.remove('button-display')
+        document.getElementById('button-edit-img').classList.remove('button-display')
         document.getElementById('button-save').classList.add('button-display')
         const inputs = document.getElementsByClassName('input_profile')
         for (var input of inputs) {
@@ -74,22 +75,22 @@ const DataProfile = ({sportsman}) => {
     return (
         <div className="data-profile">
             <div className="container-pole name_profile">
-                <p className='fonts-roboto-regular name_profile'>Имя</p>
-                <input
-                    type='text'
-                    className='fonts-roboto-thin input_profile'
-                    value={Name}
-                    onChange={e => setName(e.target.value)}
-                    disabled
-                />
-            </div>
-            <div className="container-pole name_profile">
                 <p className='fonts-roboto-regular name_profile'>Фамилия</p>
                 <input
                     type='text'
                     className='fonts-roboto-thin input_profile'
                     value={Surname}
                     onChange={e => setSurname(e.target.value)}
+                    disabled
+                />
+            </div>
+            <div className="container-pole name_profile">
+                <p className='fonts-roboto-regular name_profile'>Имя</p>
+                <input
+                    type='text'
+                    className='fonts-roboto-thin input_profile'
+                    value={Name}
+                    onChange={e => setName(e.target.value)}
                     disabled
                 />
             </div>

@@ -20,9 +20,12 @@
 }
 
 .modalTitle {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin: 22px;
+    flex: 50%;
 }
 
 .titleCloseBtn {

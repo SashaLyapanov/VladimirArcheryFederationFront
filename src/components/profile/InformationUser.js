@@ -6,7 +6,7 @@ import axios from "../../utils/axios";
 
 const InformationUser = ({user, btnStatus}) => {
 
-    const [sportsman, setSportsman] = useState();
+    const [sportsman, setSportsman] = useState(null);
 
     useEffect(() => {
         const fetchSportsmanData = () => {
@@ -19,11 +19,10 @@ const InformationUser = ({user, btnStatus}) => {
     return (
         <div>
             <div className="information-user">
-                <PhotoProfile btnStatus={btnStatus}/>
+                <PhotoProfile sportsman={sportsman} btnStatus={btnStatus}/>
                 <DataProfile sportsman={sportsman}/>
             </div>
         </div>
-
     )
 }
 
