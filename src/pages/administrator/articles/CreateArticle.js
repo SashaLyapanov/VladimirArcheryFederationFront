@@ -2,6 +2,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import {useFormik} from "formik";
 import {useNavigate} from "react-router";
 import * as Yup from 'yup';
+import NamePage from "../../../components/namePage/NamePage";
 
 const CreateArticle = () => {
 
@@ -19,11 +20,13 @@ const CreateArticle = () => {
             body: Yup.string()
                 .required('Поле обязательно для заполнения'),
             file: Yup.mixed()
-                .required('Фотография обязательная для заполнения')
-                .test('fileFormat', 'Допустимые форматы: JPG, PNG', value => {
-                    const str = value;
-                    return value && (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png"));
-                }),
+                .required('Фотография обязательна для заполнения')
+            // file: Yup.mixed()
+            //     .required('Фотография обязательная для заполнения')
+            //     .test('fileFormat', 'Допустимые форматы: JPG, PNG', value => {
+            //         const str = value;
+            //         return value && (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png"));
+            //     }),
         }),
         onSubmit: async values => {
             const formData = new FormData();
@@ -54,6 +57,7 @@ const CreateArticle = () => {
         <div>
             <Navbar/>
             <div className={"page-content"}>
+                <NamePage name={'Создание новости'}/>
                 <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
                     <div>
                         <p className='header fonts-roboto-black'>Название</p>
@@ -91,8 +95,9 @@ const CreateArticle = () => {
                             id="file"
                             name="file"
                             type="file"
-                            onChange={formik.handleChange}
-                            value={formik.values.file}
+                            onChange={(e) => {
+                                formik.setFieldValue("file", e.currentTarget.files[0]);
+                            }}
                             className='input_file'
                         />
                         {formik.touched.file && formik.errors.file ? (
