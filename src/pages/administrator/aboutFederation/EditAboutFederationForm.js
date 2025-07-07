@@ -1,6 +1,7 @@
 import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
+import FileUploader from "../../../components/files/FileUploader";
 
 const EditAboutFederationForm = ({info}) => {
 
@@ -22,7 +23,8 @@ const EditAboutFederationForm = ({info}) => {
                     id: '7fa1257a-332b-258d-bca6-ba78fa263e0f',
                     managers: values.managers,
                     contacts: values.contacts,
-                    listLinks: values.links
+                    listLinks: values.links,
+                    files: fileState.map(file => file.name || file)
                 })
             };
 
@@ -66,7 +68,11 @@ const EditAboutFederationForm = ({info}) => {
 
         fetchAllFiles();
         formik.setFieldValue("files", fileState);
-    }, [info])
+    }, [info]);
+
+    if (fileState && fileState.length > 0) {
+        console.log(fileState)
+    }
 
     const handleRemoveFile = (fileToRemove) => {
         const updatedFiles = fileState.filter(file => file !== fileToRemove);
@@ -74,7 +80,10 @@ const EditAboutFederationForm = ({info}) => {
         formik.setFieldValue('files', updatedFiles);
     };
 
-    console.log(fileState);
+    const handleFilesChange = (updatedFiles) => {
+        setFileState(updatedFiles);
+        formik.setFieldValue('files', updatedFiles);
+    }
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -108,7 +117,9 @@ const EditAboutFederationForm = ({info}) => {
                 className='input fonts-roboto-light'
             />
 
-            <p className='header fonts-roboto-black'>Файлы</p>
+            <FileUploader files={fileState} onChange={handleFilesChange} onDelete={handleRemoveFile}/>
+
+            {/*<p className='header fonts-roboto-black'>Файлы</p>*/}
             {/*<ul>*/}
             {/*    {fileState.map((file, index) => (*/}
             {/*        <li key={index}>*/}
@@ -125,6 +136,7 @@ const EditAboutFederationForm = ({info}) => {
             {/*        </li>*/}
             {/*    ))}*/}
             {/*</ul>*/}
+
             <br/>
             <br/>
 

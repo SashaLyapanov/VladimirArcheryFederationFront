@@ -49,8 +49,8 @@ const AboutFederation = () => {
                         <NamePage name={"О федерации"}/>
                         <ManagersInfo props={aboutFederation && aboutFederation.managers}/>
                         <LinksInfo props={aboutFederation}/>
-                        <FilesInfo props={aboutFederation}/>
                         <ContactsInfo props={aboutFederation && aboutFederation.contacts}/>
+                        <FilesInfo props={aboutFederation}/>
                     </div>
                     <div id="picture_block_right">
                         <DemoPictures picture1={picture1} picture2={picture2}/>
