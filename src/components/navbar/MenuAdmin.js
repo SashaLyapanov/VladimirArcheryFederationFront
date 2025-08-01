@@ -5,17 +5,15 @@ import userpng from '../../img/user.png'
 
 const MenuSports = () => {
 
-
-    const onclickArrow = () =>{
+    const onclickArrow = () => {
         const menu = document.getElementById('menu')
-        if (menu.getAttribute('display') == 'yes'){
+        if (menu.getAttribute('display') === 'yes') {
             menu.classList.add('menu-user')
             menu.setAttribute("display", "none")
         } else {
             menu.classList.remove('menu-user')
             menu.setAttribute("display", "yes")
         }
-        
     }
 
     const onclickExit = () => {
@@ -29,7 +27,7 @@ const MenuSports = () => {
                     <p className='fonts-roboto-regular'>Администратор</p>
                     <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
                 </div>
-                <div id='menu' display='yes' className='menu-user'>
+                <div id='menu' display='none' className='menu-user'>
                     <a href='/sports' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Спортсмены</div>
                         </a>

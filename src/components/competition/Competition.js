@@ -9,7 +9,8 @@ const Competition = ({competition}) => {
     const onClickCompetition = (competition) => {
         navigate(`/competition/${competition?.id}`)
     }
-
+    console.log(competition?.date);
+    console.log(competition?.endDate);
     return (
         <>
             <div className='competition' id={competition?.date} onClick={() => onClickCompetition(competition)}>

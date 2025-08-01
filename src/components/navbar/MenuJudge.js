@@ -4,9 +4,9 @@ import arrow from '../../img/arrow.png'
 import userpng from '../../img/user.png'
 
 const MenuJudge = () => {
-    const onclickArrow = () =>{
+    const onclickArrow = () => {
         const menu = document.getElementById('menu')
-        if (menu.getAttribute('display') == 'yes'){
+        if (menu.getAttribute('display') === 'yes'){
             menu.classList.add('menu-user')
             menu.setAttribute("display", "none")
         } else {
@@ -26,7 +26,7 @@ const MenuJudge = () => {
                     <p className='fonts-roboto-regular'>Судья</p>
                     <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
                 </div>
-                <div id='menu' display='yes' className='menu-user'>
+                <div id='menu' display='none' className='menu-user'>
                     <a href='/' className='menu-link' onClick={onclickExit}>
                         <div className='menu-list fonts-roboto-light'>Выйти</div>
                     </a>

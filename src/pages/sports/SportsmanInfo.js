@@ -29,7 +29,7 @@ const SportsmanInfo = ({sportsman}) => {
                 {avatarState && <img src={avatarState} alt='Фотография спортсмена' className={'avatar_img_left'}/>}
                 <div className='sportsman_info_block'>
                     <h3 style={{fontSize: '25px'}}>ФИО: </h3>
-                    <p className='some_info'>{sportsman?.firstName + ' ' + sportsman?.surname + ' ' + sportsman?.patronymic}</p>
+                    <p className='some_info'>{sportsman?.surname + ' ' + sportsman?.firstName + ' ' + sportsman?.patronymic}</p>
                     <h3 style={{fontSize: '25px'}}>Дата рождения: </h3>
                     <p className='some_info'>{sportsman?.birthDate && formatDateLocal(sportsman?.birthDate)}</p>
                     <h3 style={{fontSize: '25px'}}>Звание/разряд: </h3>

@@ -15,12 +15,12 @@ const Navbar = () => {
 
     const {user, setUser} = useContext(CustomContext)
 
-    const userRole = (role) => {
-        if (role == "SPORTSMAN") {
+    const userRole = (user) => {
+        if (user?.userData?.role == "SPORTSMAN") {
             return <MenuSports/>
-        } else if (role == "ADMIN") {
+        } else if (user?.userData?.role == "ADMIN") {
             return <MenuAdmin/>
-        } else if (role == 'JUDGE') {
+        } else if (user?.userData?.role== 'JUDGE') {
             return <MenuJudge/>
         } else {
             return <MenuUser/>
@@ -46,7 +46,7 @@ const Navbar = () => {
                                 Владимир
                             </a>
                         </div>
-                        {userRole(user.role)}
+                        {userRole(user)}
                     </div>
                     <div className='menu fonts-roboto-regular'>
                         <Link to="/aboutFederation" className="menu-elements">О федерации</Link>
