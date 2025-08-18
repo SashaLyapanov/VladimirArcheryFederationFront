@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import {createContext, useEffect, useState} from "react";
 
 export const CustomContext = createContext()
 export const SportContext = createContext()
@@ -9,20 +9,6 @@ export const Context = (props) => {
     const [user, setUser] = useState({
         email: ''
     })
-    
-    useEffect(() => {
-        if (localStorage.getItem('user') !== null){
-        setUser(JSON.parse(localStorage.getItem('user')))
-        }
-        if(localStorage.getItem('date') != null){
-
-        }
-    }, [])
-
-    const value = {
-        user,
-        setUser
-    }
 
     const [sport, setSports] = useState()
     const sportsValue = {
@@ -36,12 +22,29 @@ export const Context = (props) => {
         setCompetition
     }
 
-    return  <CompetitionContext.Provider value={competitionValue}>
-            <SportContext.Provider value={sportsValue}>
+    useEffect(() => {
+        if (localStorage.getItem('user') !== null) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+        }
+        if (localStorage.getItem('sport') != null) {
+            setSports(JSON.parse(localStorage.getItem('sport')))
+        }
+        if (localStorage.getItem('competitions') != null) {
+            setCompetition(JSON.parse(localStorage.getItem('competitions')))
+        }
+    }, [])
+
+    const value = {
+        user,
+        setUser
+    }
+
+    return <CompetitionContext.Provider value={competitionValue}>
+        <SportContext.Provider value={sportsValue}>
             <CustomContext.Provider value={value}>
                 {props.children}
             </CustomContext.Provider>
-            </SportContext.Provider>
-            </CompetitionContext.Provider>
+        </SportContext.Provider>
+    </CompetitionContext.Provider>
 
 }

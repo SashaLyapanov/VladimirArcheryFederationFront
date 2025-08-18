@@ -2,13 +2,22 @@ import Navbar from '../../components/navbar/Navbar'
 import NamePage from '../../components/namePage/NamePage'
 import InformationUser from '../../components/profile/InformationUser'
 import '../../style.css';
+import {useContext} from "react";
+import {CustomContext} from "../../utils/Context";
 
-const Profile = ({user, btnStatus}) => {
-    return(
+const Profile = ({profile, btnStatus}) => {
+
+    const {user} = useContext(CustomContext)
+
+    return (
         <div className="page-content">
             <Navbar/>
-            <NamePage name={"Личный профиль"}/>
-            <InformationUser user={user} btnStatus={btnStatus}/>
+            {user?.userData?.role === "ADMIN" ?
+                <NamePage name={"Профиль спортсмена"}/>
+                :
+                <NamePage name={"Личный профиль"}/>
+            }
+            <InformationUser btnStatus={btnStatus}/>
         </div>
     )
 }

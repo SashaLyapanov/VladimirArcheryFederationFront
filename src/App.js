@@ -30,9 +30,9 @@ function App() {
 
   function profile(role){
     if(role === 'ADMIN'){
-      return <Profile user={sport}/>
+      return <Profile profile={sport}/>
     } else {
-      return <Profile user={user}/>
+      return <Profile profile={user}/>
     }
   }
 
@@ -56,7 +56,7 @@ function App() {
         <Route exac path='editCompetition/:competitionId' element={<EditCompetition/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition />}/>
-        <Route exac path='/profile' element={profile(user.role)}/>
+        <Route exac path='/profile' element={profile(user?.userData?.role)}/>
         <Route exac path='/profileSportsTrainer' element={<Profile user={sport} btnStatus={'none'}/>}/>
         <Route exac path='/registration' element={<Registration/>}/>
         <Route exac path='/regionalTeam' element={<RegionalTeam />}/>

@@ -1,6 +1,6 @@
 import '../sports/sports.css'
 
-const ApplicationList = ({applications}) => {
+const ApplicationList = ({applications, user}) => {
 
     return (
         <div>
