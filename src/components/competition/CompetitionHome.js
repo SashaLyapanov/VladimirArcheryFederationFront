@@ -8,13 +8,13 @@ import Competition from './Competition.js';
 
 const CompetitionHome = () => {
 
-      const [competitions, setNews] = useState([]);
+      const [competitions, setCompetitions] = useState([]);
     
       useEffect(() => {
         fetch('http://localhost:8080/api/v1/general/availableCompetitions')
           .then((res) => res.json())
           .then((result) => {
-            setNews(result);
+              setCompetitions(result);
           });
       }, []);
 

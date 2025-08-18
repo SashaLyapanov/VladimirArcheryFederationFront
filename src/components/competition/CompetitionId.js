@@ -8,6 +8,7 @@ import RemoveAppModal from "../modalWindows/RemoveAppModal";
 
 const CompetitionId = (competitionId) => {
 
+
     const {user, setUser} = useContext(CustomContext);
     const navigate = useNavigate();
     const [competition, setCompetition] = useState();
@@ -31,7 +32,9 @@ const CompetitionId = (competitionId) => {
         };
         const checkAlreadyReg = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/sportsman/checkApplication?sportsmanId=' + user?.id + '&competitionId=' + competitionId?.competitionId);
+                const response = await fetch('http://localhost:8080/api/v1/sportsman/checkApplication?sportsmanId=' + user?.userData?.id + '&competitionId=' + competitionId?.competitionId
+                    , { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken } }
+                );
                 const result = await response.json();
                 setAlreadyReg(result);
             } catch (error) {
@@ -39,28 +42,28 @@ const CompetitionId = (competitionId) => {
             }
         }
         fetchData();
-        checkAlreadyReg();
+        if (user?.accessToken) {
+            checkAlreadyReg();
+        }
     }, [competitionId]);
 
 
     const onclick = (id) => {
-        if (!user.role) {
+        if (!user?.userData?.role) {
             navigate('/login')
         } else if (id === 'registration') {
             navigate(`/registrationSports/${competitionId?.competitionId}`)
         } else if (id === 'listApplication') {
             navigate(`/applicationsList/${competitionId?.competitionId}`)
         } else if (id === 'removeApplication') {
-            console.log(removeModalView);
             setRemoveModalView(true);
-            console.log(removeModalView);
         } else if (id === 'editCompetition') {
             navigate(`/editCompetition/${competitionId?.competitionId}`)
         }
     }
 
     const checkSportsman = () => {
-        return !user.role || user.role === 'SPORTSMAN';
+        return !user?.userData?.role || user?.userData?.role === 'SPORTSMAN';
     }
 
     const checkAlreadyRegistration = () => {
@@ -74,7 +77,7 @@ const CompetitionId = (competitionId) => {
     }
 
     const checkAdmin = () => {
-        return user.role === 'ADMIN';
+        return user?.userData?.role === 'ADMIN';
     }
 
     const checkCompetitionIsFuture = () => {

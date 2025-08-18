@@ -16,7 +16,9 @@ const ModalRegInCompetition = ({closeModal, compId, values}) => {
             }
         }
 
-        axios.post(`sportsman/regInCompetition?sportsmanId=${user?.id}&competitionId=${compId}`, dataOfRegistrationCompetition)
+        axios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition,
+            { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+            )
             .then(((resp) => {
                 if (resp.data) {
                     navigate(`/competition/${compId}`);

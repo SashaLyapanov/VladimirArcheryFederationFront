@@ -10,7 +10,9 @@ const InformationUser = ({user, btnStatus}) => {
 
     useEffect(() => {
         const fetchSportsmanData = () => {
-            axios.get(`personalAccount/myProfileData?sportsmanId=${user?.id}`)
+            axios.get(`personalAccount/myProfileData?sportsmanId=${user?.userData?.id}`,
+                { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+                )
                 .then(({data}) => setSportsman(data));
         }
         fetchSportsmanData();

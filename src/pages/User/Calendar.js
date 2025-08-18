@@ -60,7 +60,7 @@ const Calendar = () => {
     return (
         <div className={'page-content'}>
             <Navbar/>
-            <NamePage name={'Соревнования'}/>
+            <NamePage name={period === 'will' ? "Текущие и будущие соревнования" : "Прошедшие соревнования"}/>
             <SearchCompetitions/>
             <Button
                 parametr={checkPeriod()}

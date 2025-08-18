@@ -18,8 +18,10 @@ const MyCompetition = () => {
 
 
   useEffect(() => {
-    if(user.id){
-      axios.get(`sportsman/allMyApplication?myId=${user?.id}`)
+    if(user?.userData?.id){
+      axios.get(`sportsman/allMyApplication?myId=${user?.userData?.id}`,
+          { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+        )
         .then(({data}) => {
           let competition = []
             data.map((application) => (

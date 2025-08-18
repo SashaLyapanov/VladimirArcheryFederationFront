@@ -25,10 +25,10 @@ const Registration = (competitionId) => {
     const formik = useFormik({
         initialValues: {
             competitionName: competition?.name,
-            surname: user?.surname,
-            name: user?.name,
-            patronymic: user?.patronymic,
-            email: user?.email,
+            surname: user?.userData?.surname,
+            name: user?.userData?.name,
+            patronymic: user?.userData?.patronymic,
+            email: user?.userData?.email,
             bowType: '',
         },
         validationSchema: Yup.object({
@@ -63,7 +63,7 @@ const Registration = (competitionId) => {
                         id='surname'
                         name='surname'
                         type='text'
-                        placeholder={user?.surname}
+                        placeholder={user?.userData?.surname}
                         className='fonts-roboto-thin input_profile input_profile_edit'
                         value={formik.values.surname}
                         onChange={formik.handleChange}
@@ -76,7 +76,7 @@ const Registration = (competitionId) => {
                         id='name'
                         name='name'
                         type='text'
-                        placeholder={user?.name}
+                        placeholder={user?.userData?.name}
                         className='fonts-roboto-thin input_profile input_profile_edit'
                         value={formik.values.name}
                         onChange={formik.handleChange}
@@ -89,9 +89,9 @@ const Registration = (competitionId) => {
                         id='patronymic'
                         name='patronymic'
                         type='text'
-                        placeholder={user?.patronymic}
+                        placeholder={user?.userData?.patronymic}
                         className='fonts-roboto-thin input_profile input_profile_edit'
-                        value={formik.values.surname}
+                        value={formik.values.patronymic}
                         onChange={formik.handleChange}
                         disabled
                     />
@@ -102,7 +102,7 @@ const Registration = (competitionId) => {
                         id='email'
                         name='email'
                         type='text'
-                        placeholder={user?.email}
+                        placeholder={user?.userData?.email}
                         className='fonts-roboto-thin input_profile input_profile_edit'
                         value={formik.values.email}
                         onChange={formik.handleChange}

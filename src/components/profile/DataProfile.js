@@ -1,8 +1,11 @@
 import Button from "../button/Button"
 import axios from '../../utils/axios'
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {CustomContext} from "../../utils/Context";
 
 const DataProfile = ({sportsman}) => {
+
+    const {user, setUser} = useContext(CustomContext);
 
     const [sportsTitles, setSportsTitles] = useState([])
     const [regions, setRegions] = useState([])
@@ -70,7 +73,9 @@ const DataProfile = ({sportsman}) => {
             input.classList.remove('input_profile_edit')
             input.setAttribute('disabled', 'disabled');
         }
-        axios.put(`personalAccount/editProfile?sportsmanId=${sportsman?.id}`, newSportsman);
+        axios.put(`personalAccount/editProfile?sportsmanId=${sportsman?.id}`, newSportsman,
+            { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+            );
     }
     return (
         <div className="data-profile">

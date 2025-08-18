@@ -6,20 +6,20 @@ const RemoveAppModal = ({ competitionId, closeModal}) => {
     const {user, setUser} = useContext(CustomContext);
 
     const removeApplication = () => {
-        axios.post(`sportsman/deleteApplication?sportsmanId=${user?.id}&competitionId=${competitionId?.competitionId}`)
-            .then(((resp) => {
-                if (resp.data) {
-                    alert(resp.data);
-                }
-            }))
+        if (!user?.accessToken) {
+            alert("Войдите заново в систему и повторите запрос.");
+            return;
+        }
+        axios.post(`sportsman/deleteApplication?sportsmanId=${user?.userData?.id}&competitionId=${competitionId?.competitionId}`
+            , {}
+            ,{ headers: { 'Authorization': 'Bearer ' + user?.accessToken } }
+            )
             .catch((resp) => {
                 alert(resp.response.data);
             })
         window.location.reload();
     }
 
-    console.log(competitionId);
-    console.log(user);
     return (
         <div className="modalBackground">
             <div className="modalContainer">
