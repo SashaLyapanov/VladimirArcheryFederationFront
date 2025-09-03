@@ -56,7 +56,8 @@ const ArticleInfo = (articleId) => {
 
     const deleteClick = async () => {
         const response = await fetch('http://localhost:8080/api/v1/admin/deleteArticle?articleId=' + articleId?.articleId, {
-            method: "post"
+            method: "post",
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }
         });
         if (response.ok) {
             alert('Новость успешно удалена')
@@ -68,7 +69,7 @@ const ArticleInfo = (articleId) => {
 
     return (
         <div>
-            {checkAdminRole(user.role) &&
+            {checkAdminRole(user?.userData?.role) &&
                 <div>
                     <Button parametr={"Удалить"} className='button editButton' functionClick={deleteClick}/>
                     <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>

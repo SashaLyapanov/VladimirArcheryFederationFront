@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import Button from "../../../components/button/Button";
 import {formatDateLocalForForm} from "../../../utils/date-utils";
+import {CustomContext} from "../../../utils/Context";
 
 const EditCompetitionForm = ({competitionId}) => {
 
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate()
     const [competition, setCompetition] = useState();
     const [competitionTypes, setCompetitionTypes] = useState([]);
@@ -87,7 +89,7 @@ const EditCompetitionForm = ({competitionId}) => {
             console.log(values);
             const requestOptions = {
                 method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken },
                 body: JSON.stringify({
                     name: values.name,
                     place: values.place,

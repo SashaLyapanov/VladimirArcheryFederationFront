@@ -1,13 +1,15 @@
 import Button from "../../../components/button/Button"
 import '../../../components/profile/profile.css'
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "../../../utils/axios";
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import * as Yup from "yup";
+import {CustomContext} from "../../../utils/Context";
 
 const AddCompetition = () => {
 
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate()
 
     const [competitionTypes, setCompetitionTypes] = useState([]);
@@ -88,7 +90,9 @@ const AddCompetition = () => {
                 'endDate': values.endDate,
                 'description': values.description,
             }
-            axios.post('admin/createCompetition', newCompetition)
+            axios.post('admin/createCompetition', newCompetition,
+                { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+                )
                 .then((data) => {
                     navigate('/competition')
                 })

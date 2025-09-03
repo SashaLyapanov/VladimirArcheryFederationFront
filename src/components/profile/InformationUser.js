@@ -41,7 +41,7 @@ const InformationUser = ({btnStatus}) => {
     return (
         <div>
             <div className="information-user">
-                <PhotoProfile sportsman={sportsman} btnStatus={btnStatus}/>
+                <PhotoProfile sportsmanProps={sportsman} btnStatus={btnStatus}/>
                 <DataProfile sportsman={sportsman}/>
             </div>
         </div>

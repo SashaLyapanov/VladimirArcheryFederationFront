@@ -109,7 +109,7 @@ const SearchCompetitions = () => {
                         type="submit">
                         Найти
                     </button>
-                    {buttonBlock(user.role)}
+                    {buttonBlock(user?.userData?.role)}
                 </div>
             </form>
         </div>

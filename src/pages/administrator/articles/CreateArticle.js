@@ -3,9 +3,12 @@ import {useFormik} from "formik";
 import {useNavigate} from "react-router";
 import * as Yup from 'yup';
 import NamePage from "../../../components/namePage/NamePage";
+import {useContext} from "react";
+import {CustomContext} from "../../../utils/Context";
 
 const CreateArticle = () => {
 
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -21,12 +24,6 @@ const CreateArticle = () => {
                 .required('Поле обязательно для заполнения'),
             file: Yup.mixed()
                 .required('Фотография обязательна для заполнения')
-            // file: Yup.mixed()
-            //     .required('Фотография обязательная для заполнения')
-            //     .test('fileFormat', 'Допустимые форматы: JPG, PNG', value => {
-            //         const str = value;
-            //         return value && (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png"));
-            //     }),
         }),
         onSubmit: async values => {
             const formData = new FormData();
@@ -36,6 +33,7 @@ const CreateArticle = () => {
 
             const requestOptions = {
                 method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + user?.accessToken },
                 body: formData
             };
 

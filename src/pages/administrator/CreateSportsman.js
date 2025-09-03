@@ -4,14 +4,14 @@ import AddSports from '../../components/sports/AddSpoprts';
 import '../../style.css';
 
 
-const CreateSportsman = () => {  
+const CreateSportsman = () => {
 
     return(
-        <>
+        <div className={'page-content'}>
             <Navbar/>
             <NamePage name={'Добавление спортсмена'}/>
             <AddSports/>
-        </>
+        </div>
     )
 }
 

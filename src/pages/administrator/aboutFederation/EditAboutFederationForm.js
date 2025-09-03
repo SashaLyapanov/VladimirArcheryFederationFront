@@ -1,10 +1,12 @@
 import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import FileUploader from "../../../components/files/FileUploader";
+import {CustomContext} from "../../../utils/Context";
 
 const EditAboutFederationForm = ({info}) => {
 
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
     const [fileState, setFileState] = useState([]);
 
@@ -18,13 +20,13 @@ const EditAboutFederationForm = ({info}) => {
         onSubmit: async values => {
             const requestOptions = {
                 method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken },
                 body: JSON.stringify({
                     id: '7fa1257a-332b-258d-bca6-ba78fa263e0f',
                     managers: values.managers,
                     contacts: values.contacts,
                     listLinks: values.links,
-                    files: fileState.map(file => file.name || file)
+                    files: fileState.map(file => file?.name || file)
                 })
             };
 

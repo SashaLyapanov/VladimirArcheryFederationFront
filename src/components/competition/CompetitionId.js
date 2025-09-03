@@ -42,7 +42,7 @@ const CompetitionId = (competitionId) => {
             }
         }
         fetchData();
-        if (user?.accessToken) {
+        if (user?.accessToken && user?.userData?.role === "SPORTSMAN") {
             checkAlreadyReg();
         }
     }, [competitionId]);

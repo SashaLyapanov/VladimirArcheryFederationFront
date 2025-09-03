@@ -35,8 +35,8 @@ const ListRegSportsmen = () => {
         (async () => {
             try {
                 const res = await fetch(
-                    `http://localhost:8080/api/v1/sportsman/sportsmenByCompetitionAndBowType?id=${competitionId.competitionId}&bowTypeName=all`,
-                    { headers: { Authorization: `Bearer ${user.accessToken}` } } // Content-Type для GET не нужен
+                    `http://localhost:8080/api/v1/sportsman/sportsmenByCompetitionAndBowType?id=${competitionId?.competitionId}&bowTypeName=all`,
+                    { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
                 );
                 if (!res.ok) {
                     // при 401/500 не пытаемся парсить список

@@ -64,7 +64,7 @@ const Calendar = () => {
             <SearchCompetitions/>
             <Button
                 parametr={checkPeriod()}
-                className='competiitonBtn'
+                className='competitonBtn'
                 functionClick={onClick}
             />
             <ListCompetition parametr={competitions}/>

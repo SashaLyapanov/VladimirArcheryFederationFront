@@ -34,7 +34,7 @@ const ArticleList = () => {
             <Navbar/>
 
             <div className={"page-content"}>
-                {checkAdminRole(user.role) &&
+                {checkAdminRole(user?.userData?.role) &&
                     <Button parametr={"Создать новость"} className='button editButton' functionClick={onClick}/>
                 }
                 <NamePage name={'Новости'}/>

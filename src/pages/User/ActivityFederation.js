@@ -32,8 +32,17 @@ const ActivityFederation = () => {
     return (
         <div className="page-content">
             <Navbar/>
-            <NamePage name={"Деятельность"}/>
-            {filesList && <h1 style={{textAlign: "center", margin: "20px"}}>Файлы
+            <NamePage name={"Направления деятельности"}/>
+            <h1>3Д стрельба из лука</h1>
+            <h2>Файлы для 3D</h2>
+            <br/>
+            <h1>Классическая стрельба</h1>
+            <h2>Файлы для ...</h2>
+            <br/>
+            <h1>Archery биатлон</h1>
+            <h2>Файлы для ...</h2>
+            <br/>
+            {filesList && <h1 style={{textAlign: "center", margin: "20px"}}>Общая информация
             </h1>}
             {filesList && <FilesList filesList={filesList} source="activityFederation"/>}
             <h1 style={{textAlign: "center", margin: "20px"}}>ИСТОРИЯ РАЗВИТИЯ СТРЕЛЬБЫ ИЗ ЛУКА

@@ -1,9 +1,11 @@
 import {useNavigate} from "react-router";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {useFormik} from "formik";
+import {CustomContext} from "../../../utils/Context";
 
 const EditArticleForm = ({info}) => {
 
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
     const [fileState, setFileState] = useState([]);
 
@@ -18,7 +20,7 @@ const EditArticleForm = ({info}) => {
         onSubmit: async values => {
             const requestOptions = {
                 method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken},
                 body: JSON.stringify({
                     id: info?.id,
                     name: values.name,

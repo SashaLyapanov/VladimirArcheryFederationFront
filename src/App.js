@@ -61,7 +61,8 @@ function App() {
         <Route exac path='/registration' element={<Registration/>}/>
         <Route exac path='/regionalTeam' element={<RegionalTeam />}/>
         <Route exac path='/registrationSports/:competitionId' element={<CompetitionRegistration />}/>
-        <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
+        {/*<Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>*/}
+        <Route exac path='/sports/:fio' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
       </Routes>
     </div> 
   );

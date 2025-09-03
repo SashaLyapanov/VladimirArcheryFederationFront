@@ -60,7 +60,8 @@ const FileUploader = ({ files, onFilesChange, onDeleteFile}) => {
                 {localFiles.map((file, index) => (
                     <div key={index} className="file-item">
                         <span>
-                            {file.name || file}
+                            {console.log(file)}
+                            {file?.name || file}
                         </span>
                         <button type='button' onClick={() => onDeleteFile(file)}>Удалить</button>
                     </div>

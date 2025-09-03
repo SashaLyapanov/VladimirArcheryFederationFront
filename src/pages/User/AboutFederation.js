@@ -1,8 +1,10 @@
 import Navbar from "../../components/navbar/Navbar";
-import picture1 from "./../../img/aboutFederation/picture1.jpg";
-import picture2 from "./../../img/aboutFederation/picture2.jpg";
-import picture3 from "./../../img/aboutFederation/picture3.jpg";
-import picture4 from "./../../img/aboutFederation/picture4.jpg";
+import picture1 from "./../../img/aboutFederation/aboutF1.jpg";
+import picture2 from "./../../img/aboutFederation/aboutF2.jpg";
+import picture3 from "./../../img/aboutFederation/aboutF3.jpg";
+import picture4 from "./../../img/aboutFederation/aboutF4.jpg";
+import picture5 from "./../../img/aboutFederation/aboutF5.jpg";
+import picture6 from "./../../img/aboutFederation/aboutF6.jpg";
 import {useEffect, useState, useContext} from "react";
 import axios from "../../utils/axios";
 import NamePage from "../../components/namePage/NamePage";
@@ -45,7 +47,7 @@ const AboutFederation = () => {
             <div className="page-content">
                 <div className="line-block flex_in_studio">
                     <div id="info_block_left">
-                        {checkAdminRole(user.role) && <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>}
+                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>}
                         <NamePage name={"О федерации"}/>
                         <ManagersInfo props={aboutFederation && aboutFederation.managers}/>
                         <LinksInfo props={aboutFederation}/>
@@ -53,10 +55,9 @@ const AboutFederation = () => {
                         <FilesInfo props={aboutFederation}/>
                     </div>
                     <div id="picture_block_right">
-                        <DemoPictures picture1={picture1} picture2={picture2}/>
                         <DemoPictures picture1={picture3} picture2={picture4}/>
                         <DemoPictures picture1={picture1} picture2={picture2}/>
-                        <DemoPictures picture1={picture1} picture2={picture2}/>
+                        <DemoPictures picture1={picture5} picture2={picture6}/>
                     </div>
                 </div>
             </div>

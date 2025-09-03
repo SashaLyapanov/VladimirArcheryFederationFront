@@ -22,18 +22,15 @@ const MenuSports = () => {
 
     return (
             <span className='user'>
-                <div className='user-name'>
+                <div className='user-name' onClick={onclickArrow}>
                     <img src={userpng} className='menu-icon-userpng'/>
                     <p className='fonts-roboto-regular'>Администратор</p>
-                    <img src={arrow} className='menu-icon-arrow' onClick={onclickArrow}/>
+                    <img src={arrow} className='menu-icon-arrow'/>
                 </div>
                 <div id='menu' display='none' className='menu-user'>
                     <a href='/sports' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Спортсмены</div>
                         </a>
-                    <a href='/coaches' className='menu-link'>
-                        <div className='menu-list fonts-roboto-light'>Тренера</div>
-                    </a>
                     <a href='/competition' className='menu-link'>
                         <div className='menu-list fonts-roboto-light'>Соревнования</div>
                     </a>

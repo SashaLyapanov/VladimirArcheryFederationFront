@@ -22,7 +22,10 @@ const SearchSports = ({role}) => {
         } else {
             navigate('/createSports')
         }
-        
+    }
+
+    const onClickSearch = () => {
+
     }
 
     function buttonAdd(role){
@@ -46,8 +49,8 @@ const SearchSports = ({role}) => {
                 
                 <div className='button_flex'>
                     <Button parametr={'Найти'}  
-                            functionClick={onClick} />
-                    {buttonAdd(user.role)}
+                            functionClick={onClickSearch} />
+                    {buttonAdd(user?.userData?.role)}
                     
                 </div>
             </form>

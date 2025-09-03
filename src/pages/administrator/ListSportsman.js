@@ -11,6 +11,7 @@ import {CustomContext} from '../../utils/Context'
 const ListSportsman = ({urls, role}) => {
     const {user, setUser} = useContext(CustomContext)
     const [sports, setSports] = useState([]);
+    const params = new URLSearchParams(document.location.search);
 
     useEffect(() => {
         const getSportsmen = async () => {

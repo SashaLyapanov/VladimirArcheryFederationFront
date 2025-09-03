@@ -1,28 +1,25 @@
 import Button from "../button/Button"
 import '../profile/profile.css'
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from "../../utils/axios";
-import { useNavigate } from "react-router";
+import {useNavigate} from "react-router";
+import {CustomContext} from "../../utils/Context";
 
 const AddSports = () => {
 
+    const {user} = useContext(CustomContext);
+    const [sex, setSexs] = useState([])
     const [sportsTitle, setSportsTitles] = useState([])
     const [regions, setRegions] = useState([])
-    
-   
-
-    // axios.get('general/allSportsTitle')
-    // .then(({data}) => console.log(data))
-
-    // axios.get('general/allRegions')
-    // .then((res) => console.log(res))
 
     useEffect(() => {
         axios.get('general/allSportsTitle')
-        .then(({data}) => setSportsTitles(data))
+            .then(({data}) => setSportsTitles(data))
         axios.get('general/allRegions')
-        .then(({data}) => setRegions(data))
-        }, []);
+            .then(({data}) => setRegions(data))
+        axios.get('general/allSex')
+            .then(({data}) => setSexs(data))
+    }, []);
 
     const navigate = useNavigate()
 
@@ -35,6 +32,7 @@ const AddSports = () => {
     const [Region, setRegion] = useState('')
     const [Sex, setSex] = useState('')
     const [SportsTitle, setSportsTitle] = useState('')
+    const [IsRegionalTeamSportsman, setIsRegionalTeamSportsman] = useState('')
 
     const newSportsman = {
         'email': Email,
@@ -52,38 +50,40 @@ const AddSports = () => {
             'id': SportsTitle
         },
         'birthDate': BirthDate,
-        
+        'isRegionalTeamSportsman': IsRegionalTeamSportsman
+
     }
 
-    
 
     const onClick = () => {
         console.log(newSportsman)
-        axios.post('admin/createSportsman', newSportsman)
-        .then(() => 
-        navigate('/sports'))
+        axios.post('admin/createSportsman', newSportsman,
+            {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}}
+        )
+            .then(() =>
+                navigate('/sports'))
     }
 
-    return(
+    return (
         <form className="container">
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Имя</p>
-                <input 
-                    type='text' 
-                    className='fonts-roboto-thin input_profile input_profile_edit'
-                    placeholder="Введите имя"
-                    value={Name}
-                    onChange={e => setName(e.target.value)}
-                />
-            </div>
-            <div className="container-pole">
                 <p className='fonts-roboto-regular name_profile'>Фамилия</p>
-                <input 
-                    type='text' 
+                <input
+                    type='text'
                     className='fonts-roboto-thin input_profile input_profile_edit'
                     placeholder="Введите фамилию"
                     value={Surname}
                     onChange={e => setSurname(e.target.value)}
+                />
+            </div>
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Имя</p>
+                <input
+                    type='text'
+                    className='fonts-roboto-thin input_profile input_profile_edit'
+                    placeholder="Введите имя"
+                    value={Name}
+                    onChange={e => setName(e.target.value)}
                 />
             </div>
             <div className="container-pole">
@@ -109,36 +109,37 @@ const AddSports = () => {
             <div className="container-pole">
                 <p className='fonts-roboto-regular name_profile'>Регион</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Region} 
-                onChange={e => setRegion(e.target.value)}
+                        value={Region}
+                        onChange={e => setRegion(e.target.value)}
                 >
-                        <option value='' disabled selected hidden>Выберите регион</option>
-                        {regions.map(region => (
-                            <option value={region?.id}>{region?.name}</option>
-                        ))}
-                    </select>
+                    <option value='' disabled selected hidden>Выберите регион</option>
+                    {regions.map(region => (
+                        <option value={region?.id}>{region?.name}</option>
+                    ))}
+                </select>
             </div>
             <div className="container-pole">
                 <p className='fonts-roboto-regular name_profile'>Пол</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={Sex} 
-                onChange={e => setSex(e.target.value)}
+                        value={Sex}
+                        onChange={e => setSex(e.target.value)}
                 >
-                        <option value='' disabled selected hidden>Выберите пол</option>
-                        <option value='1'>Мужской</option>
-                        <option value='2'>Женский</option>
-                    </select>
+                    <option value='' disabled selected hidden>Выберите пол</option>
+                    {sex.map(title => (
+                        <option value={title?.id}>{title?.name}</option>
+                    ))}
+                </select>
             </div>
             <div className="container-pole">
                 <p className='fonts-roboto-regular name_profile'>Спортивный разряд</p>
                 <select className='fonts-roboto-thin input_profile input_profile_edit'
-                value={SportsTitle} 
-                onChange={e => setSportsTitle(e.target.value)}
+                        value={SportsTitle}
+                        onChange={e => setSportsTitle(e.target.value)}
                 >
                     <option value='' disabled selected hidden>Выберите спортивный разряд</option>
                     {sportsTitle.map(title => (
-                            <option value={title?.id}>{title?.name}</option>
-                        ))}
+                        <option value={title?.id}>{title?.name}</option>
+                    ))}
                 </select>
             </div>
             <div className="container-pole">
@@ -161,12 +162,23 @@ const AddSports = () => {
                     onChange={e => setPassword(e.target.value)}
                 />
             </div>
-            
-            <Button parametr={'Добавить'} 
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Член сборной области</p>
+                <select className='fonts-roboto-thin input_profile input_profile_edit'
+                        value={IsRegionalTeamSportsman}
+                        onChange={e => setIsRegionalTeamSportsman(e.target.value)}
+                >
+                    <option value='' disabled selected hidden>Выберите является ли членом сборной области</option>
+                    <option value='true'>Да</option>
+                    <option value='false'>Нет</option>
+                </select>
+            </div>
+
+            <Button parametr={'Добавить'}
                     functionClick={onClick}
                     type={'button'}
-                    />
-            
+            />
+
         </form>
     )
 }

@@ -71,9 +71,6 @@ const RegistrationForm = () => {
                 'birthDate': values.birthDate
 
             }
-
-            console.log(newUser)
-
             axios.post('auth/signup', newUser)
                 .then(({data}) => {
                     setUser({
