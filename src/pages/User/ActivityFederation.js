@@ -9,10 +9,16 @@ import Navbar from "../../components/navbar/Navbar";
 import NamePage from "../../components/namePage/NamePage";
 import FilesList from "../../components/regionalTeam/FilesList";
 import {useEffect, useState} from "react";
+import Button from "../../components/button/Button";
+import {useContext} from "react";
+import {CustomContext} from "../../utils/Context";
+import {useNavigate} from "react-router";
 
 const ActivityFederation = () => {
 
     const [filesList, setFilesList] = useState();
+    const {user, setUser} = useContext(CustomContext)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFiles = async () => {
@@ -29,22 +35,70 @@ const ActivityFederation = () => {
         fetchFiles();
     }, []);
 
+    function checkAdminRole(role) {
+        return role === "ADMIN";
+    }
+
+    const editFiles3D = () => {
+        navigate('/editActivityFederation/3D')
+    }
+
+    const editFilesClassic = () => {
+        navigate('/editActivityFederation/Classic')
+    }
+
+    const editFilesBiathlon = () => {
+        navigate('/editActivityFederation/Biathlon')
+    }
+
+    const editFilesGeneral = () => {
+        navigate('/editActivityFederation/General')
+    }
+
     return (
         <div className="page-content">
             <Navbar/>
             <NamePage name={"Направления деятельности"}/>
+
             <h1>3Д стрельба из лука</h1>
-            <h2>Файлы для 3D</h2>
+            {checkAdminRole(user?.userData?.role) &&
+                <Button parametr={"Редактировать файлы 3D стрельбы"} className='button editButton'
+                        functionClick={editFiles3D}/> &&
+                <br/> &&
+                <br/>
+            }
+            {filesList?.threeD && <FilesList filesList={filesList?.threeD} source="activityFederation3D"/>}
             <br/>
+
             <h1>Классическая стрельба</h1>
-            <h2>Файлы для ...</h2>
+            {checkAdminRole(user?.userData?.role) &&
+                <Button parametr={"Редактировать файлы классической стрельбы"} className='button editButton'
+                        functionClick={editFilesClassic}/> &&
+                <br/> &&
+                <br/>
+            }
+            {filesList?.classic && <FilesList filesList={filesList?.classic} source="activityFederationClassic"/>}
             <br/>
+
             <h1>Archery биатлон</h1>
-            <h2>Файлы для ...</h2>
+            {checkAdminRole(user?.userData?.role) &&
+                <Button parametr={"Редактировать файлы классической стрельбы"} className='button editButton'
+                        functionClick={editFilesBiathlon}/> &&
+                <br/> &&
+                <br/>
+            }
+            {filesList?.biathlon && <FilesList filesList={filesList?.biathlon} source="activityFederationBiathlon"/>}
             <br/>
-            {filesList && <h1 style={{textAlign: "center", margin: "20px"}}>Общая информация
-            </h1>}
-            {filesList && <FilesList filesList={filesList} source="activityFederation"/>}
+
+            {filesList && <h1 style={{textAlign: "center", margin: "20px"}}>Общая информация</h1>}
+            {checkAdminRole(user?.userData?.role) &&
+                <Button parametr={"Редактировать файлы общей информации"} className='button editButton'
+                        functionClick={editFilesGeneral}/> &&
+                <br/> &&
+                <br/>
+            }
+            {filesList?.general && <FilesList filesList={filesList?.general} source="activityFederationGeneral"/>}
+
             <h1 style={{textAlign: "center", margin: "20px"}}>ИСТОРИЯ РАЗВИТИЯ СТРЕЛЬБЫ ИЗ ЛУКА
                 ВО ВЛАДИМИРСКОЙ ОБЛАСТИ
             </h1>

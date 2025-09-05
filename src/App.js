@@ -23,6 +23,7 @@ import EditAboutFederation from "./pages/administrator/aboutFederation/EditAbout
 import EditArticle from "./pages/administrator/articles/EditArticle";
 import CreateArticle from "./pages/administrator/articles/CreateArticle";
 import EditCompetition from "./pages/administrator/competitions/EditCompetition";
+import EditActivityFederation from "./pages/administrator/activityFederation/EditActivityFederation";
 function App() {
 
   const {user} = useContext(CustomContext)
@@ -55,6 +56,7 @@ function App() {
         <Route exac path='/editAboutFederationFiles' element={<EditAboutFederation infoOrFiles={'files'}/>}/>
         <Route exac path='/editArticle/:aritcleId' element={<EditArticle/>}/>
         <Route exac path='editCompetition/:competitionId' element={<EditCompetition/>}/>
+        <Route exac path='/editActivityFederation/:blockName' element={<EditActivityFederation/>}/>
         <Route exac path='/login' element={<Login/>}/>
         <Route exac path='/myCompetition' element={<MyCompetition />}/>
         <Route exac path='/profile' element={profile(user?.userData?.role)}/>
