@@ -11,7 +11,7 @@ const FilesInfo = ({props}) => {
         <div className="info-block">
             <h1>Файлы:</h1>
             <div>
-                {links?.fileNames.map((file) =>
+                {links?.fileNames?.map((file) =>
                     <DownloadPDFButton fileName={file} preview={file} source='aboutFederation'/>
                 )}
             </div>

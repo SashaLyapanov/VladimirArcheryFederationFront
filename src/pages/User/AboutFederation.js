@@ -37,8 +37,12 @@ const AboutFederation = () => {
         return role === "ADMIN";
     }
 
-    const onClick = () => {
-        navigate('/editAboutFederation');
+    const editInfo = () => {
+        navigate('/editAboutFederationInfo');
+    }
+
+    const editFiles = () => {
+        navigate('/editAboutFederationFiles');
     }
 
     return (
@@ -47,7 +51,8 @@ const AboutFederation = () => {
             <div className="page-content">
                 <div className="line-block flex_in_studio">
                     <div id="info_block_left">
-                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>}
+                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать информацию"} className='button editButton' functionClick={editInfo}/>}
+                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать файлы"} className='button editButton' functionClick={editFiles}/>}
                         <NamePage name={"О федерации"}/>
                         <ManagersInfo props={aboutFederation && aboutFederation.managers}/>
                         <LinksInfo props={aboutFederation}/>

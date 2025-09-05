@@ -51,7 +51,8 @@ function App() {
         <Route exac path='/createArticle' element = {<CreateArticle/>}/>
         <Route exac path='/createCompetition' element={<CreateCompetition/>}/>
         <Route exac path='/createSports' element={<CreateSportsman/>}/>
-        <Route exac path='/editAboutFederation' element={<EditAboutFederation/>}/>
+        <Route exac path='/editAboutFederationInfo' element={<EditAboutFederation infoOrFiles={'info'}/>}/>
+        <Route exac path='/editAboutFederationFiles' element={<EditAboutFederation infoOrFiles={'files'}/>}/>
         <Route exac path='/editArticle/:aritcleId' element={<EditArticle/>}/>
         <Route exac path='editCompetition/:competitionId' element={<EditCompetition/>}/>
         <Route exac path='/login' element={<Login/>}/>
@@ -61,8 +62,8 @@ function App() {
         <Route exac path='/registration' element={<Registration/>}/>
         <Route exac path='/regionalTeam' element={<RegionalTeam />}/>
         <Route exac path='/registrationSports/:competitionId' element={<CompetitionRegistration />}/>
-        {/*<Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>*/}
-        <Route exac path='/sports/:fio' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
+        <Route exac path='/sports' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>
+        {/*<Route exac path='/sports/:fio' element={<ListSportsman urls={'http://localhost:8080/api/v1/admin/sportsmen'} role={'sports'}/>}/>*/}
       </Routes>
     </div> 
   );

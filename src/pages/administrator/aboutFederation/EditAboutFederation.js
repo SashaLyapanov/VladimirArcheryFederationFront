@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import axios from "../../../utils/axios";
 import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
-import EditAboutFederationForm from "./EditAboutFederationForm";
+import EditAboutFederationInfoForm from "./EditAboutFederationInfoForm";
+import EditAboutFederationFilesForm from "./EditAboutFederationFilesForm";
 
 
-const EditAboutFederation = () => {
+const EditAboutFederation = ({infoOrFiles}) => {
     const [aboutFederation, setAboutFederation] = useState();
 
     useEffect(() => {
@@ -24,7 +25,12 @@ const EditAboutFederation = () => {
             <Navbar/>
             <div className={'page-content'}>
                 <NamePage name={'Редактирование "О федерации"'}/>
-                {aboutFederation && <EditAboutFederationForm info={aboutFederation}/>}
+                {aboutFederation && infoOrFiles === 'info' ?
+                    <EditAboutFederationInfoForm infoAboutFederation={aboutFederation}/>
+                    :
+                    <EditAboutFederationFilesForm filesAboutFederation={aboutFederation?.fileNames}/>
+                }
+
             </div>
         </div>
     )

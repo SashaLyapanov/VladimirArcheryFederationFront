@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const FileUploader = ({ files, onFilesChange, onDeleteFile}) => {
+const FileUploader = ({files, onDeleteFile}) => {
 
     const [dragFile, setDragFile] = useState(false);
     const [localFiles, setLocalFiles] = useState([]);
@@ -27,43 +27,27 @@ const FileUploader = ({ files, onFilesChange, onDeleteFile}) => {
         console.log(files);
     }
 
-    // //Обработчик добавления файлов
-    // const handleAddFiles = (event) => {
-    //     const newFiles = Array.from(event.target.files); //Получаем файлы из input
-    //     const updatedFiles = [...localFiles, ...newFiles]; //Добавляем новые файлы к текущему списку
-    //     setLocalFiles(updatedFiles);
-    //     // onFilesChange(updatedFiles); //Передаем обновленный список в родительский компонент
-    // };
-
-    return(
+    return (
         <div className="file-uploader">
             <p className="header">Файлы</p>
 
-            {/*<input type="file" multiple onChange={handleAddFiles} className="file-input" />*/}
-
-            {dragFile
-                ?   <div
-                        className='drop-area'
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                        onDrop={e => onDropHandler(e)}
-                >Отпустите файлы, чтобы загрузить их</div>
-                :   <div
-                        className='drop-area-ready'
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                >Перетащите файлы для загрузки</div>
+            {<div
+                className='drop-area'
+                onDragStart={e => dragStartHandler(e)}
+                onDragLeave={e => dragLeaveHandler(e)}
+                onDragOver={e => dragStartHandler(e)}
+                onDrop={e => onDropHandler(e)}
+            >
+                Отпустите файлы, чтобы загрузить их
+            </div>
             }
             <div className="file-list">
-                {localFiles.map((file, index) => (
+                {localFiles.length > 0 && localFiles?.map((file, index) => (
                     <div key={index} className="file-item">
-                        <span>
-                            {console.log(file)}
-                            {file?.name || file}
+                        <span className="file-name">
+                            {file?.originalName || file}
                         </span>
-                        <button type='button' onClick={() => onDeleteFile(file)}>Удалить</button>
+                        <button type='button' onClick={() => onDeleteFile(file?.originalName)}>Удалить</button>
                     </div>
                 ))}
             </div>

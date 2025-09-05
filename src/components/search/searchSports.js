@@ -12,7 +12,9 @@ import { useNavigate } from 'react-router';
 const SearchSports = ({role}) => {
 
     const navigate = useNavigate()
+    const [inputSurname, setInputSurname] = useState('')
     const [inputName, setInputName] = useState('')
+    const [inputPatronymic, setInputPatronymic] = useState('')
     const {user, setUser} = useContext(CustomContext)
 
 
@@ -39,12 +41,28 @@ const SearchSports = ({role}) => {
         <div>
             <form className='container container_for_page search'>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>ФИО</p>
+                    <p className='fonts-roboto-regular name_search'>Фамилия</p>
                     <input type='text' 
-                            placeholder='ФИО' 
+                            placeholder='Фамилия'
                             className='fonts-roboto-thin user-search'
-                            value={inputName}
-                            onChange={e => setInputName(e.target.value)}/>
+                            value={inputSurname}
+                            onChange={e => setInputSurname(e.target.value)}/>
+                </div>
+                <div className="container-pole">
+                    <p className='fonts-roboto-regular name_search'>Имя</p>
+                    <input type='text'
+                           placeholder='Имя'
+                           className='fonts-roboto-thin user-search'
+                           value={inputName}
+                           onChange={e => setInputName(e.target.value)}/>
+                </div>
+                <div className="container-pole">
+                    <p className='fonts-roboto-regular name_search'>Отчество</p>
+                    <input type='text'
+                           placeholder='Отчество'
+                           className='fonts-roboto-thin user-search'
+                           value={inputPatronymic}
+                           onChange={e => setInputPatronymic(e.target.value)}/>
                 </div>
                 
                 <div className='button_flex'>
