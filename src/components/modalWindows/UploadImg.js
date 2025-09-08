@@ -1,7 +1,11 @@
 import {useFormik} from "formik";
 import * as Yup from 'yup';
+import {useContext} from "react";
+import {CustomContext} from "../../utils/Context";
 
 const UploadImg = (({closeModal, userId}) => {
+
+    const {user} = useContext(CustomContext);
 
     const formik = useFormik({
         initialValues: {
@@ -17,6 +21,7 @@ const UploadImg = (({closeModal, userId}) => {
 
             const requestOptions = {
                 method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + user?.accessToken },
                 body: formData
             };
 

@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router'
 import {useEffect} from "react";
 import {formatDateLocal} from "../../utils/date-utils";
 import RemoveAppModal from "../modalWindows/RemoveAppModal";
+import Files from "./Files";
 
 const CompetitionId = (competitionId) => {
 
@@ -59,6 +60,8 @@ const CompetitionId = (competitionId) => {
             setRemoveModalView(true);
         } else if (id === 'editCompetition') {
             navigate(`/editCompetition/${competitionId?.competitionId}`)
+        } else if (id === 'addProtocols') {
+            navigate(`/addProtocols/${competitionId?.competitionId}`)
         }
     }
 
@@ -84,6 +87,18 @@ const CompetitionId = (competitionId) => {
         return competition?.status === 'FUTURE';
     }
 
+    const getStatus = () => {
+        if (competition?.status === 'FUTURE') {
+            return 'Будущие соревнования, открытые для регистрации';
+        } else if (competition?.status === 'PRESENT') {
+            return 'Текущие соревнования';
+        } else if (competition?.status === 'PAST') {
+            return 'Прошедшие соревнования';
+        } else if (competition?.status === 'CANCELLED') {
+            return 'Отмененные соревнования';
+        }
+    }
+
     const bowTypeList = competition?.bowTypeList.map(bowType => bowType.bowTypeName).join(', ');
 
     return (
@@ -99,6 +114,8 @@ const CompetitionId = (competitionId) => {
                         className="content-competition-details"> {competition?.place}</span></p>
                     <p className="content-competition fonts-roboto-light">Вид соревнований: <span
                         className="content-competition-details">{competition?.type?.name}</span></p>
+                    <p className="content-competition fonts-roboto-light">Временной статус соревнований: <span
+                        className="content-competition-details">{getStatus()}</span></p>
                     <p className="content-competition fonts-roboto-light">Классы лука: <span
                         className="content-competition-details">{bowTypeList}</span></p>
                     <p className="content-competition fonts-roboto-light">Главный судья: <span
@@ -109,6 +126,8 @@ const CompetitionId = (competitionId) => {
                     <p className="content-competition-label">Описание мероприятия:</p>
                     <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
                 </div>
+
+                <Files props={competition}/>
 
                 <div className='button_flex line-block'>
                     {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() &&
@@ -126,12 +145,18 @@ const CompetitionId = (competitionId) => {
                              functionClick={() => onclick('removeApplication')}
                              id='removeApplication'/>
                     }
-                    {checkAdmin() && checkCompetitionIsFuture() && <Button
+                    {checkAdmin() && <Button
                         parametr='Редактировать соревнование'
                         className='long_button'
                         id='editCompetition'
                         functionClick={() => onclick('editCompetition')}
                     />}
+                    {checkAdmin() && <Button
+                        parametr='Добавить файлы протоколов'
+                        className='long_button'
+                        id='addProtocols'
+                        functionClick={() => onclick('addProtocols')}
+                        />}
                 </div>
             </div>
         </div>

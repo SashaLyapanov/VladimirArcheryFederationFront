@@ -60,5 +60,6 @@ export const formatDateLocalForForm = (date) => {
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const year = d.getFullYear();
 
-    return `${day}-${month}-${year}`;
+    return `${year}-${month}-${day}`;
+    // return `${day}-${month}-${year}`;
 }

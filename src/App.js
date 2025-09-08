@@ -24,6 +24,8 @@ import EditArticle from "./pages/administrator/articles/EditArticle";
 import CreateArticle from "./pages/administrator/articles/CreateArticle";
 import EditCompetition from "./pages/administrator/competitions/EditCompetition";
 import EditActivityFederation from "./pages/administrator/activityFederation/EditActivityFederation";
+import AddProtocols from "./pages/administrator/competitions/AddProtocols";
+
 function App() {
 
   const {user} = useContext(CustomContext)
@@ -43,6 +45,7 @@ function App() {
         <Route exac path='/' element={<Home/>}/>
         <Route exac path='/aboutFederation' element={<AboutFederation/>}/>
         <Route exac path='/activityFederation' element={<ActivityFederation/>}/>
+        <Route exac path='/addProtocols/:competitionId' element={<AddProtocols/>}/>
         <Route exac path='/applicationsList/:competitionId' element={<ListRegSportsmen />}/>
         <Route exac path='/article/:articleId' element={<ArticlePage/>}/>
         <Route exac path='/articleList' element={<ArticleList/>}/>

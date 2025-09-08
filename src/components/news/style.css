@@ -120,9 +120,10 @@
     display: flex;
     border: 1px solid #0C0C90;
     border-radius: 10px;
-    overflow: hidden;
+    height: 300px;
     margin: 10px 0 20px 0;
     justify-content: space-between;
+    overflow: Hidden;
 }
 
 .article-image{

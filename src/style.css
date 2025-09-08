@@ -114,8 +114,8 @@
 .avatar_img_left{
     padding: 10px;
     width: 25%;
-    height: auto;
     box-sizing: border-box;
+    object-fit: cover;
 }
 
 .avatar_img{

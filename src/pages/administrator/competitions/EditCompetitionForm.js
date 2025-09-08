@@ -13,6 +13,7 @@ const EditCompetitionForm = ({competitionId}) => {
     const [competition, setCompetition] = useState();
     const [competitionTypes, setCompetitionTypes] = useState([]);
     const [bowTypeList, setBowTypeList] = useState([]);
+    const [competitionStatuses, setCompetitionStatuses] = useState([]);
 
     useEffect(() => {
         const fetchCompetition = async () => {
@@ -48,9 +49,21 @@ const EditCompetitionForm = ({competitionId}) => {
                 console.error(e);
             }
         }
+        const fetchCompetitionStatuses = async () => {
+            try {
+                await fetch('http://localhost:8080/api/v1/general/allCompetitionStatuses')
+                    .then((res) => res.json())
+                    .then((response) => {
+                        setCompetitionStatuses(response);
+                    })
+            } catch (e) {
+                console.error(e);
+            }
+        }
         fetchCompetition();
         fetchCompetitionTypes();
         fetchBowTypes();
+        fetchCompetitionStatuses();
     }, [competitionId]);
 
     // competition && console.log(competition);
@@ -61,6 +74,7 @@ const EditCompetitionForm = ({competitionId}) => {
             place: competition?.place,
             type: competition?.type.id,
             bowTypeList: competition?.bowTypeList,
+            status: competition?.status,
             mainJudge: competition?.mainJudge,
             secretary: competition?.secretary,
             zamJudge: competition?.zamJudge,
@@ -76,6 +90,8 @@ const EditCompetitionForm = ({competitionId}) => {
             place: Yup.string()
                 .required('Поле обязательно для заполнения'),
             bowTypeList: Yup.array().min(1, "Необходимо указать минимум 1 класс"),
+            status: Yup.string()
+                .required('Выберите статус соревнований'),
             mainJudge: Yup.string()
                 .required('Поле обязательно для заполнения'),
             secretary: Yup.string()
@@ -97,6 +113,7 @@ const EditCompetitionForm = ({competitionId}) => {
                         id: values.type
                     },
                     bowTypeList: values.bowTypeList.map(id => ({id})),
+                    status: values.status,
                     mainJudge: values.mainJudge,
                     secretary: values.secretary,
                     zamJudge: values.zamJudge,
@@ -132,6 +149,35 @@ const EditCompetitionForm = ({competitionId}) => {
         }
         formik.setFieldValue('bowTypeList', selectedValues); // Установка выбранных значений
     };
+
+    const handleStatusChange = (event) => {
+        // const {options} = event.target;
+        // let selectedValues = null;
+        // for (let i = 0; i < options.length; i++) {
+        //     if (options[i].selected) {
+        //         selectedValues = options[i].value;
+        //     }
+        // }
+        // console.log(selectedValues);
+        // formik.setFieldValue('status', selectedValues); // Установка выбранных значений
+        formik.setFieldValue('status', event.target.value);
+    }
+
+    const getStatusName = (status) => {
+        if (status === "FUTURE") {
+            return 'Будущие соревнования';
+        } else if (status === 'PRESENT') {
+            return 'Текущие соревнования';
+        } else if (status === 'PAST') {
+            return 'Прошедшие соревнования';
+        } else if (status === 'CANCELLED') {
+            return 'Отмененные соревнования';
+        }
+    }
+
+    const checkSelectedStatus = (status) => {
+        return competition?.status === status;
+    }
 
     return (
         <form className="container" onSubmit={formik.handleSubmit}>
@@ -236,6 +282,25 @@ const EditCompetitionForm = ({competitionId}) => {
             </div>
             {formik.touched.bowTypeList && formik.errors.bowTypeList ? (
                 <div className='error-massage'>{formik.errors.bowTypeList}</div>
+            ) : null}
+
+            <div className="container-pole">
+                <p className='fonts-roboto-regular name_profile'>Статус соревнований</p>
+                <select
+                    id='status'
+                    name='status'
+                    className='fonts-roboto-thin input_profile'
+                    value={formik.values.status}
+                    onChange={handleStatusChange}
+                >
+                    <option value='' disabled selected hidden>Выберите статус соревнований</option>
+                    {competitionStatuses?.map(status => (
+                        <option key={status} value={status} selected={checkSelectedStatus(status)}>{getStatusName(status)}</option>
+                    ))}
+                </select>
+            </div>
+            {formik.touched.status && formik.errors.status ? (
+                <div className='error-massage'>{formik.errors.status}</div>
             ) : null}
 
             <div className="container-pole">

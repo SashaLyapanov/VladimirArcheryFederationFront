@@ -1,7 +1,7 @@
 import pdf from '../../img/pdf.png'
 import {useEffect, useState} from "react";
 
-const DownloadPDFButton = ({fileName, preview, source}) => {
+const DownloadPDFButton = ({fileName, preview, source, competitionId}) => {
 
     const [fileState, setFileState] = useState();
 
@@ -26,6 +26,10 @@ const DownloadPDFButton = ({fileName, preview, source}) => {
                 }
                 if (source === 'regionalTeam') {
                     response = await fetch('http://localhost:8081/regionalTeam/download?fileName=' + link)
+                }
+                if (source === 'competition') {
+                    console.log(competitionId);
+                    response = await fetch('http://localhost:8081/competition/download?competitionId=' + competitionId + '&fileName=' + link);
                 }
                 if (response.ok) {
                     const blob = await response.blob();
