@@ -24,12 +24,11 @@ const DownloadPDFButton = ({fileName, preview, source, competitionId}) => {
                 if (source === 'activityFederationBiathlon') {
                     response = await fetch('http://localhost:8081/activityFederation/download?flag=Biathlon&fileName=' + link)
                 }
+                if (source === 'competition') {
+                    response = await fetch('http://localhost:8081/competition/download?competitionId=' + competitionId + '&fileName=' + link);
+                }
                 if (source === 'regionalTeam') {
                     response = await fetch('http://localhost:8081/regionalTeam/download?fileName=' + link)
-                }
-                if (source === 'competition') {
-                    console.log(competitionId);
-                    response = await fetch('http://localhost:8081/competition/download?competitionId=' + competitionId + '&fileName=' + link);
                 }
                 if (response.ok) {
                     const blob = await response.blob();

@@ -1,13 +1,18 @@
 import Navbar from "../../components/navbar/Navbar";
 import NamePage from "../../components/namePage/NamePage";
 import SportsmanList from "../../components/sports/SportsmanList";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import FilesList from "../../components/regionalTeam/FilesList";
+import {CustomContext} from "../../utils/Context";
+import Button from "../../components/button/Button";
+import {useNavigate} from "react-router";
 
 const RegionalTeam = () => {
 
+    const {user} = useContext(CustomContext);
+    const navigate = useNavigate();
     const [sportsmen, setSportsmen] = useState();
-    const [filesList, setFilesList] = useState();
+    const [filesList, setFilesList] = useState([]);
 
     useEffect(() => {
         const fetchSportsmen = async () => {
@@ -36,13 +41,26 @@ const RegionalTeam = () => {
         fetchFilesList();
     }, []);
 
+    function checkAdminRole(role) {
+        return role === "ADMIN";
+    }
+
+    const editFiles = () => {
+        navigate('/editRegionalTeamFiles');
+    }
+
     return (
         <div>
             <Navbar/>
             <div className="page-content">
                 <NamePage name='Сборная команда Владимирской области'/>
                 <div style={{marginBottom: '20px'}}>
-                    <h2 className='info-block'>Справочная информация</h2>
+                    <div>
+                        <h2 className='info-block'>Справочная информация</h2>
+                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать файлы"} className='button editButton' functionClick={editFiles}/>}
+                        <br/>
+                        <br/>
+                    </div>
                     {filesList && <FilesList filesList={filesList} source="regionalTeam"/>}
                 </div>
                 <h2 className='info-block'>Члены региональной сборной команды</h2>

@@ -3,8 +3,6 @@ import SportsmanInfo from "../../pages/sports/SportsmanInfo";
 
 const SportsmanList = ({sportsmen}) => {
 
-    console.log(sportsmen);
-
     return (
         <div className='competitions'>
             <div className='container container_for_competition'>
