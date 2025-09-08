@@ -63,40 +63,36 @@ const ActivityFederation = () => {
             <h1>3Д стрельба из лука</h1>
             {checkAdminRole(user?.userData?.role) &&
                 <Button parametr={"Редактировать файлы 3D стрельбы"} className='button editButton'
-                        functionClick={editFiles3D}/> &&
-                <br/> &&
-                <br/>
-            }
+                        functionClick={editFiles3D}/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
             {filesList?.threeD && <FilesList filesList={filesList?.threeD} source="activityFederation3D"/>}
             <br/>
 
             <h1>Классическая стрельба</h1>
             {checkAdminRole(user?.userData?.role) &&
                 <Button parametr={"Редактировать файлы классической стрельбы"} className='button editButton'
-                        functionClick={editFilesClassic}/> &&
-                <br/> &&
-                <br/>
-            }
+                        functionClick={editFilesClassic}/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
             {filesList?.classic && <FilesList filesList={filesList?.classic} source="activityFederationClassic"/>}
             <br/>
 
             <h1>Archery биатлон</h1>
             {checkAdminRole(user?.userData?.role) &&
                 <Button parametr={"Редактировать файлы классической стрельбы"} className='button editButton'
-                        functionClick={editFilesBiathlon}/> &&
-                <br/> &&
-                <br/>
-            }
+                        functionClick={editFilesBiathlon}/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
             {filesList?.biathlon && <FilesList filesList={filesList?.biathlon} source="activityFederationBiathlon"/>}
             <br/>
 
             {filesList && <h1 style={{textAlign: "center", margin: "20px"}}>Общая информация</h1>}
             {checkAdminRole(user?.userData?.role) &&
                 <Button parametr={"Редактировать файлы общей информации"} className='button editButton'
-                        functionClick={editFilesGeneral}/> &&
-                <br/> &&
-                <br/>
-            }
+                        functionClick={editFilesGeneral}/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
+            {checkAdminRole(user?.userData?.role) && <br/>}
             {filesList?.general && <FilesList filesList={filesList?.general} source="activityFederationGeneral"/>}
 
             <h1 style={{textAlign: "center", margin: "20px"}}>ИСТОРИЯ РАЗВИТИЯ СТРЕЛЬБЫ ИЗ ЛУКА
