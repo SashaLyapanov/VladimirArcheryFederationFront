@@ -4,12 +4,13 @@ import {CustomContext} from "../../utils/Context";
 import {useFormik} from "formik";
 import Navbar from "../../components/navbar/Navbar";
 import NamePage from "../../components/namePage/NamePage";
+import {apiService} from "../../utils/ApiService";
 
 const EditRegionalTeamFiles = () => {
 
     const [regionalTeamFiles, setRegionalTeamFiles] = useState();
     const navigate = useNavigate();
-    const {user} = useContext(CustomContext);
+    // const {user} = useContext(CustomContext);
     const [fileState, setFileState] = useState([]);
     const [dragFile, setDragFile] = useState(false);
 
@@ -45,14 +46,16 @@ const EditRegionalTeamFiles = () => {
                 formData.append('files', fileObject);
             })
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Authorization': 'Bearer ' + user?.accessToken},
-                body: formData
-            };
+            // const requestOptions = {
+            //     method: 'POST',
+            //     headers: {'Authorization': 'Bearer ' + user?.accessToken},
+            //     body: formData
+            // };
 
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/addFilesToRegionalFederation', requestOptions)
+                // const response = await fetch('http://localhost:8080/api/v1/admin/addFilesToRegionalFederation', requestOptions)
+                const response = await apiService.post('/api/v1/admin/addFilesToRegionalFederation', formData, true);
+                console.log(response);
                 if (response) {
                     navigate(`/regionalTeam`);
                 } else {
