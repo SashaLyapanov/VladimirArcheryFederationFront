@@ -1,6 +1,6 @@
 import Button from "../button/Button"
 import {useNavigate, useParams} from "react-router";
-import axios from '../../utils/axios'
+import {apiServiceAxios} from '../../utils/axios'
 import {useContext, useState, useEffect} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useFormik} from "formik";
@@ -18,7 +18,7 @@ const Registration = (competitionId) => {
 
     useEffect(() => {
         compId &&
-        axios.get('general/competition?id=' + compId?.competitionId)
+        apiServiceAxios.get('general/competition?id=' + compId?.competitionId, {}, false)
             .then(({data}) => setCompetition(data));
     }, []);
 

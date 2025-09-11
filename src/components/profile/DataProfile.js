@@ -1,5 +1,5 @@
 import Button from "../button/Button"
-import axios from '../../utils/axios'
+import {apiServiceAxios} from '../../utils/axios'
 import React, {useContext, useEffect, useState} from 'react';
 import {CustomContext} from "../../utils/Context";
 
@@ -28,11 +28,11 @@ const DataProfile = ({sportsman}) => {
         return `${year}-${month}-${day}`;
     }
     useEffect(() => {
-        axios.get('general/allSportsTitle')
+        apiServiceAxios.get('general/allSportsTitle', {}, false)
             .then(({data}) => setSportsTitles(data))
-        axios.get('general/allRegions')
+        apiServiceAxios.get('general/allRegions', {}, false)
             .then(({data}) => setRegions(data))
-        axios.get('general/allSex')
+        apiServiceAxios.get('general/allSex', {}, false)
             .then(({data}) => setSexes(data))
     }, []);
 
@@ -48,23 +48,23 @@ const DataProfile = ({sportsman}) => {
     }, [sportsman]);
 
     const newSportsman = {
-        'email': Email,
-        'region': {
-            'id': Region
+        email: Email,
+        region: {
+            id: Region
         },
-        'sex': {
-            'id': Sex
+        sex: {
+            id: Sex
         },
-        'sportsTitle': {
-            'id': SportsTitle
+        sportsTitle: {
+            id: SportsTitle
         },
-        'firstName': Name,
-        'surname': Surname,
-        'patronymic': Patronymic,
-        'birthDate': BirthDate
+        firstName: Name,
+        surname: Surname,
+        patronymic: Patronymic,
+        birthDate: BirthDate
     }
 
-    const onClick = () => {
+    const onClick = async () => {
         document.getElementById('button-edit').classList.remove('button-display')
         document.getElementById('button-edit-img').classList.remove('button-display')
         document.getElementById('button-save').classList.add('button-display')
@@ -73,9 +73,7 @@ const DataProfile = ({sportsman}) => {
             input.classList.remove('input_profile_edit')
             input.setAttribute('disabled', 'disabled');
         }
-        axios.put(`personalAccount/editProfile?sportsmanId=${sportsman?.id}`, newSportsman,
-            { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-            );
+        apiServiceAxios.put(`personalAccount/editProfile?sportsmanId=${sportsman?.id}`, newSportsman, {}, true)
     }
     return (
         <div className="data-profile">

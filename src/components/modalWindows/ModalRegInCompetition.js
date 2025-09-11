@@ -1,25 +1,22 @@
 import './modalStyles.css'
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
 import {useNavigate} from "react-router";
 
 const ModalRegInCompetition = ({closeModal, compId, values}) => {
 
-    const {user, setUser} = useContext(CustomContext);
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
 
     const confirmRegistration = async () => {
         const dataOfRegistrationCompetition = {
-            "bowType": {
-                "id": values.bowType
+            bowType: {
+                id: values.bowType
             }
         }
 
-        axios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition,
-            { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-            )
-        // apiServiceAxios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition)
+        apiServiceAxios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition, {}, true)
             .then(((resp) => {
                 if (resp.data) {
                     navigate(`/competition/${compId}`);

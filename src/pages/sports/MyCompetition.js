@@ -4,7 +4,7 @@ import Navbar from '../../components/navbar/Navbar'
 import NamePage from '../../components/namePage/NamePage'
 import '../../style.css';
 import ListCompetition from '../../components/competition/ListCompetition'
-import axios from '../../utils/axios';
+import axios, {apiServiceAxios} from '../../utils/axios';
 import { useContext } from 'react'
 import { CustomContext } from '../../utils/Context'
 
@@ -19,9 +19,7 @@ const MyCompetition = () => {
 
   useEffect(() => {
     if(user?.userData?.id){
-      axios.get(`sportsman/allMyApplication?myId=${user?.userData?.id}`,
-          { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-        )
+      apiServiceAxios.get(`sportsman/allMyApplication?myId=${user?.userData?.id}`, {}, true)
         .then(({data}) => {
           let competition = []
             data.map((application) => (

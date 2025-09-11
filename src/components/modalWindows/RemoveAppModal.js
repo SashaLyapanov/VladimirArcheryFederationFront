@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 
 const RemoveAppModal = ({ competitionId, closeModal}) => {
     const {user, setUser} = useContext(CustomContext);
@@ -10,10 +10,8 @@ const RemoveAppModal = ({ competitionId, closeModal}) => {
             alert("Войдите заново в систему и повторите запрос.");
             return;
         }
-        axios.post(`sportsman/deleteApplication?sportsmanId=${user?.userData?.id}&competitionId=${competitionId?.competitionId}`
-            , {}
-            ,{ headers: { 'Authorization': 'Bearer ' + user?.accessToken } }
-            )
+        apiServiceAxios.post(`sportsman/deleteApplication?sportsmanId=${user?.userData?.id}&competitionId=${competitionId?.competitionId}`,
+            null, {}, true)
             .catch((resp) => {
                 alert(resp.response.data);
             })

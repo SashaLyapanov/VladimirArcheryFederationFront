@@ -2,7 +2,7 @@ import PhotoProfile from "./PhotoProfile"
 import DataProfile from "./DataProfile"
 import './profile.css'
 import {useContext, useEffect, useState} from "react";
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import {CustomContext, SportContext} from "../../utils/Context";
 
 const InformationUser = ({btnStatus}) => {
@@ -15,17 +15,13 @@ const InformationUser = ({btnStatus}) => {
         if (!user || !user?.accessToken) return;
 
         const fetchSportsmanData = (id) => {
-            axios.get(`admin/sportsmanById?id=${id}`,
-                {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}}
-            )
+            apiServiceAxios.get(`admin/sportsmanById?id=${id}`, {}, true)
                 .then(({data}) => setSportsman(data))
                 .catch(error => console.error('Admin data error:', error));
         }
 
         const fetchPersonalData = () => {
-            axios.get(`personalAccount/myProfileData?sportsmanId=${user?.userData?.id}`,
-                {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}}
-            )
+            apiServiceAxios.get(`personalAccount/myProfileData?sportsmanId=${user?.userData?.id}`, {}, true)
                 .then(({data}) => setSportsman(data));
         }
         if (user?.userData?.role === "ADMIN") {

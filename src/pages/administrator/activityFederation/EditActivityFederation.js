@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import axios from "../../../utils/axios";
+import {apiServiceAxios} from "../../../utils/axios";
 import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
 import EditActivityFederationFile from './EditActivityFederationFile';
@@ -24,7 +24,7 @@ const EditActivityFederation = () => {
             setPageName("Редактирование блока 'Обща информация'");
         }
 
-        axios.get("/general/activityFederation")
+        apiServiceAxios.get("/general/activityFederation", {}, false)
             .then(resp => {
                 setActivityFederation(resp.data)
             })

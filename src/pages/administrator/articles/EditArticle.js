@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import axios from "../../../utils/axios";
+import {apiServiceAxios} from "../../../utils/axios";
 import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
 import EditArticleForm from "../articles/EditArticleForm";
@@ -11,7 +11,7 @@ const EditArticle = () => {
 
     useEffect(() => {
         {
-            axios.get('/general/getArticle?articleId=' + articleId?.aritcleId)
+            apiServiceAxios.get('/general/getArticle?articleId=' + articleId?.aritcleId, {}, false)
                 .then(resp => {
                     setArticle(resp.data)
                 })

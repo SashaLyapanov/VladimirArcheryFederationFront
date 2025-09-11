@@ -1,7 +1,7 @@
 import './authorization.css'
 import '../../fonts/roboto/fonts.css'
 import Button from '../button/Button'
-import axios from '../../utils/axios'
+import {apiServiceAxios} from '../../utils/axios'
 import {useContext, useState} from 'react'
 import { CustomContext } from '../../utils/Context'
 import { useNavigate } from 'react-router'
@@ -30,7 +30,7 @@ const Login = () => {
                 password: values.password
             }
 
-            axios.post('auth/signin', newUser)
+            apiServiceAxios.post('auth/signin', newUser, {}, false)
                 .then(({data}) =>
                 {
                     setUser({

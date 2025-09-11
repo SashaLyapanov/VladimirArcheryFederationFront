@@ -1,7 +1,7 @@
 import './authorization.css'
 import '../../fonts/roboto/fonts.css'
 import Button from '../button/Button'
-import axios from '../../utils/axios'
+import {apiServiceAxios} from '../../utils/axios'
 import {useContext, useState, useEffect} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
@@ -17,11 +17,11 @@ const RegistrationForm = () => {
 
     const navigate = useNavigate()
     useEffect(() => {
-        axios.get('general/allSportsTitle')
+        apiServiceAxios.get('general/allSportsTitle', {}, false)
             .then(({data}) => setSportsTitles(data))
-        axios.get('general/allRegions')
+        apiServiceAxios.get('general/allRegions', {}, false)
             .then(({data}) => setRegions(data))
-        axios.get('general/allSex')
+        apiServiceAxios.get('general/allSex', {}, false)
             .then(({data}) => setSexes(data))
     }, []);
 
@@ -41,6 +41,8 @@ const RegistrationForm = () => {
             firstName: Yup.string()
                 .required('Поле обязательно для заполнения'),
             surname: Yup.string()
+                .required('Поле обязательно для заполнения'),
+            patronymic: Yup.string()
                 .required('Поле обязательно для заполнения'),
             email: Yup.string().email("Поле не удовлетворяет требованиям"),
             password: Yup.string()
@@ -71,7 +73,7 @@ const RegistrationForm = () => {
                 'birthDate': values.birthDate
 
             }
-            axios.post('auth/signup', newUser)
+            apiServiceAxios.post('auth/signup', newUser, {}, false)
                 .then(({data}) => {
                     setUser({
                         ...data
@@ -79,6 +81,7 @@ const RegistrationForm = () => {
                     localStorage.setItem('user', JSON.stringify({
                         ...data
                     }))
+                    alert('Подтвердите почту, перейдя по ссылке в электронном письме, которое мы выслали на вашу почту.')
                     navigate('/login')
                 })
                 .catch((err) => console.log(err.message))
@@ -91,19 +94,6 @@ const RegistrationForm = () => {
             <div className='popup'>
                 <form className='form' onSubmit={formik.handleSubmit}>
                     <p className='header fonts-roboto-black'>Регистрация</p>
-                    <input
-                        id='firstName'
-                        name='firstName'
-                        type='text'
-                        className='input_auth fonts-roboto-light'
-                        placeholder='Введите имя'
-                        value={formik.values.firstName}
-                        onChange={formik.handleChange}
-                    />
-                    {formik.touched.firstName && formik.errors.firstName ? (
-                        <div className='error-massage'>{formik.errors.firstName}</div>
-                    ) : null}
-
                     <input
                         id='surname'
                         name='surname'
@@ -118,6 +108,19 @@ const RegistrationForm = () => {
                     ) : null}
 
                     <input
+                        id='firstName'
+                        name='firstName'
+                        type='text'
+                        className='input_auth fonts-roboto-light'
+                        placeholder='Введите имя'
+                        value={formik.values.firstName}
+                        onChange={formik.handleChange}
+                    />
+                    {formik.touched.firstName && formik.errors.firstName ? (
+                        <div className='error-massage'>{formik.errors.firstName}</div>
+                    ) : null}
+
+                    <input
                         id='patronymic'
                         name='patronymic'
                         type='text'
@@ -126,6 +129,9 @@ const RegistrationForm = () => {
                         value={formik.values.patronymic}
                         onChange={formik.handleChange}
                     />
+                    {formik.touched.patronymic && formik.errors.patronymic ? (
+                        <div className='error-massage'>{formik.errors.patronymic}</div>
+                    ) : null}
 
                     <input
                         id='birthDate'

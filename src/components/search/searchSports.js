@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import '../../style.css';
 import '../../fonts/roboto/fonts.css'
 import './style.css'

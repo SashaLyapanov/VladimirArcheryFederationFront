@@ -1,7 +1,7 @@
 import Button from "../button/Button"
 import '../profile/profile.css'
 import React, {useState, useEffect, useContext} from 'react';
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import {useNavigate} from "react-router";
 import {CustomContext} from "../../utils/Context";
 
@@ -13,11 +13,11 @@ const AddSports = () => {
     const [regions, setRegions] = useState([])
 
     useEffect(() => {
-        axios.get('general/allSportsTitle')
+        apiServiceAxios.get('general/allSportsTitle', {}, false)
             .then(({data}) => setSportsTitles(data))
-        axios.get('general/allRegions')
+        apiServiceAxios.get('general/allRegions', {}, false)
             .then(({data}) => setRegions(data))
-        axios.get('general/allSex')
+        apiServiceAxios.get('general/allSex', {}, false)
             .then(({data}) => setSexs(data))
     }, []);
 
@@ -57,9 +57,7 @@ const AddSports = () => {
 
     const onClick = () => {
         console.log(newSportsman)
-        axios.post('admin/createSportsman', newSportsman,
-            {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}}
-        )
+        apiServiceAxios.post('admin/createSportsman', newSportsman, {}, true)
             .then(() =>
                 navigate('/sports'))
     }

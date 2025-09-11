@@ -10,7 +10,6 @@ const EditRegionalTeamFiles = () => {
 
     const [regionalTeamFiles, setRegionalTeamFiles] = useState();
     const navigate = useNavigate();
-    // const {user} = useContext(CustomContext);
     const [fileState, setFileState] = useState([]);
     const [dragFile, setDragFile] = useState(false);
 

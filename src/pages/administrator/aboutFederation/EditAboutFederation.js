@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import axios from "../../../utils/axios";
+import {apiServiceAxios} from "../../../utils/axios";
 import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
 import EditAboutFederationInfoForm from "./EditAboutFederationInfoForm";
@@ -10,7 +10,7 @@ const EditAboutFederation = ({infoOrFiles}) => {
     const [aboutFederation, setAboutFederation] = useState();
 
     useEffect(() => {
-        axios.get("/general/getAboutFederation")
+        apiServiceAxios.get("/general/getAboutFederation", {}, false)
             .then(resp => {
                 setAboutFederation(resp.data)
             })

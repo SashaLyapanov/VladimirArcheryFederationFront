@@ -88,9 +88,6 @@ const AddCompetition = () => {
                 'endDate': values.endDate,
                 'description': values.description,
             }
-            // axios.post('admin/createCompetition', newCompetition,
-            //     { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-            //     )
             apiService.post('/admin/createCompetition', newCompetition)
                 .then((data) => {
                     navigate('/competition')

@@ -1,5 +1,5 @@
 import '../sports/sports.css'
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import {useContext} from 'react'
 import {SportContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
@@ -11,24 +11,19 @@ const SportsListAdmin = ({sports, user}) => {
 
     const sportsId = (e) => {
         e.preventDefault()
-        axios.get(
-            'admin/sportsmanByEmail',
-            {
-                params: {
-                    email: e.target.getAttribute("id")
-                },
-                headers: {
-                    'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken
-                }
+        apiServiceAxios.get('admin/sportsmanByEmail', {
+            params: {
+                email: e.target.getAttribute("id")
             }
-        ).then(({data}) => {
-            setSports({
-                ...data
+        }, true)
+            .then(({data}) => {
+                setSports({
+                    ...data
+                })
+                localStorage.setItem('sport', JSON.stringify({
+                    ...data
+                }))
             })
-            localStorage.setItem('sport', JSON.stringify({
-                ...data
-            }))
-        })
         navigate('/profile');
     }
 

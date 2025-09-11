@@ -3,7 +3,7 @@ import photo from '../../img/photo.png'
 import {useContext, useEffect, useState} from 'react'
 import UploadImg from "../modalWindows/UploadImg";
 import {CustomContext} from "../../utils/Context";
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const PhotoProfile = ({sportsmanProps, btnStatus}) => {
@@ -98,8 +98,7 @@ const PhotoProfile = ({sportsmanProps, btnStatus}) => {
 
     const onClickAddInTeam = async () => {
         try {
-            const response = await axios.put(`admin/addInRegionalTeam?id=${sportsman?.id}`, {},
-                {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}});
+            const response = await apiServiceAxios.put(`admin/addInRegionalTeam?id=${sportsman?.id}`, null, {}, true);
             if (response.status === 200) {
                 const result = response.data;
                 setSportsman(result);
@@ -113,8 +112,7 @@ const PhotoProfile = ({sportsmanProps, btnStatus}) => {
 
     const onClickDeleteFromTeam = async () => {
         try {
-            const response = await axios.put(`admin/deleteFromRegionalTeam?id=${sportsman?.id}`, {},
-                {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}});
+            const response = await apiServiceAxios.put(`admin/deleteFromRegionalTeam?id=${sportsman?.id}`, null, {}, true);
             if (response.status === 200) {
                 const result = response.data;
                 setSportsman(result);

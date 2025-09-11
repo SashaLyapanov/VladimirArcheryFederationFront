@@ -6,7 +6,7 @@ import picture4 from "./../../img/aboutFederation/aboutF4.jpg";
 import picture5 from "./../../img/aboutFederation/aboutF5.jpg";
 import picture6 from "./../../img/aboutFederation/aboutF6.jpg";
 import {useEffect, useState, useContext} from "react";
-import axios from "../../utils/axios";
+import {apiServiceAxios} from "../../utils/axios";
 import NamePage from "../../components/namePage/NamePage";
 import ManagersInfo from "../../components/aboutFederation/ManagersInfo";
 import LinksInfo from "../../components/aboutFederation/LinksInfo";
@@ -23,7 +23,7 @@ const AboutFederation = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("/general/getAboutFederation")
+        apiServiceAxios.get("/general/getAboutFederation", {}, false)
             .then(resp => {
                 setAboutFederation(resp.data);
             })
