@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import {CustomContext} from "../../utils/Context";
 import Button from "../../components/button/Button";
 import {useNavigate} from "react-router";
+import {apiService} from "../../utils/ApiService";
 
 const ArticleList = () => {
 
@@ -14,11 +15,29 @@ const ArticleList = () => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/getArticles')
-            .then((res) => res.json())
-            .then((result) => {
-                setArticles(result);
-            });
+        // Создаем флаг для отслеживания mounted состояния
+        let isMounted = true;
+
+        const fetchArticles = async () => {
+            try {
+                const response = await apiService.get('/general/getArticles');
+                const result = await response.json();
+
+                // Проверяем, что компонент еще mounted перед обновлением состояния
+                if (isMounted) {
+                    setArticles(result);
+                }
+            } catch (error) {
+                console.error('Error fetching articles:', error);
+            }
+        };
+
+        fetchArticles();
+
+        // Cleanup функция - возвращаем функцию, а не Promise!
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     function checkAdminRole(role) {

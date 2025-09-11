@@ -4,12 +4,13 @@ import NamePage from "../namePage/NamePage";
 import ApplicationList from "../sports/ApplicationList";
 import {useParams} from "react-router";
 import {CustomContext} from "../../utils/Context";
+import {apiService} from "../../utils/ApiService";
 
 const ListRegSportsmen = () => {
 
     const competitionId = useParams();
 
-    const {user, setUser} = useContext(CustomContext);
+    const {user} = useContext(CustomContext);
     const [applications, setApplications] = useState([]);
     const [competition, setCompetition] = useState();
 
@@ -19,9 +20,7 @@ const ListRegSportsmen = () => {
         // Всегда грузим карточку соревнования (если публичный эндпоинт)
         (async () => {
             try {
-                const res = await fetch(
-                    `http://localhost:8080/api/v1/general/competition?id=${competitionId.competitionId}`
-                );
+                const res = await apiService.get(`/general/competition?id=${competitionId.competitionId}`, false);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 setCompetition(await res.json());
             } catch (e) {
@@ -30,14 +29,11 @@ const ListRegSportsmen = () => {
         })();
 
         // Грузим список спортсменов ТОЛЬКО когда есть токен
-        if (!user?.accessToken) return;
+        // if (!user?.accessToken) return;
 
         (async () => {
             try {
-                const res = await fetch(
-                    `http://localhost:8080/api/v1/sportsman/sportsmenByCompetitionAndBowType?id=${competitionId?.competitionId}&bowTypeName=all`,
-                    { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-                );
+                const res = await apiService.get(`/sportsman/sportsmenByCompetitionAndBowType?id=${competitionId?.competitionId}&bowTypeName=all`, false)
                 if (!res.ok) {
                     // при 401/500 не пытаемся парсить список
                     console.error('HTTP error:', res.status);

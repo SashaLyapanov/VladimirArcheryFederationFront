@@ -1,10 +1,11 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import React from "react";
 import {formatDateLocal} from "../../utils/date-utils";
 import Button from "../button/Button";
 import {useNavigate} from "react-router";
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
+import {apiService} from "../../utils/ApiService";
 
 const ArticleInfo = (articleId) => {
     const [imgState, setImgState] = useState();
@@ -15,7 +16,7 @@ const ArticleInfo = (articleId) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/general/getArticle?articleId=' + articleId?.articleId);
+                const response = await apiService.get('/general/getArticle?articleId=' + articleId?.articleId);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -29,6 +30,7 @@ const ArticleInfo = (articleId) => {
             }
         };
         fetchData();
+
     }, [articleId]);
 
     const fetchArticleImage = async (link) => {
@@ -55,10 +57,7 @@ const ArticleInfo = (articleId) => {
     }
 
     const deleteClick = async () => {
-        const response = await fetch('http://localhost:8080/api/v1/admin/deleteArticle?articleId=' + articleId?.articleId, {
-            method: "post",
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }
-        });
+        const response = await apiService.post('/admin/deleteArticle?articleId=' + articleId?.articleId)
         if (response.ok) {
             alert('Новость успешно удалена')
             navigate(`/articleList`);

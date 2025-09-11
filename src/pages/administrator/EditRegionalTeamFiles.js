@@ -1,6 +1,5 @@
-import {useNavigate, useParams} from "react-router";
-import {useContext, useEffect, useState} from "react";
-import {CustomContext} from "../../utils/Context";
+import {useNavigate} from "react-router";
+import {useEffect, useState} from "react";
 import {useFormik} from "formik";
 import Navbar from "../../components/navbar/Navbar";
 import NamePage from "../../components/namePage/NamePage";
@@ -17,7 +16,8 @@ const EditRegionalTeamFiles = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/general/regionalTeamFiles');
+                // const response = await fetch('http://localhost:8080/api/v1/general/regionalTeamFiles');
+                const response = await apiService.get('/general/regionalTeamFiles');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -54,8 +54,7 @@ const EditRegionalTeamFiles = () => {
 
             try {
                 // const response = await fetch('http://localhost:8080/api/v1/admin/addFilesToRegionalFederation', requestOptions)
-                const response = await apiService.post('/api/v1/admin/addFilesToRegionalFederation', formData, true);
-                console.log(response);
+                const response = await apiService.post('/admin/addFilesToRegionalFederation', formData, true);
                 if (response) {
                     navigate(`/regionalTeam`);
                 } else {

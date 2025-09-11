@@ -1,13 +1,11 @@
 import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
-import {useContext, useEffect, useState} from "react";
-import FileUploader from "../../../components/files/FileUploader";
-import {CustomContext} from "../../../utils/Context";
+import {useEffect, useState} from "react";
+import {apiService} from "../../../utils/ApiService";
 
 const EditAboutFederationInfoForm = ({filesAboutFederation}) => {
 
     const navigate = useNavigate();
-    const {user} = useContext(CustomContext);
     const [fileState, setFileState] = useState([]);
     const [dragFile, setDragFile] = useState(false);
 
@@ -25,14 +23,8 @@ const EditAboutFederationInfoForm = ({filesAboutFederation}) => {
                 formData.append('files', fileObject);
             })
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Authorization': 'Bearer ' + user?.accessToken},
-                body: formData
-            };
-
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/changeFilesAboutFederation', requestOptions)
+                const response = await apiService.post('/admin/changeFilesAboutFederation', formData, true);
                 if (response) {
                     navigate('/aboutFederation');
                 } else {

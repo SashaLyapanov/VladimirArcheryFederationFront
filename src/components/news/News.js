@@ -5,6 +5,7 @@ import "../news/style.css"
 import '../../style.css';
 import SmallNews from './SmallNews';
 import {Link} from "react-router-dom";
+import {apiService} from "../../utils/ApiService";
 
 
 const News = () => {
@@ -15,7 +16,7 @@ const News = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/general/getArticles');
+                const response = await apiService.get('/general/getArticles');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

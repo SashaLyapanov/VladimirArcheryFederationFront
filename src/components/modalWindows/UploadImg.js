@@ -1,11 +1,8 @@
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import {useContext} from "react";
-import {CustomContext} from "../../utils/Context";
+import {apiService} from "../../utils/ApiService";
 
 const UploadImg = (({closeModal, userId}) => {
-
-    const {user} = useContext(CustomContext);
 
     const formik = useFormik({
         initialValues: {
@@ -19,14 +16,9 @@ const UploadImg = (({closeModal, userId}) => {
             const formData = new FormData();
             formData.append('file', values.file);
 
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Authorization': 'Bearer ' + user?.accessToken },
-                body: formData
-            };
-
             try {
-                const response = await fetch(`http://localhost:8080/api/v1/personalAccount/uploadImage?sportsmanId=${userId}`, requestOptions);
+
+                const response = await apiService.post(`/personalAccount/uploadImage?sportsmanId=${userId}`, formData, true);
                 if (response.ok) {
                     window.location.reload();
                 } else {

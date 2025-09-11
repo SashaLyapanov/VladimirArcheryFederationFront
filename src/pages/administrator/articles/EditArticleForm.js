@@ -1,13 +1,10 @@
 import {useNavigate} from "react-router";
-import {useContext, useState} from "react";
 import {useFormik} from "formik";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const EditArticleForm = ({info}) => {
 
-    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
-    const [fileState, setFileState] = useState([]);
 
     console.log(info);
 
@@ -19,18 +16,16 @@ const EditArticleForm = ({info}) => {
         },
         onSubmit: async values => {
             const requestOptions = {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken},
-                body: JSON.stringify({
+                body: {
                     id: info?.id,
                     name: values.name,
                     body: values.body,
                     link: values.link,
-                })
+                }
             };
 
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/changeArticle', requestOptions)
+                const response = await apiService.put('/admin/changeArticle', requestOptions.body)
                 if (response) {
                     navigate(`/article/${info?.id}`);
                 } else {

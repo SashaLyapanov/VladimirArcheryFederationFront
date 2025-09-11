@@ -4,11 +4,9 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 import Button from "../../../components/button/Button";
 import {formatDateLocalForForm} from "../../../utils/date-utils";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const EditCompetitionForm = ({competitionId}) => {
-
-    const {user} = useContext(CustomContext);
     const navigate = useNavigate()
     const [competition, setCompetition] = useState();
     const [competitionTypes, setCompetitionTypes] = useState([]);
@@ -18,7 +16,7 @@ const EditCompetitionForm = ({competitionId}) => {
     useEffect(() => {
         const fetchCompetition = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/competition?id=' + competitionId?.competitionId)
+                await apiService.get('/general/competition?id=' + competitionId?.competitionId)
                     .then((res) => res.json())
                     .then((response) => {
                         setCompetition(response);
@@ -29,7 +27,7 @@ const EditCompetitionForm = ({competitionId}) => {
         };
         const fetchCompetitionTypes = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/allCompetitionTypes')
+                await apiService.get('/general/allCompetitionTypes')
                     .then((res) => res.json())
                     .then((response) => {
                         setCompetitionTypes(response);
@@ -40,7 +38,7 @@ const EditCompetitionForm = ({competitionId}) => {
         };
         const fetchBowTypes = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/allBowTypes')
+                await apiService.get('/general/allBowTypes')
                     .then((res) => res.json())
                     .then((response) => {
                         setBowTypeList(response);
@@ -51,7 +49,7 @@ const EditCompetitionForm = ({competitionId}) => {
         }
         const fetchCompetitionStatuses = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/allCompetitionStatuses')
+                await apiService.get('/general/allCompetitionStatuses')
                     .then((res) => res.json())
                     .then((response) => {
                         setCompetitionStatuses(response);
@@ -102,17 +100,15 @@ const EditCompetitionForm = ({competitionId}) => {
                 .required('Поле обязательно для заполнения')
         }),
         onSubmit: async values => {
-            console.log(values);
             const requestOptions = {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken },
-                body: JSON.stringify({
+                body: {
+                    id: competitionId?.competitionId,
                     name: values.name,
                     place: values.place,
                     type: {
                         id: values.type
                     },
-                    bowTypeList: values.bowTypeList.map(id => ({id})),
+                    bowTypeList: values.bowTypeList.map(id => id),
                     status: values.status,
                     mainJudge: values.mainJudge,
                     secretary: values.secretary,
@@ -121,14 +117,14 @@ const EditCompetitionForm = ({competitionId}) => {
                     date: values.date,
                     endDate: values.endDate,
                     description: values.description,
-                })
+                }
             };
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/editCompetition?id=' + competitionId?.competitionId, requestOptions)
+                const response = await apiService.put('/admin/editCompetition', requestOptions.body);
                 if (response.ok) {
                     const responseData = await response.json();
                     console.log(responseData);
-                    navigate(`/competition`);
+                    navigate(`/competition/${competitionId?.competitionId}`);
                 } else {
                     throw new Error('Network response was not ok');
                 }
@@ -151,15 +147,6 @@ const EditCompetitionForm = ({competitionId}) => {
     };
 
     const handleStatusChange = (event) => {
-        // const {options} = event.target;
-        // let selectedValues = null;
-        // for (let i = 0; i < options.length; i++) {
-        //     if (options[i].selected) {
-        //         selectedValues = options[i].value;
-        //     }
-        // }
-        // console.log(selectedValues);
-        // formik.setFieldValue('status', selectedValues); // Установка выбранных значений
         formik.setFieldValue('status', event.target.value);
     }
 
@@ -295,7 +282,8 @@ const EditCompetitionForm = ({competitionId}) => {
                 >
                     <option value='' disabled selected hidden>Выберите статус соревнований</option>
                     {competitionStatuses?.map(status => (
-                        <option key={status} value={status} selected={checkSelectedStatus(status)}>{getStatusName(status)}</option>
+                        <option key={status} value={status}
+                                selected={checkSelectedStatus(status)}>{getStatusName(status)}</option>
                     ))}
                 </select>
             </div>

@@ -1,5 +1,6 @@
 import pdf from '../../img/pdf.png'
 import {useEffect, useState} from "react";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const DownloadPDFButton = ({fileName, preview, source, competitionId}) => {
 
@@ -10,25 +11,25 @@ const DownloadPDFButton = ({fileName, preview, source, competitionId}) => {
             try {
                 let response;
                 if (source === 'aboutFederation') {
-                    response = await fetch('http://localhost:8081/aboutFederation/download?fileName=' + link)
+                    response = await apiServiceFileManager.get('/aboutFederation/download?fileName=' + link)
                 }
                 if (source === 'activityFederationGeneral') {
-                    response = await fetch('http://localhost:8081/activityFederation/download?flag=General&fileName=' + link)
+                    response = await apiServiceFileManager.get('/activityFederation/download?flag=General&fileName=' + link);
                 }
                 if (source === 'activityFederation3D') {
-                    response = await fetch('http://localhost:8081/activityFederation/download?flag=3D&fileName=' + link)
+                    response = await apiServiceFileManager.get('/activityFederation/download?flag=3D&fileName=' + link);
                 }
                 if (source === 'activityFederationClassic') {
-                    response = await fetch('http://localhost:8081/activityFederation/download?flag=Classic&fileName=' + link)
+                    response = await apiServiceFileManager.get('/activityFederation/download?flag=Classic&fileName=' + link);
                 }
                 if (source === 'activityFederationBiathlon') {
-                    response = await fetch('http://localhost:8081/activityFederation/download?flag=Biathlon&fileName=' + link)
+                    response = await apiServiceFileManager.get('/activityFederation/download?flag=Biathlon&fileName=' + link);
                 }
                 if (source === 'competition') {
-                    response = await fetch('http://localhost:8081/competition/download?competitionId=' + competitionId + '&fileName=' + link);
+                    response = await apiServiceFileManager.get('/competition/download?competitionId=' + competitionId + '&fileName=' + link);
                 }
                 if (source === 'regionalTeam') {
-                    response = await fetch('http://localhost:8081/regionalTeam/download?fileName=' + link)
+                    response = await apiServiceFileManager.get('/regionalTeam/download?fileName=' + link);
                 }
                 if (response.ok) {
                     const blob = await response.blob();

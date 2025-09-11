@@ -7,6 +7,7 @@ import '../../style.css';
 import ListCompetition from '../../components/competition/ListCompetition'
 import Button from "../../components/button/Button";
 import {useLocation} from "react-router";
+import {apiService} from "../../utils/ApiService";
 
 
 const Calendar = () => {
@@ -20,7 +21,7 @@ const Calendar = () => {
     useEffect(() => {
         if (params.get('name') === '' && params.get('date') === '' && params.get('type') === '' ||
             params.get('name') === null && params.get('date') === null && params.get('type') === null) {
-            fetch('http://localhost:8080/api/v1/general/competitions')
+            apiService.get('/general/competitions')
                 .then((res) => res.json())
                 .then((result) => {
                     setAllCompetitions(result);
@@ -28,7 +29,7 @@ const Calendar = () => {
                 });
         } else {
             setPeriod('will')
-            fetch('http://localhost:8080/api/v1/general/competitionsByParams?name=' + params.get('name') + '&date=' + params.get('date') + '&type=' + params.get('type'))
+            apiService.get('/general/competitionsByParams?name=' + params.get('name') + '&date=' + params.get('date') + '&type=' + params.get('type'))
                 .then((res) => res.json())
                 .then((result) => {
                     setAllCompetitions(result);

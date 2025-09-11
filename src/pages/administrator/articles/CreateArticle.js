@@ -3,12 +3,9 @@ import {useFormik} from "formik";
 import {useNavigate} from "react-router";
 import * as Yup from 'yup';
 import NamePage from "../../../components/namePage/NamePage";
-import {useContext} from "react";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const CreateArticle = () => {
-
-    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -31,14 +28,8 @@ const CreateArticle = () => {
             formData.append('body', values.body);
             formData.append('file', values.file);
 
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Authorization': 'Bearer ' + user?.accessToken },
-                body: formData
-            };
-
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/createArticle', requestOptions)
+                const response = await apiService.post('/admin/createArticle', formData, true);
                 if (response.ok) {
                     const result = await response.json();
                     navigate(`/article/${result?.id}`);

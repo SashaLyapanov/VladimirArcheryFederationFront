@@ -1,12 +1,8 @@
-import {useFormik} from 'formik'
+import {useFormik} from 'formik';
 import {useNavigate} from "react-router";
-import {useContext, useEffect, useState} from "react";
-import FileUploader from "../../../components/files/FileUploader";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const EditAboutFederationInfoForm = ({infoAboutFederation}) => {
-
-    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -17,18 +13,16 @@ const EditAboutFederationInfoForm = ({infoAboutFederation}) => {
         },
         onSubmit: async values => {
             const requestOptions = {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken },
-                body: JSON.stringify({
+                body: {
                     id: '7fa1257a-332b-258d-bca6-ba78fa263e0f',
                     managers: values.managers,
                     contacts: values.contacts,
                     listLinks: values.links,
-                })
+                }
             };
 
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/changeAboutFederation', requestOptions)
+                const response = await apiService.put('/admin/changeAboutFederation', requestOptions.body);
                 if (response) {
                     navigate('/aboutFederation');
                 } else {

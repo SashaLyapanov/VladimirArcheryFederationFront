@@ -6,11 +6,12 @@ import {useEffect} from "react";
 import {formatDateLocal} from "../../utils/date-utils";
 import RemoveAppModal from "../modalWindows/RemoveAppModal";
 import Files from "./Files";
+import {apiService} from "../../utils/ApiService";
 
 const CompetitionId = (competitionId) => {
 
 
-    const {user, setUser} = useContext(CustomContext);
+    const {user} = useContext(CustomContext);
     const navigate = useNavigate();
     const [competition, setCompetition] = useState();
     const [alreadyReg, setAlreadyReg] = useState();
@@ -19,7 +20,7 @@ const CompetitionId = (competitionId) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/general/competition?id=' + competitionId?.competitionId);
+                const response = await apiService.get('/general/competition?id=' + competitionId?.competitionId);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -33,9 +34,7 @@ const CompetitionId = (competitionId) => {
         };
         const checkAlreadyReg = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/sportsman/checkApplication?sportsmanId=' + user?.userData?.id + '&competitionId=' + competitionId?.competitionId
-                    , { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken } }
-                );
+                const response = await apiService.get('/sportsman/checkApplication?sportsmanId=' + user?.userData?.id + '&competitionId=' + competitionId?.competitionId, true);
                 const result = await response.json();
                 setAlreadyReg(result);
             } catch (error) {
@@ -50,12 +49,12 @@ const CompetitionId = (competitionId) => {
 
 
     const onclick = (id) => {
-        if (!user?.userData?.role) {
+        if (id === 'listApplication') {
+            navigate(`/applicationsList/${competitionId?.competitionId}`)
+        } else if (!user?.userData?.role) {
             navigate('/login')
         } else if (id === 'registration') {
             navigate(`/registrationSports/${competitionId?.competitionId}`)
-        } else if (id === 'listApplication') {
-            navigate(`/applicationsList/${competitionId?.competitionId}`)
         } else if (id === 'removeApplication') {
             setRemoveModalView(true);
         } else if (id === 'editCompetition') {
@@ -66,7 +65,7 @@ const CompetitionId = (competitionId) => {
     }
 
     const checkSportsman = () => {
-        return !user?.userData?.role || user?.userData?.role === 'SPORTSMAN';
+        return user?.userData?.role === 'SPORTSMAN';
     }
 
     const checkAlreadyRegistration = () => {

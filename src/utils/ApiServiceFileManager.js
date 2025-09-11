@@ -1,35 +1,16 @@
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+const API_BASE_URL = 'http://localhost:8081';
 
-class ApiService {
+class ApiServiceFileManager {
     constructor() {
         this.isRefreshing = false;
         this.failedRequests = [];
     }
 
-    async request(url, options = {}, authNecessary) {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const token = user?.accessToken;
-        const headers = {
-            'Authorization': `Bearer ${token}`,
-            ...options.headers,
+    async request(url, options = {}) {
+
+        const config = {
+            ...options
         };
-
-
-        if (options.body instanceof FormData) {
-            delete headers['Content-Type'];
-        }
-
-        let config;
-        if (authNecessary === true) {
-            config = {
-                ...options,
-                headers,
-            };
-        } else {
-            config = {
-                ...options
-            };
-        }
 
         let response = await fetch(`${API_BASE_URL}${url}`, config);
 
@@ -82,7 +63,6 @@ class ApiService {
 
             localStorage.removeItem('user');
             window.location.href = '/login';
-
             throw error;
         } finally {
             this.isRefreshing = false;
@@ -95,7 +75,7 @@ class ApiService {
             throw new Error('No refresh token available');
         }
 
-        const response = await fetch(`${API_BASE_URL}/auth/refresh-token`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/auth/refresh-token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,11 +92,11 @@ class ApiService {
     }
 
     //Вспомогательные методы для разных HTTP методов
-    async get(url, authNecessary = false) {
-        return this.request(url, {method: 'GET'}, authNecessary);
+    async get(url) {
+        return this.request(url, {method: 'GET'});
     }
 
-    async post(url, body, isFormData = false, authNecessary = true) {
+    async post(url, body, isFormData = false) {
         let headers = {};
 
         if (!isFormData) {
@@ -129,10 +109,10 @@ class ApiService {
             body: isFormData ? body : JSON.stringify(body)
         };
 
-        return this.request(url, config, authNecessary);
+        return this.request(url, config);
     }
 
-    async put(url, body, isFormData = false, authNecessary = true) {
+    async put(url, body, isFormData = false) {
         let headers = {};
 
         if (!isFormData) {
@@ -145,7 +125,7 @@ class ApiService {
             body: isFormData ? body : JSON.stringify(body)
         };
 
-        return this.request(url, config, authNecessary);
+        return this.request(url, config);
     }
 
     async delete(url) {
@@ -153,4 +133,4 @@ class ApiService {
     }
 }
 
-export const apiService = new ApiService();
+export const apiServiceFileManager = new ApiServiceFileManager();

@@ -1,12 +1,11 @@
 import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
-import {useContext, useEffect, useState} from "react";
-import {CustomContext} from "../../../utils/Context";
+import {useEffect, useState} from "react";
+import {apiService} from "../../../utils/ApiService";
 
 const EditActivityFederation = ({flag, filesAboutFederation}) => {
 
     const navigate = useNavigate();
-    const {user} = useContext(CustomContext);
     const [fileState, setFileState] = useState([]);
     const [dragFile, setDragFile] = useState(false);
 
@@ -33,14 +32,8 @@ const EditActivityFederation = ({flag, filesAboutFederation}) => {
                 formData.append('files', fileObject);
             })
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Authorization': 'Bearer ' + user?.accessToken},
-                body: formData
-            };
-
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/changeFilesActivityFederation', requestOptions);
+                const response = await apiService.post('/admin/changeFilesActivityFederation', formData, true);
                 if (response) {
                     navigate('/activityFederation');
                 } else {

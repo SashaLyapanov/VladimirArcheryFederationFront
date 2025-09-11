@@ -18,11 +18,13 @@ const ArticleWindow = ({article}) => {
                 } else {
                     console.error('Ошибка при загрузке изображения');
                 }
+
             } catch (error) {
                 console.error('Произошла ошибка', error);
             }
         };
         fetchArticleImage(article?.link);
+
     }, [article])
 
     return (

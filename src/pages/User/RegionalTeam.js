@@ -6,6 +6,7 @@ import FilesList from "../../components/regionalTeam/FilesList";
 import {CustomContext} from "../../utils/Context";
 import Button from "../../components/button/Button";
 import {useNavigate} from "react-router";
+import {apiService} from "../../utils/ApiService";
 
 const RegionalTeam = () => {
 
@@ -17,7 +18,7 @@ const RegionalTeam = () => {
     useEffect(() => {
         const fetchSportsmen = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/regionalTeam')
+                await apiService.get('/general/regionalTeam')
                     .then((res) => res.json())
                     .then((result) => {
                         setSportsmen(result);
@@ -28,7 +29,7 @@ const RegionalTeam = () => {
         };
         const fetchFilesList = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/regionalTeamFiles')
+                await apiService.get('/general/regionalTeamFiles')
                     .then((res) => res.json())
                     .then((result) => {
                         setFilesList(result);

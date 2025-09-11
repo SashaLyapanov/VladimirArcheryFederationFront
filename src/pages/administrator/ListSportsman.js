@@ -6,19 +6,17 @@ import ApplicationList from "../../components/sports/ApplicationList"
 import React, {useEffect, useState} from "react"
 import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
+import {apiService} from "../../utils/ApiService";
 
 
 const ListSportsman = ({urls, role}) => {
-    const {user, setUser} = useContext(CustomContext)
+    const {user} = useContext(CustomContext)
     const [sports, setSports] = useState([]);
-    const params = new URLSearchParams(document.location.search);
 
     useEffect(() => {
         const getSportsmen = async () => {
             try {
-                const response = await fetch(urls
-                    , {headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken}}
-                );
+                const response = await apiService.get(urls, true);
                 const result = await response.json();
                 setSports(result);
             } catch (error) {
@@ -31,9 +29,9 @@ const ListSportsman = ({urls, role}) => {
     }, [user]);
 
     function listSportsmen(role) {
-        if (role == "ADMIN") {
+        if (role === "ADMIN") {
             return <SportsListAdmin sports={sports} user={user}/>
-        } else if (role == "COACH") {
+        } else if (role === "COACH") {
             return <ApplicationList sports={sports} user={user}/>
         }
     }

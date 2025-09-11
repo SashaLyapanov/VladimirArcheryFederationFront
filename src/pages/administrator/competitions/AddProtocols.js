@@ -3,22 +3,20 @@ import {useEffect, useState} from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
 import {useFormik} from "formik";
-import {useContext} from "react";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const AddProtocols = () => {
 
     const competitionId = useParams();
     const [competition, setCompetition] = useState();
     const navigate = useNavigate();
-    const {user} = useContext(CustomContext);
     const [fileState, setFileState] = useState([]);
     const [dragFile, setDragFile] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/v1/general/competition?id=' + competitionId?.competitionId);
+                const response = await apiService.get('/general/competition?id=' + competitionId?.competitionId);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -49,14 +47,8 @@ const AddProtocols = () => {
                 formData.append('files', fileObject);
             })
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {'Authorization': 'Bearer ' + user?.accessToken},
-                body: formData
-            };
-
             try {
-                const response = await fetch('http://localhost:8080/api/v1/admin/addFilesToCompetition?competitionId=' + competitionId?.competitionId, requestOptions)
+                const response = await apiService.post('/admin/addFilesToCompetition?competitionId=' + competitionId?.competitionId, formData, true);
                 if (response) {
                     navigate(`/competition/${competitionId?.competitionId}`);
                 } else {

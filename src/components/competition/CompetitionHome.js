@@ -5,13 +5,14 @@ import '../../style.css';
 import '../../fonts/roboto/fonts.css';
 import './style.css';
 import Competition from './Competition.js';
+import {apiService} from "../../utils/ApiService";
 
 const CompetitionHome = () => {
 
       const [competitions, setCompetitions] = useState([]);
     
       useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/availableCompetitions')
+        apiService.get('/general/availableCompetitions')
           .then((res) => res.json())
           .then((result) => {
               setCompetitions(result);

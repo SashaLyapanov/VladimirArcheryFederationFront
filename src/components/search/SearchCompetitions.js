@@ -8,17 +8,18 @@ import {CustomContext} from '../../utils/Context'
 import {useNavigate} from 'react-router'
 import {useFormik} from "formik";
 import cleaner from "../../img/trash.png";
+import {apiService} from "../../utils/ApiService";
 
 
 const SearchCompetitions = () => {
     const params = new URLSearchParams(document.location.search);
-    const {user, setUser} = useContext(CustomContext)
+    const {user} = useContext(CustomContext)
     const navigate = useNavigate()
 
     const [competitionTypes, setCompetitionTypes] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/general/allCompetitionTypes')
+        apiService.get('/general/allCompetitionTypes')
             .then((res) => res.json())
             .then((result) => {
                 setCompetitionTypes(result);

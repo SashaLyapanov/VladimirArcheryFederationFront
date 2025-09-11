@@ -13,17 +13,18 @@ import Button from "../../components/button/Button";
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
 import {useNavigate} from "react-router";
+import {apiService} from "../../utils/ApiService";
 
 const ActivityFederation = () => {
 
     const [filesList, setFilesList] = useState();
-    const {user, setUser} = useContext(CustomContext)
+    const {user} = useContext(CustomContext)
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFiles = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/activityFederation')
+                await apiService.get('/general/activityFederation')
                     .then((res) => res.json())
                     .then((response) => {
                         setFilesList(response);

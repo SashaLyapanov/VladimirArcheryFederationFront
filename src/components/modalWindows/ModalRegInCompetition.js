@@ -9,7 +9,7 @@ const ModalRegInCompetition = ({closeModal, compId, values}) => {
     const {user, setUser} = useContext(CustomContext);
     const navigate = useNavigate();
 
-    const confirmRegistration = () => {
+    const confirmRegistration = async () => {
         const dataOfRegistrationCompetition = {
             "bowType": {
                 "id": values.bowType
@@ -19,6 +19,7 @@ const ModalRegInCompetition = ({closeModal, compId, values}) => {
         axios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition,
             { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
             )
+        // apiServiceAxios.post(`sportsman/regInCompetition?sportsmanId=${user?.userData?.id}&competitionId=${compId}`, dataOfRegistrationCompetition)
             .then(((resp) => {
                 if (resp.data) {
                     navigate(`/competition/${compId}`);

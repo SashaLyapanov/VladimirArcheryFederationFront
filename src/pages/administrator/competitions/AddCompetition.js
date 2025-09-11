@@ -1,15 +1,13 @@
 import Button from "../../../components/button/Button"
 import '../../../components/profile/profile.css'
-import React, {useContext, useEffect, useState} from 'react';
-import axios from "../../../utils/axios";
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {CustomContext} from "../../../utils/Context";
+import {apiService} from "../../../utils/ApiService";
 
 const AddCompetition = () => {
 
-    const {user} = useContext(CustomContext);
     const navigate = useNavigate()
 
     const [competitionTypes, setCompetitionTypes] = useState([]);
@@ -18,7 +16,7 @@ const AddCompetition = () => {
     useEffect(() => {
         const fetchCompetitionTypes = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/allCompetitionTypes')
+                await apiService.get('/general/allCompetitionTypes')
                     .then((res) => res.json())
                     .then((response) => {
                         setCompetitionTypes(response);
@@ -29,7 +27,7 @@ const AddCompetition = () => {
         };
         const fetchBowTypes = async () => {
             try {
-                await fetch('http://localhost:8080/api/v1/general/allBowTypes')
+                await apiService.get('/general/allBowTypes')
                     .then((res) => res.json())
                     .then((response) => {
                         setBowTypeList(response);
@@ -90,9 +88,10 @@ const AddCompetition = () => {
                 'endDate': values.endDate,
                 'description': values.description,
             }
-            axios.post('admin/createCompetition', newCompetition,
-                { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
-                )
+            // axios.post('admin/createCompetition', newCompetition,
+            //     { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user?.accessToken }}
+            //     )
+            apiService.post('/admin/createCompetition', newCompetition)
                 .then((data) => {
                     navigate('/competition')
                 })
