@@ -6,6 +6,7 @@ import {useNavigate} from "react-router";
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
 import {apiService} from "../../utils/ApiService";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const ArticleInfo = (articleId) => {
     const [imgState, setImgState] = useState();
@@ -35,7 +36,7 @@ const ArticleInfo = (articleId) => {
 
     const fetchArticleImage = async (link) => {
         try {
-            const response = await fetch('http://localhost:8081/articleImages/download?fileName=' + link)
+            const response = await apiServiceFileManager.get('/articleImages/download?fileName=' + link)
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);

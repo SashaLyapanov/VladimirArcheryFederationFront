@@ -4,6 +4,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import NamePage from "../../../components/namePage/NamePage";
 import {useFormik} from "formik";
 import {apiService} from "../../../utils/ApiService";
+import {apiServiceFileManager} from "../../../utils/ApiServiceFileManager";
 
 const AddProtocols = () => {
 
@@ -78,7 +79,7 @@ const AddProtocols = () => {
     const fetchFileForCompetition = async (fileName) => {
         try {
             let response;
-            response = await fetch('http://localhost:8081/competition/download?competitionId=' + competitionId?.competitionId + '&fileName=' + fileName)
+            response = await apiServiceFileManager.get('/competition/download?competitionId=' + competitionId?.competitionId + '&fileName=' + fileName);
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);

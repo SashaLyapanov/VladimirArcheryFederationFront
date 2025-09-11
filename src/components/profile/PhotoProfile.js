@@ -4,6 +4,7 @@ import {useContext, useEffect, useState} from 'react'
 import UploadImg from "../modalWindows/UploadImg";
 import {CustomContext} from "../../utils/Context";
 import axios from "../../utils/axios";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const PhotoProfile = ({sportsmanProps, btnStatus}) => {
 
@@ -24,7 +25,7 @@ const PhotoProfile = ({sportsmanProps, btnStatus}) => {
             if (sportsman) {
                 console.log(sportsman);
                 try {
-                    const response = await fetch(`http://localhost:8081/personalAccount/download?fileName=${sportsman?.avatarImage}`)
+                    const response = await apiServiceFileManager.get(`/personalAccount/download?fileName=${sportsman?.avatarImage}`)
                     if (response.ok) {
                         const blob = await response.blob();
                         const objectURL = URL.createObjectURL(blob);

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useEffect} from 'react';
 import {Link} from "react-router-dom";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const SmallNews = ({news}) => {
     const [imgState, setImgState] = useState();
@@ -11,7 +12,7 @@ const SmallNews = ({news}) => {
 
     const fetchArticleImages = async (link) => {
         try {
-            const response = await fetch('http://localhost:8081/articleImages/download?fileName=' + link)
+            const response = await apiServiceFileManager.get('/articleImages/download?fileName=' + link)
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);

@@ -6,6 +6,7 @@ import '../../style.css';
 import SmallNews from './SmallNews';
 import {Link} from "react-router-dom";
 import {apiService} from "../../utils/ApiService";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 
 const News = () => {
@@ -34,7 +35,7 @@ const News = () => {
 
     const fetchArticleImages = async (link) => {
         try {
-            const response = await fetch('http://localhost:8081/articleImages/download?fileName=' + link)
+            const response = await apiServiceFileManager.get('/articleImages/download?fileName=' + link)
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);

@@ -2,6 +2,7 @@ import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {apiService} from "../../../utils/ApiService";
+import {apiServiceFileManager} from "../../../utils/ApiServiceFileManager";
 
 const EditAboutFederationInfoForm = ({filesAboutFederation}) => {
 
@@ -55,7 +56,7 @@ const EditAboutFederationInfoForm = ({filesAboutFederation}) => {
     const fetchFileAboutFederation = async (fileName) => {
         try {
             let response;
-            response = await fetch('http://localhost:8081/aboutFederation/download?fileName=' + fileName)
+            response = await apiServiceFileManager.get('/aboutFederation/download?fileName=' + fileName);
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);

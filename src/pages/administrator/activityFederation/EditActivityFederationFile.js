@@ -2,6 +2,7 @@ import {useFormik} from 'formik'
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {apiService} from "../../../utils/ApiService";
+import {apiServiceFileManager} from "../../../utils/ApiServiceFileManager";
 
 const EditActivityFederation = ({flag, filesAboutFederation}) => {
 
@@ -65,13 +66,13 @@ const EditActivityFederation = ({flag, filesAboutFederation}) => {
         try {
             let response;
             if (flag === "General") {
-                response = await fetch('http://localhost:8081/activityFederation/download?flag=General&fileName=' + fileName)
+                response = await apiServiceFileManager.get('/activityFederation/download?flag=General&fileName=' + fileName);
             } else if (flag === "3D") {
-                response = await fetch('http://localhost:8081/activityFederation/download?flag=3D&fileName=' + fileName)
+                response = await apiServiceFileManager.get('/activityFederation/download?flag=3D&fileName=' + fileName);
             } else if (flag === "Classic") {
-                response = await fetch('http://localhost:8081/activityFederation/download?flag=Classic&fileName=' + fileName)
+                response = await apiServiceFileManager.get('/activityFederation/download?flag=Classic&fileName=' + fileName);
             } else if (flag === "Biathlon") {
-                response = await fetch('http://localhost:8081/activityFederation/download?flag=Biathlon&fileName=' + fileName)
+                response = await apiServiceFileManager.get('/activityFederation/download?flag=Biathlon&fileName=' + fileName);
             }
 
             if (response.ok) {

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {formatDateLocal} from "../../utils/date-utils";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 
 const ArticleWindow = ({article}) => {
@@ -10,7 +11,7 @@ const ArticleWindow = ({article}) => {
     useEffect(() => {
         const fetchArticleImage = async (link) => {
             try {
-                const response = await fetch('http://localhost:8081/articleImages/download?fileName=' + link)
+                const response = await apiServiceFileManager.get('/articleImages/download?fileName=' + link)
                 if (response.ok) {
                     const blob = await response.blob();
                     const objectURL = URL.createObjectURL(blob);

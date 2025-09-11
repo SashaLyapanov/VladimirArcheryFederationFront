@@ -8,7 +8,7 @@ const SportsmanInfo = ({sportsman}) => {
     useEffect(() => {
         const fetchAratarImg = async () => {
             try {
-                const response = await fetch('http://localhost:8081/personalAccount/download?fileName=' + sportsman?.avatarImage)
+                const response = await fetch('/personalAccount/download?fileName=' + sportsman?.avatarImage);
                 if (response.ok) {
                     const blob = await response.blob();
                     const objectURL = URL.createObjectURL(blob);

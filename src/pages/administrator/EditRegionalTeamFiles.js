@@ -4,6 +4,7 @@ import {useFormik} from "formik";
 import Navbar from "../../components/navbar/Navbar";
 import NamePage from "../../components/namePage/NamePage";
 import {apiService} from "../../utils/ApiService";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const EditRegionalTeamFiles = () => {
 
@@ -16,7 +17,6 @@ const EditRegionalTeamFiles = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // const response = await fetch('http://localhost:8080/api/v1/general/regionalTeamFiles');
                 const response = await apiService.get('/general/regionalTeamFiles');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -84,7 +84,7 @@ const EditRegionalTeamFiles = () => {
     const fetchFileForCompetition = async (fileName) => {
         try {
             let response;
-            response = await fetch('http://localhost:8081/regionalTeam/download?fileName=' + fileName)
+            response = await apiServiceFileManager.get('/regionalTeam/download?fileName=' + fileName);
             if (response.ok) {
                 const blob = await response.blob();
                 const objectURL = URL.createObjectURL(blob);
