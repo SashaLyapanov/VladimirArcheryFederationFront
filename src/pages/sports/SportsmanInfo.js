@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {formatDateLocal} from "../../utils/date-utils";
+import {apiServiceFileManager} from "../../utils/ApiServiceFileManager";
 
 const SportsmanInfo = ({sportsman}) => {
 
@@ -7,17 +8,19 @@ const SportsmanInfo = ({sportsman}) => {
 
     useEffect(() => {
         const fetchAratarImg = async () => {
-            try {
-                const response = await fetch('/personalAccount/download?fileName=' + sportsman?.avatarImage);
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const objectURL = URL.createObjectURL(blob);
-                    setAvatarState(objectURL);
-                } else {
-                    console.error('Ошибка при загрузке изображения');
+            if (sportsman) {
+                try {
+                    const response = await apiServiceFileManager.get('/personalAccount/download?fileName=' + sportsman?.avatarImage);
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        const objectURL = URL.createObjectURL(blob);
+                        setAvatarState(objectURL);
+                    } else {
+                        console.error('Ошибка при загрузке изображения');
+                    }
+                } catch (error) {
+                    console.error('Произошла ошибка', error);
                 }
-            } catch (error) {
-                console.error('Произошла ошибка', error);
             }
         };
         fetchAratarImg();

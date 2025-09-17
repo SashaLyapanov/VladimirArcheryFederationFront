@@ -1,4 +1,7 @@
+//Запуск без Docker
 const API_BASE_URL = 'http://localhost:8081';
+//Запуск с помощью Docker
+// const API_BASE_URL = '/api/files/';
 
 class ApiServiceFileManager {
     constructor() {

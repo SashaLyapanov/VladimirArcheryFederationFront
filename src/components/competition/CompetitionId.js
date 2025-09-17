@@ -16,6 +16,7 @@ const CompetitionId = (competitionId) => {
     const [competition, setCompetition] = useState();
     const [alreadyReg, setAlreadyReg] = useState();
     const [removeModalView, setRemoveModalView] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,6 +62,56 @@ const CompetitionId = (competitionId) => {
             navigate(`/editCompetition/${competitionId?.competitionId}`)
         } else if (id === 'addProtocols') {
             navigate(`/addProtocols/${competitionId?.competitionId}`)
+        } else if (id === 'downloadStartProtocols') {
+            fetchStartProtocol(competitionId?.competitionId);
+        }
+    }
+
+    const fetchStartProtocol = async (competitionId) => {
+        setIsDownloading(true);
+        try {
+            const response = await apiService.get('/admin/generateProtocol?competitionId=' + competitionId, true);
+
+            if (response.ok) {
+                // Получаем blob из ответа
+                const blob = await response.blob();
+
+                // Создаем URL для blob
+                const url = window.URL.createObjectURL(blob);
+
+                // Получаем имя файла из заголовков или генерируем его
+                const contentDisposition = response.headers.get('Content-Disposition');
+                let filename = 'start_protocol.xlsx'; // значение по умолчанию
+
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+                    if (filenameMatch && filenameMatch[1]) {
+                        filename = filenameMatch[1];
+                    }
+                }
+
+                // Создаем временную ссылку для скачивания
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+
+                // Программно кликаем по ссылке для скачивания
+                link.click();
+
+                // Убираем ссылку из DOM
+                document.body.removeChild(link);
+
+                // Освобождаем память от blob URL
+                window.URL.revokeObjectURL(url);
+
+            } else {
+                console.error('Ошибка при загрузке файла:', response.status);
+            }
+        } catch (error) {
+            console.error('Произошла ошибка', error);
+        } finally {
+            setIsDownloading(false);
         }
     }
 
@@ -156,6 +207,13 @@ const CompetitionId = (competitionId) => {
                         id='addProtocols'
                         functionClick={() => onclick('addProtocols')}
                         />}
+                    {checkAdmin() && <Button
+                        parametr={isDownloading ? 'Скачивание...' : 'Скачать стартовый протокол'}
+                        className='long_button'
+                        id='downloadStartProtocols'
+                        functionClick={() => onclick('downloadStartProtocols')}
+                        disabled={isDownloading}
+                    />}
                 </div>
             </div>
         </div>

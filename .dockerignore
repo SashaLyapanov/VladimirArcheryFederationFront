@@ -1,0 +1,16 @@
+.git
+.gitignore
+node_modules/
+build/
+dist/
+*.log
+.idea
+*.iml
+.DS_Store
+docker-compose.yml
+Dockerfile
+README.md
+.env
+.env.local
+.env.development
+.env.production
