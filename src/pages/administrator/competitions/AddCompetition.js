@@ -244,7 +244,7 @@ const AddCompetition = () => {
             ) : null}
 
             <div className="container-pole">
-                <p className='fonts-roboto-regular name_profile'>Заместитель судьи</p>
+                <p className='fonts-roboto-regular name_profile'>Заместитель главного судьи</p>
                 <input
                     id='zamJudge'
                     name='zamJudge'

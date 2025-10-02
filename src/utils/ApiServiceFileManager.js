@@ -1,5 +1,6 @@
 //Запуск без Docker
-const API_BASE_URL = 'http://localhost:8081';
+// const API_BASE_URL = 'http://localhost:8081';
+const API_BASE_URL = 'https://files.fslvo.ru';
 //Запуск с помощью Docker
 // const API_BASE_URL = '/api/files/';
 

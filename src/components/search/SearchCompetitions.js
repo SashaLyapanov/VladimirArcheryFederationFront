@@ -88,14 +88,14 @@ const SearchCompetitions = () => {
                         onChange={formik.handleChange}/>
                 </div>
                 <div className="container-pole">
-                    <p className='fonts-roboto-regular name_search'>Вид стрельбы (3D/Target)</p>
+                    <p className='fonts-roboto-regular name_search'>Спортивные дисциплины</p>
                     <select
                         id="competitionType"
                         name="competitionType"
                         className='fonts-roboto-thin input_search'
                         value={formik.values.competitionType}
                         onChange={formik.handleChange}>
-                        <option value='' >Выберите вид соревнований</option>
+                        <option value='' >Выберите спортивную дисциплину</option>
                         {competitionTypes.map(competitionType => (
                             <option value={competitionType?.id}>{competitionType?.name}</option>
                         ))}
