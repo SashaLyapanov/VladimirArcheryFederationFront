@@ -51,10 +51,9 @@ const ArticleList = () => {
     return (
         <div>
             <Navbar/>
-
             <div className={"page-content"}>
                 {checkAdminRole(user?.userData?.role) &&
-                    <Button parametr={"Создать новость"} className='button editButton' functionClick={onClick}/>
+                    <Button parametr={"Создать новость"} className='button editButton headerButton' functionClick={onClick}/>
                 }
                 <NamePage name={'Новости'}/>
                 <ListArticles articles={articles}/>

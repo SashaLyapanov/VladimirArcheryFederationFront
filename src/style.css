@@ -28,10 +28,10 @@
     font-size: 26px;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 831px) {
     .page-content {
         max-width: 100%;
-        margin: calc(100vh - (100vh - 16%)) 0 6% 0;
+        margin: calc(100vh - (100vh - 18%)) 0 6% 0;
         overflow-x: hidden;
     }
 

@@ -4,7 +4,7 @@ import ArticleWindow from "./ArticleWindow";
 const ListArticles = ({articles}) => {
 
     return(
-        <div className='competitions'>
+        <div>
             <div className='container container_for_competition'>
                 <div className='list_items'>
                     {articles.map((article) => (
