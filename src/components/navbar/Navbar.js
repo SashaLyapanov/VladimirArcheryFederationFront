@@ -16,11 +16,11 @@ const Navbar = () => {
     const {user, setUser} = useContext(CustomContext)
 
     const userRole = (user) => {
-        if (user?.userData?.role == "SPORTSMAN") {
+        if (user?.userData?.role === "SPORTSMAN") {
             return <MenuSports/>
-        } else if (user?.userData?.role == "ADMIN") {
+        } else if (user?.userData?.role === "ADMIN") {
             return <MenuAdmin/>
-        } else if (user?.userData?.role== 'JUDGE') {
+        } else if (user?.userData?.role === 'JUDGE') {
             return <MenuJudge/>
         } else {
             return <MenuUser/>
@@ -29,7 +29,7 @@ const Navbar = () => {
 
     return (
         <nav className="nav">
-            <div className='container nav-container'>
+            <div className='nav-container nav-container-text'>
 
                 <a className='logoContainer' href="/">
                     <img src={logo} className="logo"/>
@@ -38,15 +38,19 @@ const Navbar = () => {
                 <div className="contentContainer">
                     <div className='info'>
                         <div>
-                            <p className="content fonts-roboto-black">федерация стрельбы из лука владимирской
-                                области</p>
-                            <a href="https://yandex.ru/maps/geo/vladimir/53057138/?ll=40.422683%2C56.134849&z=11"
-                               className="place fonts-roboto-regular">
-                                <img src={place} className="img-place"/>
-                                Владимир
-                            </a>
+                            <div className="nav-bar-label">
+                                <p className="content fonts-roboto-black">федерация стрельбы из лука владимирской
+                                    области</p>
+                                <a href="https://yandex.ru/maps/geo/vladimir/53057138/?ll=40.422683%2C56.134849&z=11"
+                                   className="place fonts-roboto-regular">
+                                    <img src={place} className="img-place"/>
+                                    Владимир
+                                </a>
+                            </div>
                         </div>
-                        {userRole(user)}
+                        <div className="burger-btn-nav">
+                            {userRole(user)}
+                        </div>
                     </div>
                     <div className='menu fonts-roboto-regular'>
                         <Link to="/aboutFederation" className="menu-elements">О федерации</Link>

@@ -6,9 +6,9 @@ import CompetitionHome from '../../components/competition/CompetitionHome';
 const Home = () => {
 
     return (
-        <div>
+        <div className='app'>
             <Navbar/>
-            <div className={"page-content"}>
+            <div className="page-content">
                 <News/>
                 <CompetitionHome/>
             </div>
