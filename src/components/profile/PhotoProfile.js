@@ -129,7 +129,6 @@ const PhotoProfile = ({sportsmanProps, btnStatus}) => {
             <div className="photo">
                 {avatarImg ? <img src={avatarImg} alt='Аватарка' className={'avatar_img'}/> :
                     <img src={photo} alt='Аватарка'/>}
-
             </div>
             {user && buttonStatus(btnStatus)}
 

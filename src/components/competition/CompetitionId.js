@@ -173,27 +173,29 @@ const CompetitionId = (competitionId) => {
                 </div>
 
                 <div>
-                    <p className="content-competition-label">Описание мероприятия:</p>
-                    <p className="content-competition-description fonts-roboto-light">{competition?.description}</p>
+                    <h2 className="fonts-roboto-black content-competition-label">Описание мероприятия:</h2>
+                    <p className="content-competition-description">{competition?.description}</p>
                 </div>
 
                 <Files props={competition}/>
 
-                <div className='button_flex line-block'>
+                <div className='button_flex line-block max_button_width button_flex_mobile'>
                     {checkSportsman() && checkCompetitionPeriod() && checkAlreadyRegistration() &&
                         <Button parametr='Зарегистрироваться'
+                                className='long_button'
                                 id='registration'
                                 functionClick={() => onclick('registration')}
                         />}
+                    {checkSportsman() && !checkAlreadyRegistration() &&
+                        <Button parametr='Отменить заявку'
+                                className='long_button'
+                                functionClick={() => onclick('removeApplication')}
+                                id='removeApplication'/>
+                    }
                     {<Button parametr='Список зарегистрированных спортсменов'
                              className='long_button'
                              functionClick={() => onclick('listApplication')}
                              id='listApplication'/>
-                    }
-                    {checkSportsman() && !checkAlreadyRegistration() &&<Button parametr='Отменить заявку'
-                             className='long_button'
-                             functionClick={() => onclick('removeApplication')}
-                             id='removeApplication'/>
                     }
                     {checkAdmin() && <Button
                         parametr='Редактировать соревнование'
@@ -206,7 +208,7 @@ const CompetitionId = (competitionId) => {
                         className='long_button'
                         id='addProtocols'
                         functionClick={() => onclick('addProtocols')}
-                        />}
+                    />}
                     {checkAdmin() && <Button
                         parametr={isDownloading ? 'Скачивание...' : 'Скачать стартовый протокол'}
                         className='long_button'

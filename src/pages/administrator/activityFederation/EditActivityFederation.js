@@ -20,7 +20,7 @@ const EditActivityFederation = () => {
             setPageName("Редактирование блока 'Классическая стрельба из лука'");
         } else if (blockName?.blockName === "Biathlon") {
             setPageName("Редактирование блока 'Archery биатлон'");
-        }  else if (blockName?.blockName === "General") {
+        } else if (blockName?.blockName === "General") {
             setPageName("Редактирование блока 'Обща информация'");
         }
 
@@ -41,7 +41,7 @@ const EditActivityFederation = () => {
             setFileNames(activityFederation?.classic);
         } else if (blockName?.blockName === "Biathlon") {
             setFileNames(activityFederation?.biathlon);
-        }  else if (blockName?.blockName === "General") {
+        } else if (blockName?.blockName === "General") {
             setFileNames(activityFederation?.general);
         }
     }, [blockName, activityFederation])
@@ -50,9 +50,12 @@ const EditActivityFederation = () => {
     return (
         <div>
             <Navbar/>
-            <div className={'page-content'}>
-                {pageName && <NamePage name={pageName}/>}
-                {fileNames && <EditActivityFederationFile flag={blockName?.blockName} filesAboutFederation={fileNames}/>}
+            <div className={'container'}>
+                <div className={'page-content'}>
+                    {pageName && <NamePage name={pageName}/>}
+                    {fileNames &&
+                        <EditActivityFederationFile flag={blockName?.blockName} filesAboutFederation={fileNames}/>}
+                </div>
             </div>
         </div>
     )

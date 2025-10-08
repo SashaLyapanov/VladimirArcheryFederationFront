@@ -6,8 +6,8 @@ const ApplicationList = ({applications, user}) => {
         <div>
             {applications?.map((application) => (
                 <div  className="sports-trainer fonts-roboto-light" id={application?.sportsman?.email}>
-                    <p id='fio'>{application?.sportsman?.surname + ' ' + application?.sportsman?.firstName + ' ' + application?.sportsman?.patronymic}</p>
-                    <p id='bowType'>{application?.bowType?.bowTypeName}</p>
+                    <p id='fio' className='left_item'>{application?.sportsman?.surname + ' ' + application?.sportsman?.firstName + ' ' + application?.sportsman?.patronymic}</p>
+                    <p id='bowType' className='right_item'>{application?.bowType?.bowTypeName}</p>
                 </div>
             ))}
         </div>

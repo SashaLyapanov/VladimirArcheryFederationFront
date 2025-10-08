@@ -3,8 +3,20 @@
         margin-top: 7px;
     }
 
-    .button {
+    .button_for_search {
         height: 35px;
+        width: 100%;
+        border-radius: 10px;
+        color: white;
+        background-color: #0C0C90;
+        border-color: #0C0C90;
+        cursor: pointer;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+
+    .button {
+        height: 40px;
         width: 190px;
         border-radius: 10px;
         color: white;
@@ -12,11 +24,13 @@
         border-color: #0C0C90;
         cursor: pointer;
         font-size: 15px;
+        margin-top: 15px;
     }
 
     .editButton {
         float: right;
         margin-right: 10px;
+        margin-top: 10px;
     }
 
     .button:hover {
@@ -29,8 +43,9 @@
     }
 
     .long_button {
-        height: 50px;
-        width: 250px;
+        height: 65px;
+        width: 100%;
+        max-width: 250px;
         border-radius: 10px;
         color: white;
         background-color: #0C0C90;
@@ -63,10 +78,34 @@
         font-size: 15px;
         margin-bottom: 15px;
     }
+
+    .max_button_width {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .button_flex_mobile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+        gap: 10px;
+        align-items: start;
+    }
 }
 
 @media screen and (min-width: 831px) {
     .button {
+        height: 40px;
+        width: 190px;
+        border-radius: 10px;
+        color: white;
+        background-color: #0C0C90;
+        border-color: #0C0C90;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .button_for_search {
         height: 35px;
         width: 190px;
         border-radius: 10px;
@@ -80,6 +119,7 @@
     .editButton {
         float: right;
         margin-right: 10px;
+        margin-top: 10px;
     }
 
     .button:hover {

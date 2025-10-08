@@ -59,16 +59,20 @@ const Calendar = () => {
     }
 
     return (
-        <div className={'page-content'}>
+        <div>
             <Navbar/>
-            <NamePage name={period === 'will' ? "Текущие и будущие соревнования" : "Прошедшие соревнования"}/>
-            <SearchCompetitions/>
-            <Button
-                parametr={checkPeriod()}
-                className='competitonBtn'
-                functionClick={onClick}
-            />
-            <ListCompetition parametr={competitions}/>
+            <div className="container">
+                <div className="page-content">
+                    <NamePage name={period === 'will' ? "Текущие и будущие соревнования" : "Прошедшие соревнования"}/>
+                    <SearchCompetitions/>
+                    <Button
+                        parametr={checkPeriod()}
+                        className='competitonBtn'
+                        functionClick={onClick}
+                    />
+                    <ListCompetition parametr={competitions}/>
+                </div>
+            </div>
         </div>
     )
 }

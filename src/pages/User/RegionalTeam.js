@@ -53,19 +53,24 @@ const RegionalTeam = () => {
     return (
         <div>
             <Navbar/>
-            <div className="page-content">
-                <NamePage name='Сборная команда Владимирской области'/>
-                <div style={{marginBottom: '20px'}}>
-                    <div>
-                        <h2 className='info-block'>Справочная информация</h2>
-                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать файлы"} className='button editButton' functionClick={editFiles}/>}
-                        <br/>
-                        <br/>
+            <div className="container">
+                <div className="page-content">
+                    <NamePage name='Сборная команда Владимирской области'/>
+                    <div style={{marginBottom: '20px'}} className='column_struct'>
+                        <div className="max-width">
+                            {checkAdminRole(user?.userData?.role) &&
+                                <Button parametr={"Редактировать файлы"} className='button editButton'
+                                        functionClick={editFiles}/>}
+                        </div>
+                        <h2 className='info-block fonts-roboto-black'>Справочная информация</h2>
+                        {filesList &&
+                            <div className="max-width">
+                                <FilesList filesList={filesList} source="regionalTeam"/>
+                            </div>}
                     </div>
-                    {filesList && <FilesList filesList={filesList} source="regionalTeam"/>}
+                    <h2 className='info-block fonts-roboto-black'>Члены региональной сборной команды</h2>
+                    <SportsmanList sportsmen={sportsmen}/>
                 </div>
-                <h2 className='info-block'>Члены региональной сборной команды</h2>
-                <SportsmanList sportsmen={sportsmen}/>
             </div>
         </div>
     )

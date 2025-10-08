@@ -10,8 +10,8 @@ const ManagersInfo = ({props}) => {
 
     return(
         <div className="info-block">
-            <h1>Управляющий состав:</h1>
-            <p>{managers}</p>
+            <h1 className='fonts-roboto-black'>Управляющий состав:</h1>
+            <p className='info-body'>{managers}</p>
         </div>
     )
 }

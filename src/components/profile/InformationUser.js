@@ -37,8 +37,12 @@ const InformationUser = ({btnStatus}) => {
     return (
         <div>
             <div className="information-user">
-                <PhotoProfile sportsmanProps={sportsman} btnStatus={btnStatus}/>
-                <DataProfile sportsman={sportsman}/>
+                <div>
+                    <PhotoProfile sportsmanProps={sportsman} btnStatus={btnStatus}/>
+                </div>
+                <div>
+                    <DataProfile sportsman={sportsman}/>
+                </div>
             </div>
         </div>
     )

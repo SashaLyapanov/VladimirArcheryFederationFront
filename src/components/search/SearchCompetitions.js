@@ -50,7 +50,7 @@ const SearchCompetitions = () => {
         if (role === 'ADMIN') {
             return <Button id={'button-block'}
                            parametr={'Добавить'}
-                           className={''}
+                           className={'button_for_search'}
                            functionClick={onClickAdd}/>
         }
     }
@@ -101,16 +101,18 @@ const SearchCompetitions = () => {
                         ))}
                     </select>
                 </div>
-                <div className="center_position_for_img">
-                    <img src={cleaner} alt='Иконка для очистки' className='cleaner_search_form' onClick={cleanForm}/>
-                </div>
-                <div className='button_flex'>
-                    <button
-                        className='button'
-                        type="submit">
-                        Найти
-                    </button>
-                    {buttonBlock(user?.userData?.role)}
+                <div className="controls">
+                    <div className="center_position_for_img">
+                        <img src={cleaner} alt='Иконка для очистки' className='cleaner_search_form' onClick={cleanForm}/>
+                    </div>
+                    <div className='button_space'>
+                        <button
+                            className='button_for_search'
+                            type="submit">
+                            Найти
+                        </button>
+                        {buttonBlock(user?.userData?.role)}
+                    </div>
                 </div>
             </form>
         </div>

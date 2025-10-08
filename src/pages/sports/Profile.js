@@ -10,14 +10,16 @@ const Profile = ({profile, btnStatus}) => {
     const {user} = useContext(CustomContext)
 
     return (
-        <div className="page-content">
-            <Navbar/>
-            {user?.userData?.role === "ADMIN" ?
-                <NamePage name={"Профиль спортсмена"}/>
-                :
-                <NamePage name={"Личный профиль"}/>
-            }
-            <InformationUser btnStatus={btnStatus}/>
+        <div className="container">
+            <div className="page-content">
+                <Navbar/>
+                {user?.userData?.role === "ADMIN" ?
+                    <NamePage name={"Профиль спортсмена"}/>
+                    :
+                    <NamePage name={"Личный профиль"}/>
+                }
+                <InformationUser btnStatus={btnStatus}/>
+            </div>
         </div>
     )
 }

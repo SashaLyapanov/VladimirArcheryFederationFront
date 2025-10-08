@@ -141,49 +141,50 @@ const EditRegionalTeamFiles = () => {
     return (
         <div>
             <Navbar/>
-            <div className={'page-content'}>
-                <NamePage name={`Добавление файлов в блок "Справочная информация"`}/>
+            <div className={'container'}>
+                <div className={'page-content'}>
+                    <NamePage name={`Добавление файлов в блок "Справочная информация"`}/>
 
-                <div>
-                    <form onSubmit={formik.handleSubmit}>
+                    <div>
+                        <form onSubmit={formik.handleSubmit}>
 
-                        <div className="file-uploader">
-                            <p className="header">Файлы</p>
+                            <div className="file-uploader">
+                                <p className="header">Файлы</p>
 
-                            {<div
-                                className={dragFile ? 'drop-area-hover' : 'drop-area'}
-                                onDragStart={e => dragStartHandler(e)}
-                                onDragLeave={e => dragLeaveHandler(e)}
-                                onDragOver={e => dragOverHandler(e)}
-                                onDrop={e => onDropHandler(e)}
-                            >
-                                Отпустите файлы, чтобы загрузить их
-                            </div>
-                            }
-                            <div className="file-list">
-                                {fileState?.length > 0 && fileState?.map((file, index) => (
-                                    <div key={index} className="file-item">
+                                {<div
+                                    className={dragFile ? 'drop-area-hover' : 'drop-area'}
+                                    onDragStart={e => dragStartHandler(e)}
+                                    onDragLeave={e => dragLeaveHandler(e)}
+                                    onDragOver={e => dragOverHandler(e)}
+                                    onDrop={e => onDropHandler(e)}
+                                >
+                                    Отпустите файлы, чтобы загрузить их
+                                </div>
+                                }
+                                <div className="file-list">
+                                    {fileState?.length > 0 && fileState?.map((file, index) => (
+                                        <div key={index} className="file-item">
                         <span className="file-name">
                             {file?.originalName}
                         </span>
-                                        <button type='button' onClick={() => handleRemoveFile(file)}>Удалить</button>
-                                    </div>
-                                ))}
+                                            <button type='button' onClick={() => handleRemoveFile(file)}>Удалить
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        <br/>
-                        <br/>
+                            <br/>
+                            <br/>
 
-                        <button
-                            className='button'
-                            type="submit">
-                            Отправить
-                        </button>
-                    </form>
+                            <button
+                                className='button'
+                                type="submit">
+                                Отправить
+                            </button>
+                        </form>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     )

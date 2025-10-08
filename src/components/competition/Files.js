@@ -12,7 +12,7 @@ const Files = ({props}) => {
 
     return (
         <div className="info-block">
-            <h1>Файлы:</h1>
+            <h2 className='fonts-roboto-black content-competition-label'>Файлы:</h2>
             <div>
                 {links?.files?.map((file) =>
                     <DownloadPDFButton fileName={file} preview={file} source='competition' competitionId={links?.id}/>

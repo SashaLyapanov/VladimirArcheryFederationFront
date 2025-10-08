@@ -10,8 +10,8 @@ const LinksInfo = ({props}) => {
 
     return(
         <div className="info-block">
-            <h1>Полезные ссылки:</h1>
-            <div>
+            <h1 className='fonts-roboto-black'>Полезные ссылки:</h1>
+            <div className='info-body'>
                 {aboutFederation?.links?.map((link) => (
                     <div>
                         <a href={link} target={"_blank"}>{link}</a>

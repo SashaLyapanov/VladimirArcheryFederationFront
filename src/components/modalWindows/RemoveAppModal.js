@@ -32,7 +32,7 @@ const RemoveAppModal = ({ competitionId, closeModal}) => {
                 </div>
                 <div className="modalFooter">
                     <button onClick={() => closeModal(false)}>Отмена</button>
-                    <button onClick={() => removeApplication()}>Подтвердить отмену регистрации</button>
+                    <button onClick={() => removeApplication()}>Подтвердить отмену</button>
                 </div>
             </div>
         </div>

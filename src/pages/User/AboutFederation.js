@@ -48,21 +48,30 @@ const AboutFederation = () => {
     return (
         <div>
             <Navbar/>
-            <div className="page-content">
-                <div className="line-block flex_in_studio">
-                    <div id="info_block_left">
-                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать информацию"} className='button editButton' functionClick={editInfo}/>}
-                        {checkAdminRole(user?.userData?.role) && <Button parametr={"Редактировать файлы"} className='button editButton' functionClick={editFiles}/>}
-                        <NamePage name={"О федерации"}/>
-                        <ManagersInfo props={aboutFederation && aboutFederation.managers}/>
-                        <LinksInfo props={aboutFederation}/>
-                        <ContactsInfo props={aboutFederation && aboutFederation.contacts}/>
-                        <FilesInfo props={aboutFederation}/>
-                    </div>
-                    <div id="picture_block_right">
-                        <DemoPictures picture1={picture3} picture2={picture4}/>
-                        <DemoPictures picture1={picture1} picture2={picture2}/>
-                        <DemoPictures picture1={picture5} picture2={picture6}/>
+            <div className="container">
+                <div className="page-content">
+                    <div className="line-block flex_in_studio">
+                        <div id="info_block_left">
+                            {checkAdminRole(user?.userData?.role) &&
+                                <div>
+                                    <Button parametr={"Редактировать информацию"} className='button editButton'
+                                            functionClick={editInfo}/>
+                                    <Button parametr={"Редактировать файлы"} className='button editButton'
+                                            functionClick={editFiles}/>
+                                </div>}
+                            <div className="max-width">
+                                <NamePage name={"О федерации"}/>
+                                <ManagersInfo props={aboutFederation && aboutFederation.managers}/>
+                                <LinksInfo props={aboutFederation}/>
+                                <ContactsInfo props={aboutFederation && aboutFederation.contacts}/>
+                                <FilesInfo props={aboutFederation}/>
+                            </div>
+                        </div>
+                        <div id="picture_block_right">
+                            <DemoPictures picture1={picture3} picture2={picture4}/>
+                            <DemoPictures picture1={picture1} picture2={picture2}/>
+                            <DemoPictures picture1={picture5} picture2={picture6}/>
+                        </div>
                     </div>
                 </div>
             </div>

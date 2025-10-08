@@ -26,6 +26,10 @@
         display: none;
     }
 
+    /*.margin-for-form {*/
+    /*    margin-top: 30px;*/
+    /*}*/
+
     .competition {
         width: 100%;
         display: flex;
@@ -98,6 +102,36 @@
         margin: 5% 3% 0 3%;
     }
 
+    .content-competition-description {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: #000000;
+    }
+
+    .content-competition {
+        color: #757575;
+        font-size: 18px;
+    }
+
+    .content-competition-details {
+        font-size: 17px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .name-competition {
+        font-size: 24px;
+    }
+
+    .registration {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 5% 0 5%;
+        gap: 10px;
+    }
 
 }
 
@@ -166,6 +200,39 @@
         color: black;
         margin: 0 15px 10px 0;
     }
+
+    .content-competition-description {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: #000000;
+    }
+
+    .content-competition {
+        color: #757575;
+        font-size: 20px;
+    }
+
+    .content-competition-details {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 8px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .name-competition {
+        font-size: 24px;
+        padding-top: 30px
+    }
+
+    .registration {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 20% 0 20%;
+        gap: 10px;
+    }
 }
 
 @media screen and (min-width: 1550px) {
@@ -233,6 +300,39 @@
         color: black;
         margin: 0 15px 10px 0;
     }
+
+    .content-competition-description {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: #000000;
+    }
+
+    .content-competition {
+        color: #757575;
+        font-size: 20px;
+    }
+
+    .content-competition-details {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 8px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .name-competition {
+        font-size: 24px;
+        padding-top: 30px
+    }
+
+    .registration {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 20% 0 20%;
+        gap: 10px;
+    }
 }
 
 .sports {
@@ -252,37 +352,12 @@
     width: 42%;
 }
 
-.name-competition {
-    font-size: 24px;
-    padding-top: 30px
-}
-
 .inf-competition {
     font-size: 14px;
 }
 
-.content-competition {
-    color: #757575;
-    font-size: 20px;
-}
-
-.content-competition-details {
-    font-size: 20px;
-    margin-top: 10px;
-    margin-left: 8px;
-    margin-bottom: 10px;
-    color: black;
-}
-
-.content-competition-description {
-    font-size: 17px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
 .content-competition-label {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -298,15 +373,6 @@
     border-radius: 16px;
     gap: 10px;
     margin-top: 40px;
-}
-
-
-.registration {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 20% 0 20%;
-    gap: 10px;
 }
 
 .add {

@@ -45,63 +45,65 @@ const CreateArticle = () => {
     return (
         <div>
             <Navbar/>
-            <div className={"page-content"}>
-                <NamePage name={'Создание новости'}/>
-                <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
-                    <div>
-                        <p className='header fonts-roboto-black'>Название</p>
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                            className='input fonts-roboto-light'
-                        />
-                        {formik.touched.name && formik.errors.name ? (
-                            <div className='error-massage'>{formik.errors.name}</div>
-                        ) : null}
-                    </div>
+            <div className={"container"}>
+                <div className={"page-content"}>
+                    <NamePage name={'Создание новости'}/>
+                    <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
+                        <div>
+                            <p className='header fonts-roboto-black'>Название</p>
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.name}
+                                className='input fonts-roboto-light  info-body'
+                            />
+                            {formik.touched.name && formik.errors.name ? (
+                                <div className='error-massage'>{formik.errors.name}</div>
+                            ) : null}
+                        </div>
 
-                    <div>
-                        <p className='header fonts-roboto-black'>Тело новости</p>
-                        <textarea
-                            id="body"
-                            name="body"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.body}
-                            className='input fonts-roboto-light'
-                        />
-                        {formik.touched.body && formik.errors.body ? (
-                            <div className='error-massage'>{formik.errors.body}</div>
-                        ) : null}
-                    </div>
+                        <div>
+                            <p className='header fonts-roboto-black'>Тело новости</p>
+                            <textarea
+                                id="body"
+                                name="body"
+                                rows={6}
+                                onChange={formik.handleChange}
+                                value={formik.values.body}
+                                className='input fonts-roboto-light  info-body'
+                            />
+                            {formik.touched.body && formik.errors.body ? (
+                                <div className='error-massage'>{formik.errors.body}</div>
+                            ) : null}
+                        </div>
 
-                    <div>
-                        <p className='header fonts-roboto-black'>Фотография</p>
-                        <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            onChange={(e) => {
-                                formik.setFieldValue("file", e.currentTarget.files[0]);
-                            }}
-                            className='input_file'
-                        />
-                        {formik.touched.file && formik.errors.file ? (
-                            <div className='error-massage'>{formik.errors.file}</div>
-                        ): null}
-                    </div>
-                    <br/>
-                    <br/>
+                        <div>
+                            <p className='header fonts-roboto-black'>Фотография</p>
+                            <input
+                                id="file"
+                                name="file"
+                                type="file"
+                                onChange={(e) => {
+                                    formik.setFieldValue("file", e.currentTarget.files[0]);
+                                }}
+                                className='input_file info-body'
+                            />
+                            {formik.touched.file && formik.errors.file ? (
+                                <div className='error-massage'>{formik.errors.file}</div>
+                            ) : null}
+                        </div>
+                        <br/>
+                        <br/>
 
-                    <button
-                        className='button'
-                        type="submit">
-                        Отправить
-                    </button>
-                </form>
+                        <button
+                            className='button'
+                            type="submit">
+                            Отправить
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     )

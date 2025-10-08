@@ -23,14 +23,15 @@ const EditAboutFederation = ({infoOrFiles}) => {
     return (
         <div>
             <Navbar/>
-            <div className={'page-content'}>
-                <NamePage name={'Редактирование "О федерации"'}/>
-                {aboutFederation && infoOrFiles === 'info' ?
-                    <EditAboutFederationInfoForm infoAboutFederation={aboutFederation}/>
-                    :
-                    <EditAboutFederationFilesForm filesAboutFederation={aboutFederation?.fileNames}/>
-                }
-
+            <div className={'container'}>
+                <div className={'page-content'}>
+                    <NamePage name={'Редактирование "О федерации"'}/>
+                    {aboutFederation && infoOrFiles === 'info' ?
+                        <EditAboutFederationInfoForm infoAboutFederation={aboutFederation}/>
+                        :
+                        <EditAboutFederationFilesForm filesAboutFederation={aboutFederation?.fileNames}/>
+                    }
+                </div>
             </div>
         </div>
     )

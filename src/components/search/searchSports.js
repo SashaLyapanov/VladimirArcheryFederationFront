@@ -38,7 +38,7 @@ const SearchSports = ({role}) => {
 
     return(
         <div>
-            <form className='container container_for_page search'>
+            <form className='container_for_page search'>
                 <div className="container-pole">
                     <p className='fonts-roboto-regular name_search'>Фамилия</p>
                     <input type='text' 
@@ -63,8 +63,8 @@ const SearchSports = ({role}) => {
                            value={inputPatronymic}
                            onChange={e => setInputPatronymic(e.target.value)}/>
                 </div>
-                
-                <div className='button_flex'>
+
+                <div className='button_space'>
                     <Button parametr={'Найти'}  
                             functionClick={onClickSearch} />
                     {buttonAdd(user?.userData?.role)}

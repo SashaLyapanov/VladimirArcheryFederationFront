@@ -11,9 +11,11 @@ const CompetitionRegistration = () => {
     return (
         <div>
             <Navbar/>
-            <div className={"page-content"}>
-                <NamePage name={'Регистрация на соревнования'}/>
-                <Registration competitionId={competitionId}/>
+            <div className={"container"}>
+                <div className={"page-content"}>
+                    <NamePage name={'Регистрация на соревнования'}/>
+                    <Registration competitionId={competitionId}/>
+                </div>
             </div>
         </div>
     );

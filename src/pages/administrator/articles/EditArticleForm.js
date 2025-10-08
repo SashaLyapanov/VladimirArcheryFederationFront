@@ -48,17 +48,16 @@ const EditArticleForm = ({info}) => {
                 type="text"
                 onChange={formik.handleChange}
                 value={formik.values.name}
-                className='input fonts-roboto-light'
+                className='input fonts-roboto-light info-body'
             />
 
             <p className='header fonts-roboto-black'>Тело новости</p>
-            <input
+            <textarea
                 id="body"
                 name="body"
-                type="text"
                 onChange={formik.handleChange}
                 value={formik.values.body}
-                className='input fonts-roboto-light'
+                className='input fonts-roboto-light info-body'
             />
 
             {/*ФОТКУ РЕДАКТИРОВАТЬ НАДО!!!!*/}

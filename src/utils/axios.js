@@ -1,10 +1,8 @@
 import axios from "axios";
 
 //Запуск без Docker
-// const API_BASE_URL = 'http://localhost:8080/api/v1/';
-const API_BASE_URL = 'https://api.fslvo.ru/api/v1/';
-//Запуск с помощью Docker
-// const API_BASE_URL = '/api/v1/';
+const API_BASE_URL = 'http://localhost:8080/api/v1/';
+// const API_BASE_URL = 'https://api.fslvo.ru/api/v1/';
 
 // Создаем экземпляр axios
 const api = axios.create({

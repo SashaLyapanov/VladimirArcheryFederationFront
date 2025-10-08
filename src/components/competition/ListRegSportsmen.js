@@ -53,10 +53,12 @@ const ListRegSportsmen = () => {
     return (
         <div>
             <Navbar/>
-            <div className={"page-content"}>
-                <NamePage name={'Список зарегистрированных спортсменов на ' + competition?.name}/>
-                <h3 className='info-block'>Количество зарегистрированных участников: {applications.length}</h3>
-                <ApplicationList applications={Array.isArray(applications) ? applications : []}/>
+            <div className={"container"}>
+                <div className={"page-content"}>
+                    <NamePage name={'Список зарегистрированных спортсменов на ' + competition?.name}/>
+                    <h3 className='info-block fonts-roboto-black'>Количество зарегистрированных участников: {applications.length}</h3>
+                    <ApplicationList applications={Array.isArray(applications) ? applications : []}/>
+                </div>
             </div>
         </div>
     )

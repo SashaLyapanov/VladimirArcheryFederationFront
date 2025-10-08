@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import React from "react";
 import {formatDateLocal} from "../../utils/date-utils";
 import Button from "../button/Button";
@@ -69,13 +69,14 @@ const ArticleInfo = (articleId) => {
 
     return (
         <div>
-            {checkAdminRole(user?.userData?.role) &&
-                <div>
-                    <Button parametr={"Удалить"} className='button editButton' functionClick={deleteClick}/>
-                    <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>
-                    <br/>
-                </div>}
             <div className='container'>
+                {checkAdminRole(user?.userData?.role) &&
+                    <div className='flex_for_btn'>
+                        <Button parametr={"Редактировать"} className='button editButton' functionClick={onClick}/>
+                        <Button parametr={"Удалить"} className='button editButton' functionClick={deleteClick}/>
+                        <br/>
+                        <br/>
+                    </div>}
                 <p className='center_position article_header fonts-roboto-black'>{article?.name}</p>
                 <p className='article-date'>{article?.dateTime && formatDateLocal(article?.dateTime)}</p>
                 <div className="img-block">

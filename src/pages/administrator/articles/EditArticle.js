@@ -19,14 +19,17 @@ const EditArticle = () => {
                         console.error(e);
                     }
                 )
-        }}, [articleId])
+        }
+    }, [articleId])
 
     return (
         <div>
             <Navbar/>
-            <div className={'page-content'}>
-                <NamePage name={'Редактирование новости'}/>
-                {article && <EditArticleForm info={article}/>}
+            <div className={'container'}>
+                <div className={'page-content'}>
+                    <NamePage name={'Редактирование новости'}/>
+                    {article && <EditArticleForm info={article}/>}
+                </div>
             </div>
         </div>
     )

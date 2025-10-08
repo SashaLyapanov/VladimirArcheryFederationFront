@@ -37,33 +37,33 @@ const EditAboutFederationInfoForm = ({infoAboutFederation}) => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <p className='header fonts-roboto-black'>Управляющий состав</p>
-            <input
+            <textarea
                 id="managers"
                 name="managers"
-                type="text"
+                rows={3}
                 onChange={formik.handleChange}
                 value={formik.values.managers}
-                className='input fonts-roboto-light'
+                className='input fonts-roboto-light info-body'
             />
 
             <p className='header fonts-roboto-black'>Полезные ссылки (вводить ссылки через запятую с пробелом)</p>
-            <input
+            <textarea
                 id="links"
                 name="links"
-                type="text"
+                rows={6}
                 onChange={formik.handleChange}
                 value={formik.values.links}
-                className='input fonts-roboto-light'
+                className='input fonts-roboto-light info-body'
             />
 
             <p className='header fonts-roboto-black'>Контакты федерации</p>
-            <input
+            <textarea
                 id="contacts"
                 name="contacts"
-                type="text"
+                rows={3}
                 onChange={formik.handleChange}
                 value={formik.values.contacts}
-                className='input fonts-roboto-light'
+                className='input fonts-roboto-light info-body'
             />
 
             <br/>

@@ -39,11 +39,13 @@ const ListSportsman = ({urls, role}) => {
     return (
         <div>
             <Navbar/>
-            <div className={"page-content"}>
-                <NamePage name={'Спортсмены'}/>
-                <SearchSports role={role}/>
-                <div className="container">
-                    {listSportsmen(user?.userData?.role)}
+            <div className={"container"}>
+                <div className={"page-content"}>
+                    <NamePage name={'Спортсмены'}/>
+                    <SearchSports role={role}/>
+                    <div>
+                        {listSportsmen(user?.userData?.role)}
+                    </div>
                 </div>
             </div>
         </div>
