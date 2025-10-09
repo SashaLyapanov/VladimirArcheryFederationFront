@@ -1,9 +1,11 @@
 import {useContext} from "react";
 import {CustomContext} from "../../utils/Context";
 import {apiServiceAxios} from "../../utils/axios";
+import {useNavigate} from "react-router";
 
 const RemoveAppModal = ({ competitionId, closeModal}) => {
     const {user, setUser} = useContext(CustomContext);
+    const navigate = useNavigate();
 
     const removeApplication = () => {
         if (!user?.accessToken) {
@@ -12,10 +14,13 @@ const RemoveAppModal = ({ competitionId, closeModal}) => {
         }
         apiServiceAxios.post(`sportsman/deleteApplication?sportsmanId=${user?.userData?.id}&competitionId=${competitionId?.competitionId}`,
             null, {}, true)
+            .then(() => {
+                closeModal(false);
+                navigate(`/competition/${competitionId?.competitionId}`);
+            })
             .catch((resp) => {
                 alert(resp.response.data);
             })
-        window.location.reload();
     }
 
     return (
