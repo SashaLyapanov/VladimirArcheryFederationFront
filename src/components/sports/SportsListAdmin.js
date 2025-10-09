@@ -31,7 +31,7 @@ const SportsListAdmin = ({sports, user}) => {
         <div>
             {sports.map((sport) => (
                 <div id={sport?.email} className="sports-trainer fonts-roboto-light" onClick={sportsId}>
-                    <p id={sport?.email}>{sport?.firstName + ' ' + sport?.patronymic + ' ' + sport?.surname}</p>
+                    <p id={sport?.email}>{sport?.surname + ' ' + sport?.firstName + ' ' + sport?.patronymic}</p>
                 </div>
             ))}
         </div>

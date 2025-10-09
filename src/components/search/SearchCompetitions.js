@@ -56,7 +56,6 @@ const SearchCompetitions = () => {
     }
 
     const cleanForm = () => {
-        console.log(formik.values.inputName)
         formik.setFieldValue('inputName', '');
         formik.setFieldValue('inputDate', '');
         formik.setFieldValue('competitionType', '');

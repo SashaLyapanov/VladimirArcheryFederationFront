@@ -7,26 +7,46 @@ import React, {useEffect, useState} from "react"
 import {useContext} from 'react'
 import {CustomContext} from '../../utils/Context'
 import {apiService} from "../../utils/ApiService";
+import {useLocation} from "react-router";
 
 
-const ListSportsman = ({urls, role}) => {
+const ListSportsman = ({role}) => {
+    const params = new URLSearchParams(document.location.search);
+    const location = useLocation();
+
     const {user} = useContext(CustomContext)
     const [sports, setSports] = useState([]);
 
     useEffect(() => {
-        const getSportsmen = async () => {
-            try {
-                const response = await apiService.get(urls, true);
-                const result = await response.json();
-                setSports(result);
-            } catch (error) {
-                console.error('Error fetching data: ', error);
+        if (params.get('surname') === '' && params.get('name') === '' && params.get('patronymic') === '' ||
+            params.get('name') === null && params.get('name') === null && params.get('patronymic') === null) {
+            const getSportsmen = async () => {
+                try {
+                    const response = await apiService.get('/admin/sportsmen', true);
+                    const result = await response.json();
+                    setSports(result);
+                } catch (error) {
+                    console.error('Error fetching data: ', error);
+                }
+            }
+            if (user?.accessToken) {
+                getSportsmen();
+            }
+        } else {
+            const getSportsmen = async () => {
+                try {
+                    const response = await apiService.get('/admin/sportsmenByFIO?surname=' + params.get('surname') + '&name=' + params.get('name') + '&patronymic=' + params.get('patronymic'), true);
+                    const result = await response.json();
+                    setSports(result);
+                } catch (error) {
+                    console.error('Error fetching data: ', error);
+                }
+            }
+            if (user?.accessToken) {
+                getSportsmen();
             }
         }
-        if (user?.accessToken) {
-            getSportsmen();
-        }
-    }, [user]);
+    }, [user, location]);
 
     function listSportsmen(role) {
         if (role === "ADMIN") {
