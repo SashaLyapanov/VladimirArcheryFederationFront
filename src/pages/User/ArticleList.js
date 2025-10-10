@@ -7,6 +7,7 @@ import {CustomContext} from "../../utils/Context";
 import Button from "../../components/button/Button";
 import {useNavigate} from "react-router";
 import {apiService} from "../../utils/ApiService";
+import './pagination_style.css'
 
 const ArticleList = () => {
 
@@ -16,7 +17,7 @@ const ArticleList = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [pageSize, setPageSize] = useState(3);
+    const [pageSize, setPageSize] = useState(10);
 
     useEffect(() => {
         fetchArticles(currentPage);
@@ -28,7 +29,7 @@ const ArticleList = () => {
             const response = await apiService.get(`/general/getArticlesWithPagination?numPage=${page}&pageSize=${pageSize}`);
             const result = await response.json();
 
-            setArticles(result.content || []); // Spring Data возвращает статьи в content
+            setArticles(result.content || []);
             setTotalPages(result.totalPages || 0);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -95,7 +96,7 @@ const ArticleList = () => {
                 {loading ? (
                     <div className="loading">Загрузка...</div>
                 ) : (
-                    <>
+                    <div>
                         <ListArticles articles={articles}/>
 
                         {/* Пагинация */}
@@ -132,10 +133,10 @@ const ArticleList = () => {
                         )}
 
                         {/* Информация о текущей странице */}
-                        <div className="pagination-info">
-                            Страница {currentPage + 1} из {totalPages}
-                        </div>
-                    </>
+                        {/*<div className="pagination-info">*/}
+                        {/*    Страница {currentPage + 1} из {totalPages}*/}
+                        {/*</div>*/}
+                    </div>
                 )}
             </div>
         </div>
