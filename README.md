@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Archery Federation Information System (https://fslvo.ru/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web-приложение для автоматизации работы региональной федерации стрельбы из лука:
+- регистрация спортсменов, управление соревнованиями, генерация Excel/PDF протоколов, ролевой доступ, хранение документов, ведение информационного блога.
 
-## Available Scripts
+## О проекте (предметная область)
+Проект разработан под заказ для региональной федерации стрельбы из лука Владимирской области.  
+Главная цель системы - автоматизация проведения соревнований и связанных бизнес-процессов организации, в том числе:
+- регистрации пользователей
+- ведения соревнований
+- регистрации спортсменов на мероприятия
+- хранения документов
+- публикации новостей
+- формирования соревновательных протоколов  
 
-In the project directory, you can run:
+Ключевая особенность проекта — автоматизация проведения соревнований с использованием Excel-протоколов и последующей генерацией итоговых PDF-документов.
 
-### `npm start`
+## Основные возможности
+### Неавторизованный пользователь
+- просмотр информации об организации
+- просмотр соревнований и новостей
+- регистрация
+- авторизация
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Спортсмен
+- подача заявки на соревнования
+- просмотр результатов
+- просмотр результатов
+- просмотр списка зарегистрированных спортсменов
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Администратор
+- управление соревнованиями
+- управление пользователями
+- управление новостным контентом
+- управление документацией
 
-### `npm test`
+### Судья
+- проведение соревнований
+- загрузка Excel-протоколов
+- генерация итоговых PDF-протоколов
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Архитектура
+Проект состоит из нескольких компонентов:
+- Backand: (https://github.com/SashaLyapanov/VladimirArcheryFederation) основной backand-сервис на Java + Spring Boot
+- Frontend: клиентское SPA-приложение на React
+- DB: PostgreSQL
+- Migrations: Liquibase
+- File Service: (https://github.com/SashaLyapanov/API-File-manager-FSLVO) самописный API файловый сервис для обработки и хранения файлов на сервере
+- Deployment: Docker Compose
+Взаимодействие между backand-сервисами и клиентским приложением построено по REST API.
 
-### `npm run build`
+## Технологии
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend
+- Java
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Spring Data JPA
+- Hibernate
+- Liquibase
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontend
+- React
+- JavaScript
+- REST API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Data / Infra
+- PostgreSQL
+- Docker
+- Docker Compose
 
-### `npm run eject`
+### Дополнительно
+- Apache POI для работы с Excel
+- генерация PDF-документов
+- email confirmation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Быстрый запуск
+Через Docker Compose:
+```bash
+docker compose up --build
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Документация
+https://github.com/SashaLyapanov/VladimirArcheryFederation/tree/develop/docs
